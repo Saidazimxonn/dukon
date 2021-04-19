@@ -1,0 +1,89 @@
+{% extends 'firmact.html' %}
+{% load static %}
+
+{% block content1 %}
+
+		<!-- SECTION -->
+		<div class="section">
+		
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Product main img -->
+					<div class="col-md-5 col-md-push-2">
+						<div id="product-main-img">
+							<div class="product-preview">
+								<img src="{{category_d.image.url}}" alt="">
+							</div>
+					
+							
+						</div>
+					</div>
+					<!-- /Product main img -->
+
+					<!-- Product thumb imgs -->
+					<div class="col-md-2  col-md-pull-5">
+						<div id="product-imgs">
+							<div class="product-preview">
+								<img src="{{category_d.image.url}}" alt="">
+							</div>
+
+							
+						</div>
+					</div>
+					<!-- /Product thumb imgs -->
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name">{{ category_d.name }}</h2>
+							<div>
+							
+								<a class="review-link" href="#">10 Review(s) | Add your review</a>
+							</div>
+							<div>
+								<h3 class="product-price">${{category_d.new_price}} <del class="product-old-price">${{category_d.old_price}}</del></h3>
+								<span class="product-available">-{{category_d.sale}}% sale</span>
+								
+										{% if category_d.new %}
+										<span class="product-available"">NEW Product</span>
+										{% endif %}
+							</div>
+							<p>{{ category_d.info_text }}</p>
+								<div class="add-to-cart">                                   
+                                    <div class="footer-sec3" id="footer-sec">                                  
+                                          <div class="social-icons d-flex">
+
+                                    <a href="{{ category_d.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> </a>
+                                    <a href="{{ category_d.tg_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i> </a>
+                                   <a href="tel:{{category_d.phone}}"><b class="mt-4"><i class="las la-phone"></i>  {{ category_d.phone }}</b></a>
+                                      </div>
+                                   </div>
+								</div>
+							
+
+						
+
+							<ul class="product-links">
+								<li>Category:</li>
+								<li><a href="#">{{category_d.company}}</a></li>
+								<li><a href="#">Accessories</a></li>
+							</ul>
+
+							
+						</div>
+					</div>
+					<!-- /Product details -->
+
+					<!-- Product tab -->
+			
+					<!-- /product tab -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+{% endblock %}

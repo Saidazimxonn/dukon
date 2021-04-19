@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+         <div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="breadcrumb-tree">
+							<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+							<li><a href="{% url 'company' %}">Korxonalar</a></li>
+        		   <li><a href="#">{{products.1}}</a></li>
+        		   <li><a href="#">{{products.0}}</a></li>
+
+			
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+  {% block content1 %}
+        <main class="my-5">
+            <div class="container">
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-md-12 mb-4">
+                  <!--Section: Content-->
+                  {% for i in firms %}
+                  <section>
+              
+        
+                    <!-- Post -->
+                   
+                    <div class="row">
+                   
+                      <div class="col-md-4 mb-4">
+                        
+                            <div class="shop">
+                                <div class="shop-img">
+                                    <img src="{{ i.image.url}}" alt="">
+                                </div>
+                                <div class="shop-body">
+                                    <h3 style="color: aliceblue;"><br>{{ i.name_long}}</h3>
+                                    <!-- <a href="#" class="cta-btn">Shop now lorem50 </i></a> -->
+                                </div>
+                            
+                        </div>
+                      </div>
+        
+                      <div class="col-md-8 mb-4 mt-3">
+                        <h5>{{ i.name }}</h5>
+                        <p>
+                         {{ i.info }}
+                        </p>
+                     
+                        <a href="{% url 'category' %}?company={{ i.id }}" class="btn anim-btn rounded-pill user-contact" name="company" value="{{ i.id }}"  type="submit">Ko'rish
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </a>
+                        <ul style="float: right;">
+                            <!-- <li style="float: right;"  class="wow fadeInDown"><i class="las la-phone fa-2x" ></i></li> -->
+                            <a href="tel:{{i.phone}}"><li style="float: right;"  class="wow fadeInUp"><i class="las la-phone fa-2x" ></i><b>{{ i.phone}}</b></li></a>
+                       
+                        <li style="float: right;" class="wow fadeInDown">
+                        <a href="{{ i.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram fa-2x"></i> </a>
+
+                        </li>
+                        <li style="float: right;" class="wow fadeInUp">
+                        <a href="{{ i.ins_link}}" class="wow fadeInDown"><i class="lab la-instagram fa-2x"></i> </a>
+
+                        </li>
+                        </ul>
+                      </div>
+                    </div>
+                 
+        
+                    <!-- Post -->
+              
+                  </section>
+                  {% endfor %}
+                  <!--Section: Content-->
+                </div>
+                <!--Grid column-->
+        
+                <!--Grid column-->
+              
+                <!--Grid column-->
+              </div>
+              <!--Grid row-->
+        
+              <!-- Pagination -->
+         
+            </div>
+          </main>
+	
+<!-- Footer sec start-->
+
+<!-- Footer sec End -->
+
+
+			<!-- bottom footer -->
+		
+			<!-- /bottom footer -->
+		</footer>
+		<!-- /FOOTER -->
+{% endblock %}
+
+{% endblock %}

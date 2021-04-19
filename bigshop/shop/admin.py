@@ -5,12 +5,15 @@ from .models import Company, Product
 
 class CompanyAdmin(admin.ModelAdmin):
     list_display = [
-        'name'
+        'name','id'
     ]
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
         'name', 'image_tag'
+    ]
+    list_filter = [
+        'company'
     ]
 
 
