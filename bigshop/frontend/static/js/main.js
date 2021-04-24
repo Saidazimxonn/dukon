@@ -167,3 +167,6 @@ $('.carousel').carousel()
 	}
 
 })(jQuery);
+a.noclick {
+  pointer-events: none;
+}

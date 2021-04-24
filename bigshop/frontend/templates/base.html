@@ -69,8 +69,29 @@
 		</style>
     </head>
 	<body>
+     
+<!--loading start-->
+<div class="loader">
+    <div class="loaders">
+        <div class="l" id="l-1"><i></i></div>
+        <div class="l" id="l-2"><i></i></div>
+        <div class="l" id="l-3"><i></i></div>
+        <div class="l" id="l-4"><i></i></div>
+        <div class="l" id="l-5"><i></i></div>
+        <div class="l" id="l-6"><i></i></div>
+        <div class="l" id="l-7"><i></i></div>
+        <div class="l" id="l-8"><i></i></div>
+    </div>
+</div>
+<!--loading end-->
+<!--bottom Arrow start-->
+<div class="bottom-arr scroll-top-arrow">
+    <i class="las la-angle-up"></i>
+</div>
+<!--bottom Arrow end-->
 		<!-- HEADER -->
 		<top-header>
+            
 			<!-- TOP HEADER -->
 			<!-- <div id="top-header">
 				<div class="container">
@@ -188,7 +209,7 @@
 
 						<li><a href="{% url 'company' %}" class="nav-item" > <span class="btn btn-success btn-circle btn-xl"><i class="fas fa-building fa-3x"></i></span><br><div class="d-flex justify-content-center">Korxanalar</div>	</a></li>
 						
-						<li><a href="#" class="nav-item" > <span class="btn btn-danger btn-circle btn-xl"><i class="fas fa-cogs fa-3x"></i></span><br>Uskunalar</a></li>
+						<li><a href="{% url 'technique' %}" class="nav-item" > <span class="btn btn-danger btn-circle btn-xl"><i class="fas fa-cogs fa-3x"></i></span><br>Uskunalar</a></li>
 
 						<li><a href="#" class="" > <span class="btn btn-info btn-circle btn-xl"><i class="fas fa-shopping-bag fa-3x"></i></span><br>Sotuvchilar</a></li>
 					
@@ -639,30 +660,33 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 contact-box text-center text-md-left">
+
                 <div class="c-box wow fadeInRight">
-                <h4 class="small-heading">Leave Message</h4>
-                <form class="contact-form">
+                <h4 class="small-heading">Tezkor bo'glanish</h4>
+                <form class="contact-form" action="{% url 'action_view'%}" method="POST">
+                    <input type="hidden", name="action", value="create_ad">
+                            {% csrf_token %}
                     <div class="row my-form">
                         <div class="display-error"><span id="error"></span></div>
                         <div class="col-12 col-md-6">
-                            <input type="text" class="form-control" id="candidate_fname" name="candidate_fname" placeholder="Ism" required="required">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Ism" required="required">
                         </div>
                         <div class="col-12 col-md-6">
-                            <input type="text" class="form-control" id="candidate_lname" name="candidate_lname" placeholder="Familya" required="required">
+                            <input type="text" class="form-control" id="f_name" name="f_name" placeholder="Familya" required="required">
                         </div>
                         <div class="col-12 col-md-6">
-                            <input type="number" class="form-control" id="user_email" name="user_email" placeholder="Telefon" required="required">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Telifon" required="required">
                         </div>
                         <div class="col-12 col-md-6">
-                            <input type="text" class="form-control" id="user_subject" name="user_subject" placeholder="Maqsad" required="required">
+                            <input type="text" class="form-control" id="message" name="message" placeholder="Murojatdan maqsad..." required="required">
                         </div>
                         <div class="col-12">
-                            <textarea class="form-control" id="user_message" name="user_message" placeholder="Xabar" rows="7" required="required"></textarea>
+                            <textarea class="form-control" id="message_long" name="message_long" placeholder="Xabaringizni yozing...." rows="7" required="required"></textarea>
                         </div>
-                        <div class="col-12">
-                            <a href="javascript:void(0);" class="btn anim-btn rounded-pill user-contact" type="submit">Yuborish
+                        <div class="col-12" type="submit">
+                            <button class="btn anim-btn rounded-pill user-contact" type="submit">Yuborish
                                 <span></span><span></span><span></span><span></span><span></span>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </form>

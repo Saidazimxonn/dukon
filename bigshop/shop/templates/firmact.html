@@ -2,27 +2,29 @@
 {% load static %}
 {% block content %}
 
-         <div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-							<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
-							<li><a href="{% url 'company' %}">Korxonalar</a></li>
-        		   <li><a href="#">{{products.1}}</a></li>
-        		   <li><a href="#">{{products.0}}</a></li>
+  <div id="breadcrumb" class="section">
+   
+<div class="container"> 
 
-			
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-  {% block content1 %}
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="breadcrumb-tree">
+            <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+            <li><a href="{% url 'company' %}">Korxonalar</a></li>
+      
+       
+        
+
+    
+          </ul>
+        </div>
+      </div>
+  
+    </div> 
+    <!-- /container -->
+  </div>
+
+
         <main class="my-5">
             <div class="container">
               <!--Grid row-->
@@ -58,7 +60,7 @@
                          {{ i.info }}
                         </p>
                      
-                        <a href="{% url 'category' %}?company={{ i.id }}" class="btn anim-btn rounded-pill user-contact" name="company" value="{{ i.id }}"  type="submit">Ko'rish
+                        <a href="{% url 'category' i.id %}" class="btn anim-btn rounded-pill user-contact"  name="company" value="{{ i.id }}"  type="button">Ko'rish
                             <span></span><span></span><span></span><span></span><span></span>
                         </a>
                         <ul style="float: right;">
@@ -109,4 +111,3 @@
 		<!-- /FOOTER -->
 {% endblock %}
 
-{% endblock %}

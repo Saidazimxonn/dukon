@@ -1,22 +1,22 @@
 from django.shortcuts import render
 from django_middleware_global_request.middleware import get_request
 from django.views.generic import  ListView, DetailView
+from django.views.generic.list import MultipleObjectMixin
 from .models import Company, Product
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 # Create your views here.
 
-class CategoryListView(ListView):
+class CategoryDetailView(DetailView, MultipleObjectMixin):
     template_name = 'category.html'
     model = Product
-    paginate_by = 2
+    paginate_by = 15
     # context_object_name = 'products'
     def get_context_data(self, **kwargs):
-        context = super(CategoryListView, self).get_context_data(**kwargs)
+        conpartylist = Product.objects.filter(company_id=self.kwargs['pk'])
+        context = super(CategoryDetailView, self).get_context_data(object_list=conpartylist, **kwargs)
         
-        context['name'] = Product.objects.all()
-        company_n = self.request.GET.get('company', None)
-        context['products'] = Product.objects.filter(company_id=company_n)
-        conpartylist = Product.objects.all().order_by('-id')
+        context['name'] = Product.objects.filter(company_id=self.kwargs['pk'])
+        # company_n = self.request.GET.get('company', None)
         paginator = Paginator(conpartylist, self.paginate_by)
         page = self.request.GET.get('page')
         try:

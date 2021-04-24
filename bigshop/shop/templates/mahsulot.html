@@ -1,7 +1,25 @@
-{% extends 'firmact.html' %}
+{% extends 'base.html' %}
 {% load static %}
+{% block content %}
 
-{% block content1 %}
+<div id="breadcrumb" class="section">
+   
+	<div class="container"> 
+	
+		  <div class="row">
+			<div class="col-md-12">
+			  <ul class="breadcrumb-tree">
+				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+				<li><a href="{% url 'company' %}">Korxonalar</a></li>
+				<li><a href="#" onclick="location.href=document.referrer;return false;" >{{ category_d.company }}</a></li>
+				<li><a href="#">{{ category_d.name }}</a></li>
+				</ul>
+			</div>
+		  </div>
+	  
+		</div> 
+		<!-- /container -->
+	  </div>
 
 		<!-- SECTION -->
 		<div class="section">

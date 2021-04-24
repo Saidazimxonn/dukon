@@ -1,122 +1,137 @@
-{% extends 'firmact.html' %}
+{% extends 'base.html' %}
 {% load static %}
-{% block content1 %}
+{% block content %}
+
+
+<div id="breadcrumb" class="section">
+   
+	<div class="container"> 
+	
+		  <div class="row">
+			<div class="col-md-12">
+			  <ul class="breadcrumb-tree">
+				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+				<li><a href="{% url 'company' %}">Korxonalar</a></li>
+				 <li><a href="#">{{ name.first.company }}</a></li>
+		
+	
+		
+			  </ul>
+			</div>
+		  </div>
+	  
+		</div> 
+		<!-- /container -->
+	  </div>
+	<style>
+		/* .offset-md-custom:nth-child(odd) {
+			margin-left: 0%;
+		} */
+		
+	</style>
 
 		<!-- SECTION -->
-		<h1 style="text-align: center;"><b>{{ name.company }}</b> </h1>
+		<h1 style="text-align: center;"><b>{{ name.first.company.name_long}} </b> </h1>
 		<!-- /SECTION -->
 		<div class="col-md-12">
 			
 				<div class="products-tabs">
 					<!-- tab -->
-			
 							<!-- product -->
-							<div class="row justify-content-center">
-								
+							<ul class="row justify-content-center">
 								<!-- <div class="col-md-3"></div> -->
-								{% for i in products %}
-							
-								<!-- <div class=""></div> -->
-							<div class="col col-md-3">
-							<div class="product">
-								<div class="product-img img-fluid " >
-									<img src="{{i.image.url}}" style="width:100%;height: 40vh;" alt="image">
-									<div class="product-label">
-										<span class="sale">-{{i.sale}}%</span>
-										{% if i.new %}
-										<span class="new">
-										
-											NEW
-										
-										</span>
-										{% endif %}
+								{% for i in object_list %}
+									<!-- <div class=""></div> -->
+								<li class="col-md-3 offset-md-custom nth-even">
+									<div class="product">
+										<div class="product-img img-fluid " >
+											<img src="{{i.image.url}}" style="width:100%;height: 40vh;" alt="image">
+											<div class="product-label">
+												{% if i.sale %}
+
+												<span class="sale">-{{i.sale}}%</span>
+												{% endif %}
+
+												{% if i.new %}
+												<span class="new">
+												NEW</span>
+												{% endif %}
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-category">{{i.company}}</p>
+											<h3 class="product-name"><a href="#">{{ i.info}}</a></h3>
+											<h4 class="product-price">${{i.new_price}} <del class="product-old-price">${{i.old_price}}</del></h4>
+											<div class="product-rating">
+											
+											</div>
+											<div class="product-btns">
+												
+												<div class="footer-sec2" id="footer-sec">
+													<div class="container">
+														<div class="row">
+															<div class="col-12 d-flex justify-content-center">
+																<div class="social-icons d-flex">
+																		<a href="{{i.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
+																		<a href="{% url 'detail' i.pk	 %}" class="wow fadeInDown"><i class="las la-eye"></i></a>
+																		<a href="{{i.ins_link}}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
+																</div>
+															</div>
+													
+														</div>
+													</div>
+												</div>
+											
+											</div>
+										</div>
+										<div class="add-to-cart">
+										<a href="tel:{{ i.phone }}">	<button class="add-to-cart-btn"><i class="fas fa-phone-alt"></i></i>{{i.phone}}</button></a>
+										</div>
 									</div>
-								</div>
-								<div class="product-body">
-									<p class="product-category">{{i.company}}</p>
-									<h3 class="product-name"><a href="#">{{ i.info}}</a></h3>
-									<h4 class="product-price">${{i.new_price}} <del class="product-old-price">${{i.old_price}}</del></h4>
-									<div class="product-rating">
-									
-									</div>
-									<div class="product-btns">
-										
-                                        <div class="footer-sec2" id="footer-sec">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-12 d-flex justify-content-center">
-                                                        <div class="social-icons d-flex">
-                                                                <a href="{{i.tg_link}}" class="wow fadeInDown"><i class="lab la-telegram"></i> </a>
-                                                                <a href="{% url 'detail' i.pk	 %}" class="wow fadeInUp"><i class="las la-eye"></i></a>
-                                                                <a href="{{i.ins_link}}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
-                                                        </div>
-                                                    </div>
-                                               
-                                                </div>
-                                            </div>
-                                        </div>
-									
-									</div>
-								</div>
-								<div class="add-to-cart">
-								<a href="tel:{{ i.phone }}">	<button class="add-to-cart-btn"><i class="fas fa-phone-alt"></i></i>{{i.phone}}</button></a>
-								</div>
-							</div>
-                            </div>
-							{% endfor %}
-							<!-- /product -->
+								</li>
+								{% endfor %}
+								<!-- /product -->
 					
-						</div>
-
-						
-	
-						<nav aria-label="Page navigation example">
-							{% if is_paginated %}
-							<ul class="pagination justify-content-center">
-							  {% if page_obj.has_previous %}
-							  <li class="page-item">
-								<a class="page-link" href="?page={{page_obj.previous_page_number}}"
-								  >&laquo;</a
-								>
-							  </li>
-							  {% else %}
-							  <li class="page-item disabled">
-								<a class="page-link" href="#">&laquo;</a>
-							  </li>
-							  {% endif %} {% for i in paginator.page_range %} {% if page_obj.number == i %}
-							  <li class="page-item"><a class="page-link active">{{ i }}</a></li>
-							  {% else %}
-							  <li class="page-item">
-								<a class="page-link" href="?page={{ i }}">{{ i }}</a>
-							  </li>
-							  {% endif %} {% endfor %} {% if page_obj.has_next %}
-							  <li class="page-item">
-								<a href="?page={{page_obj.next_page_number}}" class="page-link">&raquo;</a>
-							  </li>
-							  {% else %}
-							  <li class="page-item disabled">
-								<a class="page-link">&raquo;</a>
-							  </li>
-							  {% endif %}
 							</ul>
-							{% endif %}
-						  </nav>
 
-                        <!-- <div class="store-filter clearfix mt-5">
+		
+
+                        <div class="store-filter clearfix mt-5">
+							{% if is_paginated %}
 							
 							<ul class="store-pagination">
-								<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-								<li class="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+								{% if page_obj.has_previous %}
+
+								<li><a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
+								{% else %}
+
+								<li class="disabled">
+							<a href=""><i class="fa fa-angle-left"></i></a>
+
+								
+								</li>
+								{% endif %}
+							 	{% for i in paginator.page_range %} 
+							  	{% if page_obj.number == i %}
+								<li class="active">{{ i }}</li>
+								{% else %}
+								<li><a href="?page={{ i }}">{{ i }}</a></li>
+								{% endif %}
+								{% endfor %} 
+								{% if page_obj.has_next %}
+							    <li><a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
+								{% else %}
+							    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+								{% endif %}
+
+
 							</ul>
-						</div> -->
+							{% endif %}
+						</div>
 						</div>
 						<div id="slick-nav-1" class="products-slick-nav"></div>
 					</div>
-					<!-- /tab -->
+					<!-- /tab
 				</div>
 				
 			</div>

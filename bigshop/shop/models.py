@@ -31,7 +31,7 @@ class Product(models.Model):
     old_price = models.FloatField(verbose_name="Eski narxi", default=0)
     new = models.BooleanField(verbose_name='Yangi mahsulot')
     sale = models.IntegerField(verbose_name="Chegirma", default=0)
-    info = models.CharField(verbose_name = "Mahsulot haqida qisqa", max_length=500)
+    info = models.CharField(verbose_name = "Mahsulot haqida qisqa", max_length=100)
     info_text = models.TextField(verbose_name="Mahsulot haqida To'liq")
     tg_link = models.CharField(verbose_name = "Telegram link", max_length=100)
     ins_link = models.CharField(verbose_name = "Instagram link", max_length=100, null=True, blank=True)

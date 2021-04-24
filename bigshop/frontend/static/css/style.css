@@ -54,6 +54,18 @@ Table OF Contents
 /*----------------------------*\
 	Typography
 \*----------------------------*/
+.nth-even:nth-child(even) {
+  margin: 0 3%;
+}
+.nth-even {
+  padding: 0;
+}
+@media (max-width: 747px) {
+  .nth-even {
+    margin: 0 !important;
+  }
+}
+
 #shop_ic{
  width: 100px;
  height: 150px;
@@ -191,6 +203,7 @@ textarea.input {
   border: 1px solid #E4E7ED;
   height: 40px;
 }
+.no-drop {cursor: no-drop;}
 
 /*-- checkbox & radio input --*/
 
@@ -249,7 +262,7 @@ textarea.input {
   position: absolute;
   top: -2px;
   left: 1px;
-  font-size: 10px;
+  font-size: 14px;
   color: #FFF;
   opacity: 0;
   -webkit-transform: scale(0);
@@ -295,7 +308,7 @@ textarea.input {
 \*----------------------------*/
 
 .section {
-  padding-top: 30px;
+  padding-top:5px;
   padding-bottom: 30px;
 }
 
@@ -898,13 +911,13 @@ textarea.input {
 
 .product .product-body .product-category {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 15px;
   color: #8D99AE;
 }
 
 .product .product-body .product-name {
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 11px;
 }
 
 .product .product-body .product-name>a {
@@ -1217,11 +1230,13 @@ textarea.input {
 }
 
 .checkbox-filter .input-radio label, .checkbox-filter .input-checkbox label {
-  font-size: 12px;
+  font-size: 16px !important;
+  padding-left: 50px;
 }
 
 .checkbox-filter .input-radio label small, .checkbox-filter .input-checkbox label small {
   color: #8D99AE;
+  
 }
 
 /*-- Price Filter --*/
