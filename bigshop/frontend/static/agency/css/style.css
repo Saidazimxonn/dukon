@@ -2726,6 +2726,11 @@ header .broad-nav .navbar .nav-item:last-child:after {
     -webkit-box-shadow: 0 0 15px 30px #0474BC inset;
     box-shadow: 0 0 15px 30px #0474BC inset;
 }
+.social-icons a i.la-list:hover, .social-icons  a i.la-list:focus {
+    color: #ffffff;
+    -webkit-box-shadow: 0 0 15px 30px #0474BC inset;
+    box-shadow: 0 0 15px 30px #0474BC inset;
+}
 
 .social-icons a i.la-instagram:hover, .social-icons  a i.la-instagram:focus {
     color: #ffffff;

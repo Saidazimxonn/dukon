@@ -903,15 +903,16 @@ textarea.input {
 
 .product .product-body {
   position: relative;
-  padding: 15px;
+  padding: 10px;
   background-color: #FFF;
   text-align: center;
   z-index: 20;
+  height: 45vh;
 }
 
 .product .product-body .product-category {
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 14px;
   color: #8D99AE;
 }
 

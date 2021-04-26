@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from .models import Bazar, Market, Product
 # Create your views here.
 
 
-class SellerTemplateView(TemplateView):
+class SellerListView(ListView):
+    model = Market
     template_name = 'seller.html'
-
+    context_object_name = 'market_list'

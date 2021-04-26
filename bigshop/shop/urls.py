@@ -7,3 +7,5 @@ urlpatterns = [
     path('company-list/', CompanyListView.as_view(), name='company')
 
 ]
+
+
