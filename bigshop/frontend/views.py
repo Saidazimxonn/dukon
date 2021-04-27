@@ -8,7 +8,6 @@ class Proba(TemplateView):
     template_name = 'base.html'
 
 
-
 class ActinView(View):
 
     def post(self, request):

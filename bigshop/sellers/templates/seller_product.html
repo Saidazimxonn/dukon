@@ -10,9 +10,9 @@
               <ul class="breadcrumb-tree">
                 <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
                 <li><a href="{% url 'technique' %}">Uskunalar</a></li>
-                <li><a href="#">{{ name.first.company }}</a></li>
-          
-           
+                <li><a href="{% url 'technique' %}">{{market.first.market}}</a></li>
+
+              
             
     
         
@@ -30,29 +30,28 @@
         <!-- row -->
         <div class="row">
             <!-- ASIDE -->
+            
             <div id="aside" class="col-md-3 ">
                 <!-- aside Widget -->
-                                   
-                <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
-                <form>
-                <ul class="list-group ">
-                    {% for i in sections_list %}
-                    <a href="{% url  'technique_det' i.id %}" style="margin: 1px; border: 0;">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{i.name}}
-                 
-                      <span class="badge badge-info ">{{i.count }}</span>
-                   
-                    </li></a>
-                    
-                    {% endfor %}
-                  </ul>
-      
-                </form>
+               
+                <h3 class="aside-title pl-2">Do'kon haqida</h3>
+                <div class="card border-success mb-3" >
+                    <div class="card-header bg-transparent border-success"><i class="fas fa-hotel pr-2  text-info"></i>{{market.first.market.bazar}}</div>
+                    <div class="card-body text">
+                      <h5 class="card-title"><i class="fas fa-cart-arrow-down pr-2  text-info"></i>{{market.first.market.name}}</h5>
+                      <p class="card-text" style="font-size: 12px;"><i class="fas fa-hat-cowboy  pr-2  text-info" style="font-size: 15px;"></i> <b>{{market.first.market.info_shop_product}}</b></p>
+                      <p class="card-text" style="font-size: 11px;"><i class="fas fa-info-circle pr-2  text-info" style="font-size: 15px;"></i> <b>{{market.first.market.info_long}}</b></p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success" style="font-size: 12px;"> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{market.first.market.locations}}</div>
+                    <div class="card-footer bg-transparent border-success" style="font-size: 15px;"><i class="fas fa-phone-alt pr-2 text-info" style="font-size: 15px;"></i>{{market.first.market.phone}}</div>
+                  </div>
             </div>
+            
+
             <!-- /ASIDE -->
 
             <!-- STORE -->
+        
             <div id="store" class="col-md-8 mt-5">
                 <!-- store top filter -->
                 <!-- <div class="store-filter clearfix">
@@ -71,7 +70,7 @@
 
                 <!-- store products -->
 						<div class="aside">
-
+                    
                 <div class="row">
                     <!-- product -->
                     <ul class="row justify-content-left">
@@ -98,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">{{i.company}}</p>
+                                    <p class="product-category">{{i.market}} <br><small>({{i.bazar}})</small></p>
                                     <h3 class="product-name"><a href="#">{{ i.name}}</a></h3>
                                     <h4 class="product-price">${{i.new_price}} <del class="product-old-price">${{i.old_price}}</del></h4>
                                     <div class="product-rating">
@@ -183,5 +182,4 @@
     </div>
     <!-- /container -->
 </div>
-
 {% endblock %}

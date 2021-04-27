@@ -1,28 +1,65 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static poll_extras%}
+{% block extra_css %}
+
+
+
+    <!-- <link rel="stylesheet" href="{% static 'vendor/select2/css/select2.min.css' %}"> -->
+{% endblock extra_css %}
 {% block content %}
 
+<style>
+  #navli {
+  padding-left:20px;
+  display: inline-block;
+  /* You can also add some margins here to make it look prettier */
+  zoom:1;
+  *display:inline;
+  /* this fix is needed for IE7- */
+}
+</style>
+   
+ 
+    <nav class="navbar navbar-light bg-light" style="height: 100px;">
+      <a class="navbar-brand">Bozorlar</a>
+<form >
+  <li  id="navli">
+    <select class="selectpicker" style="width: 200px;"  data-live-search="true" name="bazar" >
+    <option value='all' {% if selected_all_bazar == 'all' %}selected{% endif %} >Все</option>
+    {% for i in all_bazar %}
+    <option value="{{i.id}}" {% if selected_all_bazar|to_int == i.id|to_int %}selected{% endif %}>{{i}}</option>
+    {% endfor %}</li>    
+  
 
- <div class="container"> 
-    
-  <div class="row">
-    <div class="col-md-12">
-      <ul class="breadcrumb-tree">
-        <a class="navbar-brand">Bozorlar</a>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-
-
-      </ul>
-    </div>
-  </div>
-
-</div> 
- <nav class="navbar navbar-light bg-light mt-1">
+      </select>
+      <li  id="navli">  <button type="submit" class="btn btn-primary shadow btn-ls sharp mr-2 "><i class="fas fa-search"></i></button></li>
+    </form>
+    </nav>
+      <!-- <form action=""><ul>
+        <li>
        
-      </nav>	<div class="col-md-12">
+          <select style="height: 120px; width: 200px;"  class="maximum-search-length select2 form-control" name="bazar">
+        
+          <option value='all' {% if selected_all_bazar == 'all' %}selected{% endif %} >Все</option>
+              {% for i in all_bazar %}
+                    <option value="{{i.id}}" {% if selected_all_bazar|to_int == i.id|to_int %}selected{% endif %}>{{i}}</option>
+              {% endfor %}
+              
+            </li>
+                </select>
+              
+              <li id="navli">  <button type="submit" class="btn btn-primary shadow btn-ls sharp mr-2 "><i class="fas fa-search"></i></button></li>
+      </ul> -->
+     
+
+  
+     
+    
+   
+      <!-- /container -->
+
+
+	<div class="col-md-12">
 			
 			
 				<div class="products-tabs">
@@ -44,7 +81,7 @@
                     <div class="product-body">
                       <p class="product-category text-center"> <b>{{ market.bazar }}</b>  <br>{{ market.name}} 
                       </p>
-                      <h1 class="product-name text-justify" style="font-size: 13px;">{{market.info_shop_product}}</h1>
+                      <h1 class="product-name " style="font-size: 13px;">{{market.info_shop_product}}</h1>
                       
                       <hr>
                       <i class="fas fa-map-marker-alt" style="padding: 5px;font-size: 15px;">
@@ -79,7 +116,7 @@
                                                                      <li>Info</li>
                                                                    </ul>
                                                                    <ul>
-                                                                     <li>  <a href="javascript:void(0)" class="wow fadeInUp"><i class="las la-list"></i> </a></li>
+                                                                     <li>  <a href="{% url 'seller_products' market.pk %}" class="wow fadeInUp"><i class="las la-list"></i> </a></li>
                                                                      <li>Tovarlar</li>
                                                                    </ul>
                                                                    
@@ -130,3 +167,11 @@
 						</div>
 
 {% endblock %}
+{% block extra_js %}
+<script>
+
+  $('select').selectpicker();
+ 
+</script>
+   
+{% endblock extra_js %}

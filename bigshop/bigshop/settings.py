@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'frontend',
     'technique',
     'sellers',
+    'frontend.templatetags',
   
 ]
 
