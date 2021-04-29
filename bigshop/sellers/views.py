@@ -20,10 +20,14 @@ class SellerListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(SellerListView, self).get_context_data(**kwargs)
         baza_list = Market.objects.all()
+        market = self.request.GET.get('market', 'all')
         bazar = self.request.GET.get('bazar', 'all')
         if bazar != 'all':
-            baza_list = baza_list.filter(bazar_id=bazar)
+            baza_list = baza_list.filter(bazar_id=int(bazar))
+        if market !='all':
+            baza_list = baza_list.filter(id=int(market))
         context['market_list'] = baza_list
+        context['all_market'] = Market.objects.all()
         context['all_bazar'] = Bazar.objects.all()
         return context
 
@@ -36,6 +40,8 @@ class SellerProductDetailview(DetailView, MultipleObjectMixin):
         def get_context_data(self, **kwargs):
             product_list = Product.objects.filter(market_id=self.kwargs['pk'])
             context = super(SellerProductDetailview, self).get_context_data(object_list = product_list, **kwargs)
+       
+       
             paginator = Paginator(product_list, self.paginate_by)
             page = self.request.GET.get('page')
             try:
@@ -44,7 +50,19 @@ class SellerProductDetailview(DetailView, MultipleObjectMixin):
                file = paginator.page(1)
             except EmptyPage:
                 file = paginator.page(paginator.num_pages)
-            context['market'] = Product.objects.filter(market_id=self.kwargs['pk'])
+
+            context['market'] = Product.objects.filter(market_id=self.kwargs['pk']) 
             context['product'] = file
          
             return context 
+
+
+class SellerDetailview(DetailView):
+    model = Product
+    template_name = 'detail_product.html'
+    context_object_name  = 'detail_products'
+
+class MarketDetailview(DetailView):
+    model = Market
+    template_name = 'market_detail.html'
+    context_object_name = 'market_detail'

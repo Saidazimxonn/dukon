@@ -7,11 +7,14 @@ class BazarAdmin(admin.ModelAdmin):
     ]
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
-        'name', 'bazar', 'market'
+        'id','name', 'market'
+    ]
+    list_filter = [
+         'market'
     ]
 class MarketAdmin(admin.ModelAdmin):
     list_display = [
-        'name', 'bazar'
+        'id','name', 'bazar'
     ]
 admin.site.register(Bazar, BazarAdmin)
 admin.site.register(Market, MarketAdmin)

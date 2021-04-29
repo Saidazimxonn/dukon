@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+
+</style>
+<div id="breadcrumb" class="section">
+   
+	<div class="container"> 
+	
+		  <div class="row">
+			<div class="col-md-12">
+			  <ul class="breadcrumb-tree">
+				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+				<li><a href="{% url 'seller' %}">Sotuvchilar</a></li>
+				<li><a  >{{ market_detail.name }}</a></li>
+				<!-- <li><a href="#">{{ market_detail.name }}</a></li> -->
+				</ul>
+			</div>
+		  </div>
+	  
+		</div> 
+		<!-- /container -->
+	  </div>
+
+		<!-- SECTION -->
+		<div class="section">
+		
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Product main img -->
+					<div class="col-md-7 col-md-push-2">
+						<div id="product-main-img">
+							<div class="product-preview">
+								<img src="{{market_detail.image.url}}" alt="">
+							</div>
+					
+							
+						</div>
+					</div>
+					<!-- /Product main img -->
+
+					<!-- Product thumb imgs -->
+				
+					<!-- /Product thumb imgs -->
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name">Do'kon: {{ market_detail.name }}</h2>
+							<h6 style="font-weight: 500;" ><span style="font-weight:bolder">Bozor: </span>{{ market_detail.bazar }}</h6>
+						
+
+							<p><span style="font-weight:bold"> Mahsulotlar:</span> {{ market_detail.info_shop_product }}</p>
+							<p><span style="font-weight:bolder">Info: </span>{{ market_detail.info_long }}</p>
+							<p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i><span style="font-weight:bolder">Manzil:</span>{{ market_detail.locations }}</p>
+								<div class="add-to-cart">                                   
+                                    <div class="footer-sec3" id="footer-sec">                                  
+                                          <div class="social-icons d-flex">
+<ul>
+  
+    <li id="navli">
+        <i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{market_detail.phone}}"> {{ market_detail.phone }} </a>
+       {% if market_detail.phone2 %}
+        <i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{market_detail.phone}}"> {{ market_detail.phone2 }} </a>
+        {% endif %}
+
+    </li>
+    <li id="navli">
+        <a href="{{ market_detail.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+    </li>
+    <li id="navli">
+        <a href="{{ market_detail.tg_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+
+    </li>
+</ul>
+
+                                     
+                                      </div>
+                                   </div>
+								</div>
+							
+
+						
+
+							<ul class="product-links">
+								<li>Category:</li>
+								<li>{{market_detail.bazar}}</li>
+								<li>{{market_detail.name}}</li>
+							</ul>
+
+							
+						</div>
+					</div>
+					<!-- /Product details -->
+
+					<!-- Product tab -->
+			
+					<!-- /product tab -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+{% endblock %}

@@ -1,62 +1,65 @@
 {% extends 'base.html' %}
 {% load static poll_extras%}
-{% block extra_css %}
 
-
-
-    <!-- <link rel="stylesheet" href="{% static 'vendor/select2/css/select2.min.css' %}"> -->
-{% endblock extra_css %}
 {% block content %}
 
 <style>
-  #navli {
-  padding-left:20px;
-  display: inline-block;
-  /* You can also add some margins here to make it look prettier */
-  zoom:1;
-  *display:inline;
-  /* this fix is needed for IE7- */
-}
+
 </style>
-   
- 
-    <nav class="navbar navbar-light bg-light" style="height: 100px;">
-      <a class="navbar-brand">Bozorlar</a>
-<form >
-  <li  id="navli">
-    <select class="selectpicker" style="width: 200px;"  data-live-search="true" name="bazar" >
-    <option value='all' {% if selected_all_bazar == 'all' %}selected{% endif %} >Все</option>
-    {% for i in all_bazar %}
-    <option value="{{i.id}}" {% if selected_all_bazar|to_int == i.id|to_int %}selected{% endif %}>{{i}}</option>
-    {% endfor %}</li>    
-  
+<nav class="navbar navbar-expand-lg navbar-light  p- "style="background-color: #FFE383;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" style="font-weight: bold; color: #1b1c1d;" href="{% url 'seller' %}">Bozorlar</a>
 
-      </select>
-      <li  id="navli">  <button type="submit" class="btn btn-primary shadow btn-ls sharp mr-2 "><i class="fas fa-search"></i></button></li>
-    </form>
-    </nav>
-      <!-- <form action=""><ul>
-        <li>
-       
-          <select style="height: 120px; width: 200px;"  class="maximum-search-length select2 form-control" name="bazar">
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      
+    </ul>
+    <form  >
+      <ul>
+     
+     <li id="navli"> 
+      <select class=" selectpicker pt-1 " style="width: 200px;"  data-live-search="true" name="market" >
         
-          <option value='all' {% if selected_all_bazar == 'all' %}selected{% endif %} >Все</option>
-              {% for i in all_bazar %}
-                    <option value="{{i.id}}" {% if selected_all_bazar|to_int == i.id|to_int %}selected{% endif %}>{{i}}</option>
-              {% endfor %}
-              
-            </li>
-                </select>
-              
-              <li id="navli">  <button type="submit" class="btn btn-primary shadow btn-ls sharp mr-2 "><i class="fas fa-search"></i></button></li>
-      </ul> -->
-     
+        <option value="all" {% if selected_all_market == 'all' %}selected="selected"{% endif %} >Do'konlar</option>
+          {% for i in all_market %}
+        <option value="{{ i.id }}" {% if selected_all_market|to_int == i.id|to_int %}selected="selected"{% endif %}>{{i}}</option>
+          {% endfor %}    
+      
+    
+        </select>
+      </li>
+      
+      <li  id="navli">
+    
+        <select class=" selectpicker pt-1" style="width: 200px;"  data-live-search="true" name="bazar" >
+       
+          <option value="all" {% if selected_all_bazar == 'all' %}selected="selected"{% endif %} >Bozorlar</option>
+           {% for i in all_bazar %}
+         <option value="{{ i.id }}" {% if selected_all_bazar|to_int == i.id|to_int %}selected="selected"{% endif %}>{{i}}</option>
+           {% endfor %} 
+      
+    
+          </select>
+        </li>   
+          <li  id="navli">
+            <button type="submit" class="btn btn-primary shadow btn-ls sharp mr-2 "><i class="fas fa-search"></i></button>
+          </li>
+          <li  id="navli">
+            <a class="btn btn-danger shadow btn-ls sharp mr-2 ml-1" href="{% url 'seller' %}"><i class="far fa-trash-alt"></i></a>
+          </li>
+        </ul>
+        </form>
+  </div>
+</nav>
+
+   
+    
 
   
+
      
-    
-   
-      <!-- /container -->
 
 
 	<div class="col-md-12">
@@ -74,49 +77,50 @@
                     <div class="product-img-fluid">
                       <img src="{{ market.image.url }}"  style="width:100%;height: 41vh;" alt="image">
                       <div class="product-label">
-                        <!-- <span class="sale">-30%</span>
-                        <span class="new">NEW</span> -->
+                    
                       </div>
                     </div>
-                    <div class="product-body">
-                      <p class="product-category text-center"> <b>{{ market.bazar }}</b>  <br>{{ market.name}} 
+                    <div class="product-body2">
+                      <p class="product-category text-center"> <b>{{ market.bazar}}</b>  <br>{{ market}} 
                       </p>
                       <h1 class="product-name " style="font-size: 13px;">{{market.info_shop_product}}</h1>
+                        <hr>
                       
-                      <hr>
-                      <i class="fas fa-map-marker-alt" style="padding: 5px;font-size: 15px;">
-                        <b style="padding-left: 2px;">Manzil</b></i>
-                        <h5 class=" text-justify" style="font-size: 11px;"><i>
-                           {{market.locations}}
-                          </i> 
+                        <h5 class="text-justify" style="font-size: 11px;">
+                          <b  style=" font-size: 14px;"><i class="fas fa-map-marker-alt text-info" style="padding: 2px;font-size: 18px;">
+                            <b style="color: rgb(29, 25, 25); font-size: 14px; font-weight: 800;"> Manzil:</b></i> </b>  {{market.locations}}
+                         
                         </h5>
-                     
-                     
-                      <!-- <i class="text-justify">Manzil Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, molestiae?</i> -->
-                      <!-- <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4> -->
-                      <!-- <div class="product-rating">
-                      
-                      </div> -->
-                
-                      <div class="product-btns">
                         
-                                            <div class="footer-sec2" id="footer-sec">
-                                                <div class="container">
+                        <h5 class="text-justify" style="font-size: 11px;">
+                          <b  style=" font-size: 14px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
+                          </i>   {{market.phone}}</b>
+                        </h5>
+             
+                   
+              
+                      
+                     
+                
+          <div class="product-btns">
+                        
+             <div class="footer-sec2" id="footer-sec">
+                     <div class="container">
                                         
-                                                    <div class="row">
+                                 <div class="row">
                                                         <div class="col-12 d-flex justify-content-center">
                                                           
                                                             <div class="social-icons d-flex">
                                                                    <ul>
-                                                                     <li> <a  href="{{ market.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram " ></i> <b style="padding-left: -15px;"> </b></a></li>
-                                                                     <li>Telegram</li>
+                                                                        <li> <a  href="{{ market.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram " ></i> <b style="padding-left: -15px;"> </b></a></li>
+                                                                        <li>Telegram</li>
+                                                                      </ul>
+                                                                      <ul>
+                                                                        <li class="pl-2"> <a href="{% url 'market_d' market.pk %}" class="wow fadeInUp"><i class="las la-eye"></i></a></li>
+                                                                        <li>Info</li>
                                                                    </ul>
                                                                    <ul>
-                                                                     <li class="pl-2"> <a href="mahsulot.html" class="wow fadeInUp"><i class="las la-eye"></i></a></li>
-                                                                     <li>Info</li>
-                                                                   </ul>
-                                                                   <ul>
-                                                                     <li>  <a href="{% url 'seller_products' market.pk %}" class="wow fadeInUp"><i class="las la-list"></i> </a></li>
+                                   <li>  <a href="{% url 'seller_product' market.pk %}" class="wow fadeInUp"><i class="las la-list"></i> </a></li>
                                                                      <li>Tovarlar</li>
                                                                    </ul>
                                                                    
@@ -124,47 +128,32 @@
                                                             </div>
                                                         </div>
                                                    
-                                                    </div>
-                                                </div>
-                                            </div>
-                      
+                                              </div>
+                                 </div>
                       </div>
-                    </div>
-                    <!-- <div class="add-to-cart">
-                      <button class="add-to-cart-btn"><i class="fas fa-phone-alt"></i></i> +998904531707</button>
-                    </div> -->
+               
+            </div>
+                                                         </div>
+                    
                 
                               </li>
                                 {% endfor %}
               
-                              </ul>
+                                                  </ul>
 
                     
-                                                            </div>
-                                                          </div>
+                                            </div>
+                              </div>
 					
 							<!-- /product -->
 					
 						
 						
-						</div>
+					
 						
                      
 						
-					
-						</div>
-                        <div class="store-filter clearfix mt-5">
-							
-							<ul class="store-pagination">
-								<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-								<li class="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-							</ul>
-						</div>
-						</div>
+		
 
 {% endblock %}
 {% block extra_js %}

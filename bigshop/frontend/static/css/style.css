@@ -57,8 +57,20 @@ Table OF Contents
 #font_p{
   font-size: 12px;
 }
+#kar {
+  border: 1px solid #c9e265;
+  padding: 5px;
+  border-radius: 1px;
+}
 
-
+#navli {
+  padding-left:20px;
+  display: inline-block;
+  /* You can also add some margins here to make it look prettier */
+  zoom:1;
+  *display:inline;
+  /* this fix is needed for IE7- */
+}
 
 
 
@@ -912,14 +924,22 @@ textarea.input {
 
 .product .product-body {
   position: relative;
+  padding: 5px;
+  background-color: #FFF;
+  text-align: center;
+  z-index: 20;
+  height: 10%;
+}
+.product .product-body2 {
+  position: relative;
   padding: 10px;
   background-color: #FFF;
   text-align: center;
   z-index: 20;
-  height: 45vh;
+  height: 330px;
 }
 
-.product .product-body .product-category {
+.product .product-body .product-category {`
   text-transform: uppercase;
   font-size: 14px;
   color: #8D99AE;
@@ -1108,6 +1128,7 @@ textarea.input {
 
 .product-widget .product-img>img {
   width: 100%;
+  
 }
 
 .product-widget .product-body {

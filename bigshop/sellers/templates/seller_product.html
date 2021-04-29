@@ -9,8 +9,8 @@
             <div class="col-md-12">
               <ul class="breadcrumb-tree">
                 <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
-                <li><a href="{% url 'technique' %}">Uskunalar</a></li>
-                <li><a href="{% url 'technique' %}">{{market.first.market}}</a></li>
+                <li><a href="{% url 'seller' %}">Sotuvchilar</a></li>
+                <li><a href="#">{{market.first.market}}</a></li>
 
               
             
@@ -23,17 +23,17 @@
         </div> 
         <!-- /container -->
       </div>
-    
+    {% if market %}
 <div class="section">
     <!-- container -->
     <div class="container-fluid">
         <!-- row -->
         <div class="row">
             <!-- ASIDE -->
-            
+            {% if market %}
             <div id="aside" class="col-md-3 ">
                 <!-- aside Widget -->
-               
+             
                 <h3 class="aside-title pl-2">Do'kon haqida</h3>
                 <div class="card border-success mb-3" >
                     <div class="card-header bg-transparent border-success"><i class="fas fa-hotel pr-2  text-info"></i>{{market.first.market.bazar}}</div>
@@ -46,6 +46,7 @@
                     <div class="card-footer bg-transparent border-success" style="font-size: 15px;"><i class="fas fa-phone-alt pr-2 text-info" style="font-size: 15px;"></i>{{market.first.market.phone}}</div>
                   </div>
             </div>
+            {% endif %}
             
 
             <!-- /ASIDE -->
@@ -80,7 +81,7 @@
                         <li class="col-md-4 ">
                             <div class="product">
                                 <div class="product-img img-fluid " >
-                                    <img src="{{i.image.url}}" style="width:100%;height: 40vh;" alt="image">
+                                    <img src="{{i.image.url}}" style="width:100%;height: 31vh;" alt="image">
                                     <div class="product-label">
                                         {% if i.sale %}
 
@@ -97,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">{{i.market}} <br><small>({{i.bazar}})</small></p>
+                                    <p class="product-category">{{i.market}} <br><small>({{i.market.bazar}})</small></p>
                                     <h3 class="product-name"><a href="#">{{ i.name}}</a></h3>
                                     <h4 class="product-price">${{i.new_price}} <del class="product-old-price">${{i.old_price}}</del></h4>
                                     <div class="product-rating">
@@ -111,7 +112,7 @@
                                                     <div class="col-12 d-flex justify-content-center">
                                                         <div class="social-icons d-flex">
                                                                 <a href="{{i.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
-																		<a href="{% url 'tech_product' i.pk	 %}" class="wow fadeInDown"><i class="las la-eye"></i></a>
+																		<a href="{% url 'detail_product' i.pk	 %}" class="wow fadeInDown"><i class="las la-eye"></i></a>
                                                               
                                                                 <a href="{{i.ins_link}}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
                                                         </div>
@@ -123,9 +124,9 @@
                                     
                                     </div>
                                 </div>
-                                <div class="add-to-cart">
+                                <!-- <div class="add-to-cart">
                                 <a href="tel:{{ i.phone }}">	<button class="add-to-cart-btn"><i class="fas fa-phone-alt"></i></i>{{i.phone}}</button></a>
-                                </div>
+                                </div> -->
                             </div>
                         </li>
                         {% endfor %}
@@ -182,4 +183,7 @@
     </div>
     <!-- /container -->
 </div>
+{% else %}
+        <h1 style="text-align: center;color: #17a2b8;"><i class="far fa-meh-rolling-eyes"></i> Tovarlar Yo'q</h1>
+        {% endif %}
 {% endblock %}
