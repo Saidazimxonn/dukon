@@ -11,7 +11,7 @@
 
 <!-- noer -->
 <link rel="icon" href="{% static 'agency/img/favicon.ico' %}">
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <!--css links-->
     <link rel="stylesheet" href="{% static 'vendor/css/bundle.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/css/cubeportfolio.min.css' %}">
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{% static 'vendor/css/mediaelementplayer.min.css' %}">
     <link rel="stylesheet" href="{% static 'agency/css/line-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'agency/css/settings.css' %}">
-<!--    <link rel="stylesheet" href="agency/css/slider.css">-->
+   <link rel="stylesheet" href="agency/css/slider.css">
 
 {% block extra_css %}
 {% endblock extra_css %}
@@ -34,19 +34,19 @@
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
  		<!-- Bootstrap -->
- 		<!-- <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/> -->
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
 		 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
  		<!-- Slick -->
  		<link type="text/css" rel="stylesheet" href="{% static 'css/slick.css' %}">
  		<link type="text/css" rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
 <!-- ower -carusel -->
 
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
  		<!-- nouislider -->
  		<link type="text/css" rel="stylesheet" href="{% static 'css/nouislider.min.css' %}">
 
  		<!-- Font Awesome Icon -->
- 		<!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -210,7 +210,7 @@
 
 						<li><a href="{% url 'seller' %}" class="" > <span class="btn btn-info btn-circle btn-xl"><i class="fas fa-shopping-bag fa-3x"></i></span><br>Sotuvchilar</a></li>
 					
-						<li><a href="#" class="nav-item" > <span class="btn btn-success btn-circle btn-xl"><i class="far fa-hospital fa-3x"></i></span><br>Klinikalar</a></li>
+						<li><a href="{% url 'clinics' %}" class="nav-item" > <span class="btn btn-success btn-circle btn-xl"><i class="far fa-hospital fa-3x"></i></span><br>Klinikalar</a></li>
 						
 						<li><a href="#" class="nav-item" > <span class="btn btn-primary btn-circle btn-xl"><i class="fas fa-capsules fa-3x"></i></span><br>Dorixonalar</a></li>
 
@@ -740,7 +740,7 @@
 <script src="{% static 'vendor/js/jquery.cubeportfolio.min.js' %}"></script>
 <!-- SLIDER REVOLUTION EXTENSIONS -->
 <script src="{% static 'vendor/js/extensions/revolution.extension.actions.min.js' %}"></script>
-<!-- <script src="vendor/js/extensions/revolution.extension.carousel.min.js"></script> -->
+<script src="vendor/js/extensions/revolution.extension.carousel.min.js"></script>
 <script src="{% static 'vendor/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
 <script src="{% static 'vendor/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
 <script src="{% static 'vendor/js/extensions/revolution.extension.migration.min.js' %}"></script>
@@ -756,8 +756,7 @@
 <script src="{% static 'agency/js/map.js' %}"></script>
 <script src="{% static 'agency/js/script.js' %}"></script>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 {% block extra_js %}

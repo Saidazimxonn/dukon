@@ -16,7 +16,7 @@ class Market(models.Model):
     phone = models.CharField(verbose_name="Telefon", max_length=50)
     phone2 = models.CharField(verbose_name="Telefon", max_length=50, null=True, blank=True)
     image = models.ImageField(verbose_name="Rasim")
-    bazar = models.ForeignKey(Bazar, on_delete=models.SET_NULL, null=True)
+    bazar = models.ForeignKey(Bazar, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -33,7 +33,7 @@ class Product(models.Model):
     phone = models.CharField(verbose_name="Telifon raqami", max_length=100)
     image = models.ImageField(verbose_name="Rasim")
     # bazar = models.ForeignKey(Bazar, on_delete=models.CASCADE)
-    market = models.ForeignKey(Market, on_delete=models.SET_NULL, null=True )
+    market = models.ForeignKey(Market, on_delete=models.SET_NULL, null=True, blank=True )
     
     def __str__(self):
         return self.name

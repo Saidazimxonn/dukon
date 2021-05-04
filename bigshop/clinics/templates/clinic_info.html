@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="breadcrumb" class="section">
+   
+	<div class="container"> 
+	
+		  <div class="row">
+			<div class="col-md-12">
+			  <ul class="breadcrumb-tree">
+				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+				<li><a href="{% url 'clinics' %}">Klinikalar</a></li>
+				<li><a href="#" onclick="location.href=document.referrer;return false;" >{{ clinics_info.category }}</a></li>
+				<li><a href="#">{{ clinics_info }}</a></li>
+				</ul>
+			</div>
+		  </div>
+	  
+		</div> 
+		<!-- /container -->
+	  </div>
+
+		<!-- SECTION -->
+		<div class="section">
+		
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Product main img -->
+					<div class="col-md-7 col-md-push-2">
+						<div id="product-main-img">
+							<div class="product-preview">
+								<img src="{{clinics_info.image.url}}" alt="">
+							</div>
+					
+							
+						</div>
+					</div>
+					<!-- /Product main img -->
+
+					<!-- Product thumb imgs -->
+				
+					<!-- /Product thumb imgs -->
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name"><span style="font-weight:bolder">Shifoxona: </span>{{ clinics_info.name }}</h2>
+							<p><span style="font-weight: bold; font-size: 14px;">Xizmatlar </span>:{{ clinics_info.info_service }}
+                            </p>
+							<div>
+								<!-- <h3 class="product-price">${{clinics_info.new_price}} <del class="product-old-price">${{clinics_info.old_price}}</del></h3> -->
+                                {% if clinics_info.sale %}
+								<span class="product-available"  id="kar">-{{clinics_info.sale}}% sale</span>
+                                {% endif %}
+										{% if clinics_info.new %}
+										<span class="product-available " id="kar">NEW Product</span>
+										{% endif %}
+							</div>
+							<p><span style="font-weight: bold;">To'liq malumot</span>: {{ clinics_info.info_long }}</p>
+							<p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{ clinics_info.locations }}</p>
+								<div class="add-to-cart">                                   
+                                    <div class="footer-sec3" id="footer-sec">                                  
+                                          <div class="social-icons d-flex">
+
+											<ul>
+  
+												<li id="navli">
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{market_detail.phone}}"> {{ clinics_info.phone }} </a>
+												   {% if market_detail.phone2 %}
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{market_detail.phone}}"> {{ market_detail.phone2 }} </a>
+													{% endif %}
+											
+												</li>
+												<li id="navli">
+													<a href="{{ market_detail.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+												</li>
+												<li id="navli">
+													<a href="{{ market_detail.tg_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+											
+												</li>
+											</ul>
+                                      </div>
+                                   </div>
+								</div>
+							
+						
+
+							<ul class="product-links">
+								<li>Category:</li>
+								<li>{{clinics_info.category}}</li>
+								<li>{{clinics_info}}</li>
+							</ul>
+
+							
+						</div>
+					</div>
+					<!-- /Product details -->
+
+					<!-- Product tab -->
+			
+					<!-- /product tab -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+{% endblock %}
