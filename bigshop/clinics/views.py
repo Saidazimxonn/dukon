@@ -57,4 +57,4 @@ class ClinicsDetailView(DetailView, MultipleObjectMixin):
 class ClinicsDetailViewInfo(DetailView):
     model = Clinics
     template_name = 'clinic_info.html'
-    context_object_name = "clinics_info"
+    context_object_name = 'clinics_info'

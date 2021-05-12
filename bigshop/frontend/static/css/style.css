@@ -61,9 +61,9 @@ font-size: 12px;
   font-size: 12px;
 }
 #kar {
-  border: 1px solid #c9e265;
-  padding: 5px;
-  border-radius: 1px;
+  /* border: 1px solid #c9e265; */
+  /* padding: 5px; */
+  /* border-radius: 1px; */
 }
 
 #navli {
@@ -963,6 +963,10 @@ textarea.input {
 
 .product .product-body .product-price {
   color: #c9e265;
+  font-size: 15px;
+}
+.product .product-body2 .product-price {
+  color: #c9e265;
   font-size: 18px;
 }
 
@@ -971,27 +975,32 @@ textarea.input {
   font-weight: 400;
   color: #8D99AE;
 }
-
+.product .product-body2 .product-price .product-old-price {
+  font-size: 70%;
+  font-weight: 400;
+  color: #8D99AE;
+}
+/* 
 .product .product-body .product-rating {
   position: relative;
   margin: 15px 0px 10px;
   height: 20px;
-}
+} */
 
-.product .product-body .product-rating>i {
+/* .product .product-body .product-rating>i {
   position: relative;
   width: 14px;
   margin-right: -4px;
   background: #FFF;
   color: #E4E7ED;
   z-index: 10;
-}
+} */
 
-.product .product-body .product-rating>i.fa-star {
+/* .product .product-body .product-rating>i.fa-star {
   color: #19e0ff;
-}
+} */
 
-.product .product-body .product-rating:after {
+/* .product .product-body .product-rating:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -1002,7 +1011,7 @@ textarea.input {
   transform: translateY(-50%);
   height: 1px;
   background-color: #E4E7ED;
-}
+} */
 
 .product .product-body .product-btns>button {
   position: relative;
@@ -1162,14 +1171,28 @@ textarea.input {
   font-size: 14px;
   color: #D10024;
 }
+.product-widget .product-body2 .product-price {
+  font-size: 14px;
+  color: #D10024;
+}
 
 .product-widget .product-body .product-price .product-old-price {
   font-size: 70%;
   font-weight: 400;
   color: #8D99AE;
 }
+.product-widget .product-body2 .product-price .product-old-price {
+  font-size: 70%;
+  font-weight: 400;
+  color: #8D99AE;
+}
 
 .product-widget .product-body .product-price .qty {
+  font-weight: 400;
+  margin-right: 10px;
+}
+
+.product-widget .product-body2 .product-price .qty {
   font-weight: 400;
   margin-right: 10px;
 }
@@ -1541,7 +1564,7 @@ textarea.input {
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 700;
-  margin-left: 30px;
+  margin-left: 8px;
   color: #cae268;
 }
 
@@ -1946,6 +1969,7 @@ textarea.input {
 .order-details .order-submit {
   display: block;
   margin-top: 30px;
+  width: 100%;
 }
 
 /*=========================================================

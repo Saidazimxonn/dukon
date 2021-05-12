@@ -3,7 +3,7 @@ from .views import TechniqueListView, TechniqueDetailView, TechniqueProductDetai
 
 urlpatterns = [
     path('technique', TechniqueListView.as_view(), name='technique'),
-    path('technique_detail/<int:pk>/', TechniqueDetailView.as_view(), name="technique_det"),
+    path('technique-detail/<int:pk>/', TechniqueDetailView.as_view(), name="technique_det"),
     path('technique/product/detail/<int:pk>/', TechniqueProductDetailView.as_view(), name="tech_product")
 
 ]   

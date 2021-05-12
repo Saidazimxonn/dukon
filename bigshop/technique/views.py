@@ -29,15 +29,14 @@ class TechniqueListView(ListView):
 
         return context
 
-class TechniqueDetailView(DetailView, MultipleObjectMixin):
-
-    model = Equipments
+class TechniqueDetailView(TemplateView, MultipleObjectMixin):
+    
     template_name = 'tech_detail.html'
     paginate_by = 2
   
 
     def get_context_data(self, **kwargs):
-        produc_list = Equipments.objects.filter(company_id = self.kwargs['pk'])
+        produc_list = Equipments.objects.all().filter(company_id = self.kwargs['pk'])
         context = super(TechniqueDetailView, self).get_context_data(object_list = produc_list, **kwargs)
        
         paginator = Paginator(produc_list, self.paginate_by)
@@ -48,7 +47,7 @@ class TechniqueDetailView(DetailView, MultipleObjectMixin):
             file = paginator.page(1)
         except EmptyPage:
             file = paginator.page(paginator.num_pages)
-        context['name'] = Equipments.objects.filter(company_id=self.kwargs['pk'])
+        # context['name'] = Equipments.objects.filter(company_id=self.kwargs['pk'])
         context['product'] = file
         context['sections_list'] = Sections.objects.all().annotate(count=Count('products'))
         return context

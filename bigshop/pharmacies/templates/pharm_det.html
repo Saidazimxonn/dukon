@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="breadcrumb" class="section">
+  
+	<div class="container"> 
+	
+		  <div class="row">
+			<div class="col-md-12">
+			  <ul class="breadcrumb-tree">
+				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+				<li><a href="{% url 'pharm' %}">Dorilar</a></li>
+				<!-- <li><a href="#" onclick="location.href=document.referrer;return false;" ></a></li> -->
+				<li><a href="#">{{ pharmacy_detail }}</a></li>
+				</ul>
+			</div>
+		  </div>
+	  
+		</div> 
+		<!-- /container -->
+	  </div>
+
+		<!-- SECTION -->
+		<div class="section">
+		
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Product main img -->
+					<div class="col-md-7 col-md-push-2">
+						<div id="product-main-img">
+							<div class="product-preview">
+								<img src="{{pharmacy_detail.image.url}}" alt="">
+							</div>
+					
+							
+						</div>
+					</div>
+					<!-- /Product main img -->
+
+					<!-- Product thumb imgs -->
+				
+					<!-- /Product thumb imgs -->
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name"><span style="font-weight:bolder">Dori nomi: </span>{{ pharmacy_detail.name }}</h2>
+							<p><span style="font-weight: bold; font-size: 14px;">Xususiyatlari </span>:{{ pharmacy_detail.pharmacy_info }}
+                            </p>
+							<div>
+								<h3 class="product-price">${{pharmacy_detail.new_price}} <del class="product-old-price">${{pharmacy_detail.old_price}}</del></h3>
+                                {% if pharmacy_detail.sale %}
+								<span class="product-available"  id="kar">-{{pharmacy_detail.sale}}% sale</span>
+                                {% endif %}
+										{% if pharmacy_detail.new %}
+										<span class="product-available " id="kar">NEW Product</span>
+										{% endif %}
+							</div>
+							<p><span style="font-weight: bold;">To'liq malumot</span>: {{ pharmacy_detail.content }}</p>
+							<p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{ pharmacy_detail.locations }}</p>
+								<div class="add-to-cart">                                   
+                                    <div class="footer-sec3" id="footer-sec">                                  
+                                          <div class="social-icons d-flex">
+
+											<ul>
+  
+												<li id="navli">
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{pharmacy_detail.phone}}"> {{ pharmacy_detail.phone }} </a>
+												   {% if pharmacy_detail.phone2 %}
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{pharmacy_detail.phone}}"> {{ pharmacy_detail.phone2 }} </a>
+													{% endif %}
+											
+												</li>
+												<li id="navli">
+													<a href="{{ pharmacy_detail.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+												</li>
+												<li id="navli">
+													<a href="{{ pharmacy_detail.ins_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+											
+												</li>
+											</ul>
+                                      </div>
+                                   </div>
+								</div>
+						
+
+							<ul class="product-links">
+								<li>Category:</li>
+								<li>{{pharmacy_detail.category}}</li>
+								<li>{{pharmacy_detail}}</li>
+							</ul>
+
+							
+						</div>
+					</div>
+					<!-- /Product details -->
+
+					<!-- Product tab -->
+			
+					<!-- /product tab -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+{% endblock %}

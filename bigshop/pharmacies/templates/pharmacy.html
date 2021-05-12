@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static poll_extras%}
+
+{% block content %}
+
+<style>
+
+</style>
+<!-- Button trigger modal -->
+
+
+
+
+
+
+
+<!-- Modal: modalPoll -->
+
+<!-- Modal: modalPoll -->
+<nav class="navbar navbar-expand-lg navbar-light  p- "style="background-color: #FFE383;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" style="font-weight: bold; color: #1b1c1d;" href="{% url 'seller' %}">Dorilar</a>
+
+
+ 
+
+</nav>
+
+   
+    
+
+  
+
+     
+
+
+	<div class="col-md-12">
+			
+			
+				<div class="products-tabs">
+					<!-- tab -->
+			
+							<!-- product -->
+              <ul class="row justify-content-left row-eq-height">
+
+                {% for pharm in pharmacies %}
+								<li class="col-md-4" >                  
+                  <div class="product">
+                    <div class="product-img img-fluid">
+                      <img src="{{ pharm.image.url }}"  style="width:100%;height: 41vh;" alt="image">
+                      <div class="product-label">
+                        {% if pharm.sale %}
+
+                        <span class="sale">-{{pharm.sale}}%</span>
+                        {% endif %}
+
+                        {% if pharm.new %}
+                        <span class="new">
+                        
+                            NEW
+                        
+                        </span>
+                        {% endif %}
+                    </div>
+                    </div>
+                    <div class="product-body2">
+                      <p class="product-category text-center"> <b>{{ pharm.name}}</b>
+                        <h4 class="product-price">${{pharm.new_price}} <del class="product-old-price">${{pharm.old_price}}</del></h4>
+                      </p>
+                      
+
+                      <h1 class="product-name " style="font-size: 13px;">{{pharm.pharmacy_info}}</h1>
+                        <hr>
+                      
+                        <h5 class="text-justify" style="font-size: 11px;padding-left: 15px;">
+                          <b  style=" font-size: 14px;"><i class="fas fa-map-marker-alt text-info" style="padding: 2px;font-size: 18px;">
+                            <b style="color: rgb(29, 25, 25); font-size: 14px; font-weight: 800;"> Manzil:</b></i> </b>  {{pharm.locations}}
+                         
+                        </h5>
+                        
+                        <h5 class="text-justify" style="font-size: 11px;padding-left: 15px;">
+                          <b  style=" font-size: 14px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
+                          </i>   {{pharm.phone}}</b>
+                          <b  style=" font-size: 14px; padding-left: 8  px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
+                          </i>   {{pharm.phone}}</b>
+                        </h5>
+             
+                   
+              
+                      
+                     
+                
+          <div class="product-btns">
+                        
+             <div class="footer-sec2" id="footer-sec">
+                     <div class="container">
+                                        
+            <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+                                                          
+      <div class="social-icons d-flex">
+                                                                   <ul>
+                                                                  <li> <a  href="{{ pharm.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram " ></i> <b style="padding-left: -15px;"> </b></a></li>
+                                                                        <li>Telegram</li>
+                                                                      </ul>
+                                                                      <ul>
+                                                                   <li class="pl-2"> <a href="{% url 'pharm_detail' pharm.pk %}" class="wow fadeInUp"><i class="las la-eye"></i></a></li>
+                                                                        <li>Info</li>
+                                                                   </ul>
+                                                                   <ul>
+                                                                    <li>  <a href="{% url 'order_create' pharm.pk %}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a></li>
+                                                                  
+                                                                    
+                                                                   
+                                                                    <li>Instagram</li>
+                                                                   </ul>
+                                                                   
+                                                                  
+                                                            </div>
+                                                        </div>
+                                                   
+                                              </div>
+                                 </div>
+                      </div>
+               
+            </div>
+                                                         </div>
+                    
+                
+                              </li>
+                                {% endfor %}
+              
+                                                  </ul>
+
+                    
+                                    
+                                                </div>
+
+                                                  <!-- paginator -->
+                <div class="store-filter clearfix mt-5">
+                  {% if is_paginated %}
+                  
+                  <ul class="store-pagination">
+                      {% if page_obj.has_previous %}
+
+                      <li  class="page-item">
+                                  <a  href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
+                      {% else %}
+
+                      <li class="page-item no-drop" >
+                                   <a   ><i class="fa fa-angle-left"></i></a>
+                                  </li>
+                      {% endif %}
+                      {% for i in paginator.page_range %} 
+
+                          {% if page_obj.number == i %}
+                            <li class="page-item active">{{ i }}</li>
+                          {% else %}
+                            <li><a  href="?page={{ i }}">{{ i }}</a></li>
+                          {% endif %} {% endfor %} {% if page_obj.has_next %}
+                          <li class="page-item ">
+                                   <a  href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+                           </li>
+                      {% else %}
+                      <li class="disabled" >
+                          <a class="no-drop" ><i class="fa fa-angle-right"></i></a>
+                         </li>
+                      {% endif %}
+
+
+                  </ul>
+                  {% endif %}
+              </div>
+              <!-- /paginator -->
+                              </div>
+					
+							<!-- /product -->
+					
+						
+						
+					
+						
+                     
+						
+              <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="false">
+                <div class="modal-dialog modal-lg ">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                      </button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+{% endblock %}
+{% block extra_js %}
+<script>
+
+  // $('select').selectpicker();
+
+  
+ 
+</script>
+   
+{% endblock extra_js %}

@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django_middleware_global_request.middleware import get_request
-from django.views.generic import  ListView, DetailView
+from django.views.generic import  ListView, TemplateView, DetailView
 from django.views.generic.list import MultipleObjectMixin
 from .models import Company, Product
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 # Create your views here.
 
-class CategoryDetailView(DetailView, MultipleObjectMixin):
+class CategoryDetailView(TemplateView, MultipleObjectMixin):
     template_name = 'category.html'
     model = Product
     paginate_by = 15

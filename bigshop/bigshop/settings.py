@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'sellers',
     'frontend.templatetags',
     'clinics',
+    'pharmacies',
+    'widget_tweaks',
   
 ]
 

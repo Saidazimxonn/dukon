@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, TemplateView, DetailView
 from django_middleware_global_request.middleware import get_request
 from django.views.generic.list import MultipleObjectMixin
 from django_middleware_global_request.middleware import get_request
@@ -32,7 +32,7 @@ class SellerListView(ListView):
         return context
 
 
-class SellerProductDetailview(DetailView, MultipleObjectMixin):
+class SellerProductDetailview(TemplateView, MultipleObjectMixin):
         model = Product
         
         template_name = 'seller_product.html'

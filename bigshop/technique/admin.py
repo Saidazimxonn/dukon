@@ -8,7 +8,7 @@ class SectionsAdmin(admin.ModelAdmin):
 
 class EquipmentsAdmin(admin.ModelAdmin):
     list_display =[
-        'name','company'
+        'id','name','company_id'
     ]
     list_filter = [
         'company'
