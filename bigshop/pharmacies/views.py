@@ -41,6 +41,7 @@ class OrderDetail(DetailView):
     model = Pharmacy
     template_name = 'order_det.html'
     context_object_name = 'order_detail'
+
     
 class ActionView(View):
     

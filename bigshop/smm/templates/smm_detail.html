@@ -3,20 +3,20 @@
 {% block content %}
 
 <div id="breadcrumb" class="section">
-   
+  
 	<div class="container"> 
 	
 		  <div class="row">
 			<div class="col-md-12">
 			  <ul class="breadcrumb-tree">
 				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
-				<li><a href="{% url 'seller' %}">Sotuvchilar</a></li>
-				<li><a href="#" onclick="location.href=document.referrer;return false;" >{{ category_d.company}}</a></li>
-				<li><a href="#">{{ category_d.name }}</a></li>
+				<li><a href="{% url 'smm' %}">SMM</a></li>
+				<!-- <li><a href="#" onclick="location.href=document.referrer;return false;" ></a></li> -->
+				<li><a href="#">{{ smm_det }}</a></li>
 				</ul>
 			</div>
 		  </div>
-	  
+       
 		</div> 
 		<!-- /container -->
 	  </div>
@@ -32,7 +32,7 @@
 					<div class="col-md-7 col-md-push-2">
 						<div id="product-main-img">
 							<div class="product-preview">
-								<img src="{{category_d.image.url}}" alt="">
+								<img src="{{smm_det.image.url}}" alt="">
 							</div>
 					
 							
@@ -47,18 +47,11 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name"><span style="font-weight:bolder">Mahsulot:</span>{{ category_d.name }}</h2>
-						
-							<div>
-								<h3 class="product-price">${{category_d.new_price}} <del class="product-old-price">${{category_d.old_price}}</del></h3>
-								<span class="product-available"  id="kar">-{{category_d.sale}}% sale</span>
-								
-										{% if category_d.new %}
-										<span class="product-available " id="kar">NEW Product</span>
-										{% endif %}
-							</div>
-							<p><b>Info:</b>{{ category_d.info_text }}</p>
-							<!-- <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{ category_d.market.locations }}</p> -->
+							<h2 class="product-name"><span style="font-weight:bolder">Studio nomi: </span>{{ smm_det }}</h2>
+										
+							<p><span style="font-weight: bold;">Xizmatlar</span>: {{ smm_det.name_product }}</p>
+							<p><span style="font-weight: bold;">Maʼlumot</span>: {{ smm_det.content }}</p>
+							<!-- <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{ smm_det.locations }}</p> -->
 								<div class="add-to-cart">                                   
                                     <div class="footer-sec3" id="footer-sec">                                  
                                           <div class="social-icons d-flex">
@@ -66,30 +59,33 @@
 											<ul>
   
 												<li id="navli">
-													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{category_d.phone}}"> {{ category_d.phone }} </a>
-												   {% if category_d.phone2 %}
-													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{category_d.phone}}"> {{ category_d.phone2 }} </a>
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{smm_det.phone}}"> {{ smm_det.phone }} </a>
+												   {% if smm_det.phone2 %}
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{smm_det.phone}}"> {{ smm_det.phone2 }} </a>
 													{% endif %}
 											
 												</li>
+                                               
 												<li id="navli">
-													<a href="{{ category_d.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+													<a href="{{ smm_det.web_site }}" class="wow fadeInDown"><i class="lab la-internet-explorer"></i> Web sayt</a>
 												</li>
 												<li id="navli">
-													<a href="{{ category_d.tg_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+													<a href="{{ smm_det.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+												</li>
+												<li id="navli">
+													<a href="{{ smm_det.ins_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
 											
 												</li>
 											</ul>
                                       </div>
                                    </div>
 								</div>
-							
 						
 
 							<ul class="product-links">
 								<li>Category:</li>
-								<li>{{category_d.company}}</li>
-								<li>{{category_d.name}}</li>
+								<li>SMM</li>
+								<li>{{smm_det}}</li>
 							</ul>
 
 							

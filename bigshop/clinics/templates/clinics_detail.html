@@ -30,26 +30,24 @@
         <!-- row -->
         <div class="row">
             <!-- ASIDE -->
-            <div id="aside" class="col-md-3 ">
-                <!-- aside Widget -->
-                                   
-                <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
-                <form>
-                <ul class="list-group ">
-                    {% for i in clinics_list %}
-                    <a href="{% url  'clinic_detail' i.id %}" style="margin: 1px; border: 0;">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{i.name}}
-                 
-                      <span class="badge badge-info ">{{i.count }}</span>
-                   
-                    </li></a>
-                    
-                    {% endfor %}
-                  </ul>
-      
-                </form>
-            </div>
+                  <div id="aside" class="col-md-3 ">
+                      <!-- aside Widget -->
+                                        
+                      <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
+                         <form >
+                                <ul class="list-group">
+                                    {% for i in clinics_list %}
+                                          <a href="#" id="idCategory" data-category="{{i.id}}" style="margin: 1px; border: 0;">
+                                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{i.name}}
+                                          <span class="badge badge-info ">{{i.count }}</span>
+                                      </li></a>
+                                    
+                                    {% endfor %}
+                                  </ul>
+                  
+                          </form>
+                  </div>
             <!-- /ASIDE -->
 
             <!-- STORE -->
@@ -80,49 +78,40 @@
                                     <li class="col-md-4" >                  
                       <div class="product">
                         <div class="product-img-fluid">
-                          <img src="{{ market.image.url }}"  style="width:100%;height: 41vh;" alt="image">
-                          <div class="product-label">
-                        
-                          </div>
+                                  <img src="{{ market.image.url }}"  style="width:100%;height: 41vh;" alt="image">
+                                  <div class="product-label">
+                                </div>
                         </div>
                         <div class="product-body">
-                          <p class="product-category text-center"> <b style="color: black;">{{ market.name}}</b>  <br>({{ market.category}}) </p>
-                          <h1 class="product-name " style="font-size: 10px;">{{market.info_service}}</h1>
-                            <hr>
-                          
-                            <h5 class="text-justify" style="font-size: 11px; padding: 5px;">
-                              <b  style=" font-size: 14px;"><i class="fas fa-map-marker-alt text-info" style="padding: 2px;font-size: 18px;">
-                                <b style="color: rgb(29, 25, 25); font-size: 14px; font-weight: 800;line-height: 25px;te"> Manzil:</b></i> </b>{{market.locations}}
+                              <p class="product-category text-center"> <b style="color: black;">{{ market.name}}</b>  <br>({{ market.category}}) </p>
+                              <h1 class="product-name " style="font-size: 10px;">{{market.info_service}}</h1>
+                                <hr>
+                                    <h5 class="text-justify" style="font-size: 11px; padding: 5px;">
+                                        <b  style=" font-size: 14px;"><i class="fas fa-map-marker-alt text-info" style="padding: 2px;font-size: 18px;">
+                                          <b style="color: rgb(29, 25, 25); font-size: 14px; font-weight: 800;line-height: 25px;te"> Manzil:</b></i> </b>{{market.locations}}
                              
-                            </h5>
+                                                 </h5>
                             
-                            <h5 class="text-justify" style="font-size: 11px;padding:5px">
-                              <b  style=" font-size: 14px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
-                              </i>   {{market.phone}}</b>
-                            </h5>
-                 
-                       
-                  
-                          
-    
-                         
-                    
+                                                    <h5 class="text-justify" style="font-size: 11px;padding:5px">
+                                                      <b  style=" font-size: 14px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
+                                                      </i>   {{market.phone}}</b>
+                                                    </h5>
+                               
                             <div class="product-btns">
                                             
                                 <div class="footer-sec2" id="footer-sec">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <div class="social-icons d-flex">
-                                                        <a href="{{i.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
-                                                                <a href="{% url 'clinic_info' market.pk %}" class="wow fadeInDown"><i class="las la-eye"></i></a>
-                                                      
-                                                        <a href="{{i.ins_link}}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
-                                                </div>
-                                            </div>
-                                    
+                                        <div class="container">
+                                              <div class="row">
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                          <div class="social-icons d-flex">
+                                                                    <a href="{{i.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
+                                                                    <a href="{% url 'clinic_info' market.pk %}" class="wow fadeInDown"><i class="las la-eye"></i></a>
+                                                                    <a href="{{i.ins_link}}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
+                                                          </div>
+                                                    </div>
+                                            
+                                              </div>
                                         </div>
-                                    </div>
                                 </div>
                             
                             </div>
@@ -186,5 +175,28 @@
     </div>
     <!-- /container -->
 </div>
+<script>
+$("#idCategory").on('click', function(){
+  let CategoryID  = $("#idCategory").attr('data-category')
+  let data = {
+    CategoryID:CategoryID
+  }
 
+  $.ajax({
+    method:"GET",
+    dataType:"json",
+    data:data,
+    url:'{% url "clinic_detail" %}',
+    success:function(data){
+        console.log(data, "asdddddd")
+    }
+  })
+
+})
+</script>
 {% endblock %}
+{% block extra_js %}
+<!-- JavaScript Bundle with Popper -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+{% endblock extra_js %}

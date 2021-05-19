@@ -10,8 +10,8 @@
 			<div class="col-md-12">
 			  <ul class="breadcrumb-tree">
 				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
-				<li><a href="{% url 'technique' %}">Uskunalr</a></li>
-				<li><a href="#" onclick="location.href=document.referrer;return false;" >{{ tech_products.company }}</a></li>
+				<li><a href="{% url 'seller' %}">Sotuvchilar</a></li>
+				<li><a href="#" onclick="location.href=document.referrer;return false;" >{{ tech_products.company}}</a></li>
 				<li><a href="#">{{ tech_products.name }}</a></li>
 				</ul>
 			</div>
@@ -29,7 +29,7 @@
 				<!-- row -->
 				<div class="row">
 					<!-- Product main img -->
-					<div class="col-md-5 col-md-push-2">
+					<div class="col-md-7 col-md-push-2">
 						<div id="product-main-img">
 							<div class="product-preview">
 								<img src="{{tech_products.image.url}}" alt="">
@@ -41,52 +41,55 @@
 					<!-- /Product main img -->
 
 					<!-- Product thumb imgs -->
-					<div class="col-md-2  col-md-pull-5">
-						<div id="product-imgs">
-							<div class="product-preview">
-								<img src="{{tech_products.image.url}}" alt="">
-							</div>
-
-							
-						</div>
-					</div>
+				
 					<!-- /Product thumb imgs -->
 
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name">{{ tech_products.name }}</h2>
-							<div>
-							
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
-							</div>
+							<h2 class="product-name"><span style="font-weight:bolder">Mahsulot:</span>{{ tech_products.name }}</h2>
+						
 							<div>
 								<h3 class="product-price">${{tech_products.new_price}} <del class="product-old-price">${{tech_products.old_price}}</del></h3>
-								<span class="product-available">-{{tech_products.sale}}% sale</span>
+								<span class="product-available"  id="kar">-{{tech_products.sale}}% sale</span>
 								
 										{% if tech_products.new %}
-										<span class="product-available"">NEW Product</span>
+										<span class="product-available " id="kar">NEW Product</span>
 										{% endif %}
 							</div>
-							<p>{{ tech_products.info_text }}</p>
+							<p><b>Info:</b>{{ tech_products.info_text }}</p>
+							<!-- <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{ tech_products.market.locations }}</p> -->
 								<div class="add-to-cart">                                   
                                     <div class="footer-sec3" id="footer-sec">                                  
                                           <div class="social-icons d-flex">
 
-                                    <a href="{{ tech_products.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> </a>
-                                    <a href="{{ tech_products.tg_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i> </a>
-                                   <a href="tel:{{tech_products.phone}}"><b class="mt-4"><i class="las la-phone"></i>  {{ tech_products.phone }}</b></a>
+											<ul>
+  
+												<li id="navli">
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{tech_products.phone}}"> {{ tech_products.phone }} </a>
+												   {% if tech_products.phone2 %}
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{tech_products.phone}}"> {{ tech_products.phone2 }} </a>
+													{% endif %}
+											
+												</li>
+												<li id="navli">
+													<a href="{{ tech_products.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+												</li>
+												<li id="navli">
+													<a href="{{ tech_products.tg_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+											
+												</li>
+											</ul>
                                       </div>
                                    </div>
 								</div>
 							
-
 						
 
 							<ul class="product-links">
 								<li>Category:</li>
-								<li><a href="#">{{tech_products.company}}</a></li>
-								<li><a href="#">{{tech_products.name}}</a></li>
+								<li>{{tech_products.company}}</li>
+								<li>{{tech_products.name}}</li>
 							</ul>
 
 							

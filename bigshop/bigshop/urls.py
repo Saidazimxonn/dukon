@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('sellers.urls')), 
     path('', include('clinics.urls')),
     path('', include('pharmacies.urls')),
+    path('', include('smm.urls')),
 
  
 ]

@@ -2701,6 +2701,11 @@ header .broad-nav .navbar .nav-item:last-child:after {
     -webkit-box-shadow: 0 0 15px 30px #3D558F inset;
     box-shadow: 0 0 15px 30px #3D558F inset;
 }
+.social-icons a i.la-cart-plus:hover, .social-icons  a i.la-cart-plus:focus {
+    color: #ffffff;
+    -webkit-box-shadow: 0 0 15px 30px #77da74 inset;
+    box-shadow: 0 0 15px 30px #77da74 inset;
+}
 .social-icons a i.la-twitter:hover, .social-icons  a i.la-twitter:focus {
     color: #ffffff;
     -webkit-box-shadow: 0 0 15px 30px #33c9dd inset;
@@ -2718,8 +2723,13 @@ header .broad-nav .navbar .nav-item:last-child:after {
 }
 .social-icons a i.la-eye:hover, .social-icons  a i.la-eye:focus {
     color: #ffffff;
-    -webkit-box-shadow: 0 0 15px 30px #D74937 inset;
-    box-shadow: 0 0 15px 30px #D74937 inset;
+    -webkit-box-shadow: 0 0 15px 30px #f7941d inset;
+    box-shadow: 0 0 15px 30px #f7941d inset;
+}
+.social-icons a i.la-internet-explorer:hover, .social-icons  a i.la-internet-explorer:focus {
+    color: #ffffff;
+    -webkit-box-shadow: 0 0 15px 30px #0474BC inset;
+    box-shadow: 0 0 15px 30px #0474BC inset;
 }
 .social-icons a i.la-linkedin-in:hover, .social-icons  a i.la-linkedin-in:focus {
     color: #ffffff;

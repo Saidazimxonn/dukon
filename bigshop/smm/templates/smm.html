@@ -10,7 +10,7 @@
         <div class="col-md-12">
           <ul class="breadcrumb-tree">
             <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
-            <li><a href="{% url 'company' %}">Korxonalar</a></li>
+            <li><a href="{% url 'smm' %}">SMM</a></li>
       
        
         
@@ -32,7 +32,7 @@
                 <!--Grid column-->
                 <div class="col-md-12 mb-4">
                   <!--Section: Content-->
-                  {% for i in firms %}
+                  {% for i in smm_list %}
                   <section>
               
         
@@ -40,38 +40,42 @@
                    
                     <div class="row">
                    
-                      <div class="col-md-4 mb-4">
+                      <div class="col-md-5 mb-4">
                         
                             <div class="shop">
                                 <div class="shop-img">
-                                    <img src="{{ i.image.url}}" class="image-fluid" alt="">
+                                    <img src="{{ i.image.url}}" style="height: 45vh;border-radius:0 10px 10px 0;" class="image-fluid" alt="">
                                 </div>
                                 <div class="shop-body">
-                                    <h3 style="color: aliceblue;"><br>{{ i.name_long}}</h3>
+                                    <h3 style="color: aliceblue;"><br>{{ i.name_studio}}</h3>
                                     <!-- <a href="#" class="cta-btn">Shop now lorem50 </i></a> -->
                                 </div>
                             
                         </div>
                       </div>
         
-                      <div class="col-md-8 mb-4 mt-3">
-                        <h5>{{ i.name }}</h5>
+                      <div class="col-md-7 mb-4 mt-3">
+                        <h5>{{ i.name_product }}</h5>
                         <p>
-                          <b>Biz haqimizda:</b>{{ i.info }}
+                          <b>Biz haqimizda:</b>{{ i.content }}
                         </p>
-                     
-                        <a href="{% url 'category' i.id %}" class="btn anim-btn rounded-pill user-contact"  name="company" value="{{ i.id }}"  type="button">Ko'rish
+							<p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i><b>Manzil</b> :Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus autem sequi explicabo nostrum? Doloremque, magnam? Voluptate assumenda quas aut reiciendis.
+                            </p>
+                        <a href="{% url 'smm-detail' i.id %}" class="btn anim-btn rounded-pill user-contact"  name="company" value="{{ i.id }}"  type="button">Ma'lumot
                             <span></span><span></span><span></span><span></span><span></span>
                         </a>
                         <ul style="float: right;">
                             <!-- <li style="float: right;"  class="wow fadeInDown"><i class="las la-phone fa-2x" ></i></li> -->
                             <a href="tel:{{i.phone}}"><li style="float: right;"  class="wow fadeInUp"><i class="las la-phone fa-2x" ></i><b>{{ i.phone}}</b></li></a>
-                       
-                        <li style="float: right;" class="wow fadeInDown">
+                        <li style="float: right;" class="wow fadeInDown  p-2">
+                        <a href="{{ i.web_site }}" class="wow fadeInDown"><i class="lab la-internet-explorer fa-2x"></i> </a>
+
+                        </li>
+                        <li style="float: right;" class="wow fadeInDown  p-2">
                         <a href="{{ i.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram fa-2x"></i> </a>
 
                         </li>
-                        <li style="float: right;" class="wow fadeInUp">
+                        <li style="float: right;" class="wow fadeInUp  p-2">
                         <a href="{{ i.ins_link}}" class="wow fadeInDown"><i class="lab la-instagram fa-2x"></i> </a>
 
                         </li>

@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from .models import Categorys, Clinics
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView, DetailView
+from django.views import View
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django_middleware_global_request.middleware import get_request
 from django.views.generic.list import MultipleObjectMixin
 from django.db.models import Count
+from django.http import JsonResponse
+
 
 # Create your views here.
 
@@ -32,27 +35,47 @@ class ClinicListView(ListView):
         context['categorys_list'] = Categorys.objects.all().annotate(count=Count('products'))
         return context
 
-class ClinicsDetailView(DetailView, MultipleObjectMixin):
-    model = Clinics
-    template_name = 'clinics_detail.html'
-    paginate_by = 10
-    def get_context_data(self, **kwargs):
-        produc_list = Clinics.objects.filter(category_id=self.kwargs['pk'])
-        context = super(ClinicsDetailView, self).get_context_data(object_list = produc_list, **kwargs)
+# class ClinicsDetailView(View, MultipleObjectMixin):
+#     model = Clinics
+#     template_name = 'clinics_detail.html'
+#     paginate_by = 10
+#     def get_context_data(self, **kwargs):
+#         produc_list = Clinics.objects.filter(category_id=self.kwargs['pk'])
+#         context = super(ClinicsDetailView, self).get_context_data(object_list = produc_list, **kwargs)
 
-        paginator = Paginator(produc_list, self.paginate_by)
-        page = self.request.GET.get('page')
+#         paginator = Paginator(produc_list, self.paginate_by)
+#         page = self.request.GET.get('page')
 
-        try:
-            file = paginator.page(page)
-        except PageNotAnInteger:
-            file = paginator.page(1)
-        except EmptyPage:
-            file = paginator.page(paginator.num_pages)
-        context['product'] = file
-        context['name'] = Clinics.objects.filter(category_id=self.kwargs['pk'])
-        context['clinics_list'] = Categorys.objects.all().annotate(count=Count('products'))
-        return context
+#         try:
+#             file = paginator.page(page)
+#         except PageNotAnInteger:
+#             file = paginator.page(1)
+#         except EmptyPage:
+#             file = paginator.page(paginator.num_pages)
+#         context['product'] = file
+#         context['name'] = Clinics.objects.filter(category_id=self.kwargs['pk'])
+#         context['clinics_list'] = Categorys.objects.all().annotate(count=Count('products'))
+#         return context
+
+class ClinicsDetailView(View):
+    def get(self, request):
+        category_id = request.GET.get('category_id', None)
+        cate = Clinics.objects.filter(category_id=category_id).in_bulk()
+        clinics = list()
+        for clin in cate.values():
+            clin_temp = clin.__dict__
+            try:
+                clin_temp.__delitem__('_state')
+            except:
+                pass
+         
+            clinics.append(clin_temp)
+        data = {
+            'clinics':clinics
+        }
+        
+        return JsonResponse({'data':data})
+ 
 
 class ClinicsDetailViewInfo(DetailView):
     model = Clinics
