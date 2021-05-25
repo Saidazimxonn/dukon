@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 # Create your views here.
 class Proba(TemplateView):
-    template_name = 'base.html'
+    template_name = 'index.html'
 
 
 class ActinView(View):

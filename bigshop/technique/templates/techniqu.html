@@ -37,20 +37,14 @@
                 <form>
                 <ul class="list-group ">
                     {% for i in sections_list %}
-                    <a href="{% url  'technique_det' i.id %}" style="margin: 1px; border: 0;">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                 
+                        <button style="margin: 1px;border: 1;" class="list-group-item d-flex justify-content-between align-items-center" type="button" id="category_{{ i.id }}" name="category"  onclick="getCategoryTechElements({{ i.id }})">
                         {{i.name}}
                      
                           <span class="badge badge-info ">{{i.count }}</span>
                        
-                        </li></a>
-                    <!-- <button type="submit" style="margin: 1px; border: 0;"  name="section_id" value="{{i.id}}">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{i.name}}
-                 
-                      <span class="badge badge-info ">{{i.count }}</span>
-                   
-                    </li></button> -->
+                        </button>
+               
                     
                     {% endfor %}
                   </ul>
@@ -62,53 +56,35 @@
             <!-- STORE -->
         
             <div id="store" class="col-md-8 mt-5">
-                <!-- store top filter -->
-                <!-- <div class="store-filter clearfix">
-                   
-                    <ul class="store-grid">
-                        <li class="active"><i class="fa fa-th"></i></li>
-                        <li><a href="#"><i class="fa fa-th-list"></i></a></li>
-                    </ul>
-                </div> -->
-                <!-- /store top filter -->
-             
-       
-	
-
-             
-
+        
                 <!-- store products -->
 						<div class="aside">
                     
                 <div class="row">
                     <!-- product -->
-                    <ul class="row justify-content-left">
-                        <!-- <div class="col-md-3"></div> -->
+                    <ul id="techTable" class="row justify-content-left">
                         {% for i in techniques_list %}
+                        
                             <!-- <div class=""></div> -->
                         <li class="col-md-4 ">
                             <div class="product">
                                 <div class="product-img img-fluid " >
                                     <img src="{{i.image.url}}" style="width:100%;height: 40vh;" alt="image">
+                                    
                                     <div class="product-label">
-                                        {% if i.sale %}
-
-                                        <span class="sale">-{{i.sale}}%</span>
+                                        {% if i.sale > 0  %}
+                                        <span id="saleP" class="sale">-{{i.sale}}%</span>
                                         {% endif %}
-
                                         {% if i.new %}
-                                        <span class="new">
-                                        
-                                            NEW
-                                        
-                                        </span>
-                                        {% endif %}
+                                        <span class="new">NEW</span>
+                                        {%endif%}
                                     </div>
+
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">{{i.company}}</p>
                                     <h3 class="product-name"><a href="#">{{ i.name}}</a></h3>
-                                    <h4 class="product-price">${{i.new_price}} <del class="product-old-price">${{i.old_price}}</del></h4>
+                                    <h4 class="product-price">${{i.new_price}}&nbsp;so'm&nbsp;<del class="product-old-price">${{i.old_price}}&nbsp;so'm</del></h4>
                                     <div class="product-rating">
                                     
                                     </div>
@@ -120,9 +96,9 @@
                                                     <div class="col-12 d-flex justify-content-center">
                                                         <div class="social-icons d-flex">
                                                                 <a href="{{i.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
-																		<a href="{% url 'tech_product' i.pk	 %}" class="wow fadeInDown"><i class="las la-eye"></i></a>
-                                                              
-                                                                <a href="{{i.ins_link}}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
+                                                                <a href="{{i.tg_link}}" class="wow fadeInDown"> <i class="lab la-instagram"></i></a>
+                                                                    
+                                                                <a href="#" class="wow fadeInUp" type="button"  data-toggle="modal" data-target="#myModal"  name="product_info" onclick="getProductInfoElements({{i.id}})" type="button" id="product_info_{{i.id}}"> <i class="las la-eye"></i></a>
                                                         </div>
                                                     </div>
                                             
@@ -190,5 +166,315 @@
         <!-- /row -->
     </div>
     <!-- /container -->
-</div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Ma'lumot</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div id="INFO_PRODUCT" class="section">
+		
+                <!-- container -->
+                <div class="section">
+		
+                    <!-- container -->
+                    <div class="container">
+                        <!-- row -->
+                        <div class="row">
+                            <!-- Product main img -->
+                            <div class="col-md-7 col-md-push-2">
+                                <div id="product-main-img">
+                                    <div class="product-preview">
+                                        <img src="/media/alessandro-erbetta-mpWPcRT9D1E-unsplash.jpg" alt="">
+                                    </div>
+                            
+                                    
+                                </div>
+                            </div>
+                            <!-- /Product main img -->
+        
+                            <!-- Product thumb imgs -->
+                        
+                            <!-- /Product thumb imgs -->
+        
+                            <!-- Product details -->
+                            <div class="col-md-5">
+                                <div class="product-details">
+                                    <h2 class="product-name"><span style="font-weight:bolder">Mahsulot:</span>Huawe</h2>
+                                
+                                    <div>
+                                        <h3 class="product-price">450 <del class="product-old-price">452</del></h3>
+                                        
+                                        <span class="product-available" id="kar"  >-10% sale</span>
+                                        
+                                        
+										<span class="product-available " id="kar">NEW Product</span>
+									
+                                    </div>
+                                    <p><b>Info:</b>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, unde? Ipsum unde nulla eaque quas, reiciendis, soluta sapiente aliquid vitae inventore, qui distinctio voluptatem! Cum rem assumenda eaque et perspiciatis.</p>
+                                    <!-- <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i></p> -->
+                                        <div class="add-to-cart">                                   
+                                            <div class="footer-sec3" id="footer-sec">                                  
+                                                  <div class="social-icons d-flex">
+        
+                                                    <ul>
+          
+                                                        <li id="navli">
+                                                            <i class="las la-phone fa-lg pr-3 "></i><a href="tel:+998904531707"> +998904531707 </a>
+                                                           
+                                                    
+                                                        </li>
+                                                        <li id="navli">
+                                                            <a href="https://t.me/wl_planet" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+                                                        </li>
+                                                        <li id="navli">
+                                                            <a href="https://t.me/wl_planet" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+                                                    
+                                                        </li>
+                                                    </ul>
+                                              </div>
+                                           </div>
+                                        </div>
+                                    
+                                
+        
+                                    <ul class="product-links">
+                                        <li>Category:</li>
+                                        <li>Samsung</li>
+                                        <li>Huawe</li>
+                                    </ul>
+        
+                                    
+                                </div>
+                            </div>
+                            <!-- /Product details -->
+        
+                            <!-- Product tab -->
+                    
+                            <!-- /product tab -->
+                        </div>
+                        <!-- /row -->
+                    </div>
+                    <!-- /container -->
+                </div>
+                <!-- /container -->
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+<script>
+function getCategoryTechElements(categoryID){
+
+ data = {
+     'category_ID' : categoryID
+ }
+ $.ajax({
+     method: 'GET',
+     dataType:'json',
+     data:data,
+     url:'{% url "technique_det" %}',
+     success:function(data){
+        techniqus = data['data']['techniqus']
+        table_elemants = ``
+
+    for (let tech_in in data['data']['techniqus']){
+        if(techniqus[tech_in]['new'] === true){
+           new_product = ` <span class="new">NEW</span>`
+        } else new_product='';
+        if(techniqus[tech_in]['sale']>0){
+            sale_product = `<span class="sale">-${techniqus[tech_in]['sale']}%</span>`
+        }else sale_product = '';
+
+        technique_template = `
+
+        <li class="col-md-4 ">
+                            <div class="product">
+                                <div class="product-img img-fluid " >
+                                    <img src="/media/${techniqus[tech_in]['image']}" style="width:100%;height: 40vh;" alt="image">
+                                    <div class="product-label">
+                                     ${sale_product}
+                                      ${new_product}
+                                  
+                                    </div>
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">${techniqus[tech_in]['company']}</p>
+                                    <h3 class="product-name"><a href="#">${techniqus[tech_in]['name']}</a></h3>
+                                    <h4 class="product-price">${techniqus[tech_in]['new_price']}&nbsp;so'm&nbsp;<del class="product-old-price">${techniqus[tech_in]['old_price']}&nbsp;so'm</del></h4>
+                                    <div class="product-rating">
+                                    
+                                    </div>
+                                    <div class="product-btns">
+                                        
+                                        <div class="footer-sec2" id="footer-sec">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <div class="social-icons d-flex">
+                                                                <a href="${techniqus[tech_in]['tg_link']}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
+																		<a href="technique/product/detail/${techniqus[tech_in]['id']}/" class="wow fadeInDown"> <i class="lab la-instagram"></i></a>
+                                                                    
+                                                                          <a href="#" class="wow fadeInUp" type="button"  data-toggle="modal" data-target="#myModal"  name="product_info" onclick="getProductInfoElements(${techniqus[tech_in]['id']})" type="button" id="product_info_${techniqus[tech_in]['id']}"> <i class="las la-eye"></i></a>
+                                                                         
+                                                                         
+                                                        </div>
+                                                    </div>
+                                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                <div class="add-to-cart">
+                                <a href="tel:${techniqus[tech_in]['phone']}">	<button class="add-to-cart-btn"><i class="fas fa-phone-alt"></i></i>${techniqus[tech_in]['phone']}</button></a>
+                                </div>
+                            </div>
+                        </li>`
+                        table_elemants += technique_template  
+                        }
+                        $('#techTable').html(table_elemants)
+
+     }
+ })
+
+}
+
+   
+function getProductInfoElements(Product_id){
+ data = {
+     'product_info_ID': Product_id
+ }
+ console.log(data)
+ $.ajax({
+     method: 'GET',
+     dataType :'json',
+     data:data,
+     url:'{% url "technique_info" %}',
+     success:function(data){
+     product_list = data['data']['product_list']   
+     qwe = ``;
+     for(let product in product_list){
+
+       if (product_list[product]['new'] === true){
+        new_product_template = `<span class="product-available " id="kar">NEW Product</span>`
+       }else new_product_template='';
+
+       if (product_list[product]['sale'] > 0){
+        sale_product_template = `
+        <span class="product-available" id="kar">-${product_list[product]['sale']}% sale</span>`
+       }
+       else sale_product_template =``;
+       
+        p_info = `
+        <!-- SECTION -->
+		<div class="section">
+		
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Product main img -->
+					<div class="col-md-7 col-md-push-2">
+						<div id="product-main-img">
+							<div class="product-preview">
+								<img src="/media/${product_list[product]['image']}" alt="">
+							</div>
+					
+							
+						</div>
+					</div>
+					<!-- /Product main img -->
+
+					<!-- Product thumb imgs -->
+				
+					<!-- /Product thumb imgs -->
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name"><span style="font-weight:bolder">Mahsulot:</span>${product_list[product]['name']}</h2>
+						
+							<div>
+								<h3 class="product-price">${product_list[product]['new_price']}&nbsp;so'm&nbsp;&nbsp;<del class="product-old-price">${product_list[product]['old_price']}&nbsp;so'm</del></h3>
+                                ${sale_product_template}
+                                ${new_product_template}
+							</div>
+							<p><b>Info:</b>${product_list[product]['info_text']}</p>
+							<!-- <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{ tech_products.market.locations }}</p> -->
+								<div class="add-to-cart">                                   
+                                    <div class="footer-sec3" id="footer-sec">                                  
+                                          <div class="social-icons d-flex">
+
+											<ul>
+  
+												<li id="navli">
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:${product_list[product]['phone']}"> ${product_list[product]['phone']} </a>
+												   {% if tech_products.phone2 %}
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:${product_list[product]['phone2']}"> ${product_list[product]['phone2']} </a>
+													{% endif %}
+											
+												</li>
+												<li id="navli">
+													<a href="${product_list[product]['tg_link']}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+												</li>
+												<li id="navli">
+													<a href="${product_list[product]['tg_link']}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+											
+												</li>
+											</ul>
+                                      </div>
+                                   </div>
+								</div>
+							
+						
+
+							<ul class="product-links">
+								<li>Category:</li>
+								<li>${product_list[product]['company']}</li>
+								<li>${product_list[product]['name']}</li>
+							</ul>
+
+							
+						</div>
+					</div>
+					<!-- /Product details -->
+
+					<!-- Product tab -->
+			
+					<!-- /product tab -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+        
+        
+        `
+        
+         
+       }
+  
+       $('#INFO_PRODUCT').html(p_info) } 
+ });
+}
+
+
+</script>
 {% endblock %}

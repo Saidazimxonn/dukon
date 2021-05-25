@@ -57,13 +57,17 @@ class ClinicListView(ListView):
 #         context['clinics_list'] = Categorys.objects.all().annotate(count=Count('products'))
 #         return context
 
+
+
 class ClinicsDetailView(View):
+    paginate_by=1
     def get(self, request):
         category_id = request.GET.get('category_id', None)
-        cate = Clinics.objects.filter(category_id=category_id).in_bulk()
+        cate = Clinics.objects.select_related('category').filter(category_id=category_id).in_bulk()
         clinics = list()
         for clin in cate.values():
-            clin_temp = clin.__dict__
+            clin_temp = dict(clin.__dict__)
+            clin_temp['category'] = clin.category.name
             try:
                 clin_temp.__delitem__('_state')
             except:
@@ -73,8 +77,9 @@ class ClinicsDetailView(View):
         data = {
             'clinics':clinics
         }
-        
         return JsonResponse({'data':data})
+       
+       
  
 
 class ClinicsDetailViewInfo(DetailView):
