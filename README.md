@@ -1,2 +1,2 @@
 # dukon
-Yangi Unversal Dukon 
+Yangi Universal Do‘kon
