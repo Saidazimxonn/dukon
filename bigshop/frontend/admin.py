@@ -5,7 +5,7 @@ from .models import LiveMessage
 
 class LiveMessageAdmin(admin.ModelAdmin):
     list_display =(
-        'name', 'full_name', 'phone'
+        'name', 'full_name', 'phone', 'message'
     )
     list_display_links = (
                 'name', 'full_name', 'phone', 'message'

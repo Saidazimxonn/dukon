@@ -1,0 +1,50 @@
+<form id="filterSELLER" >
+    <ul>
+<!--      
+   <li id="navli"> 
+    <select id="marketVAL" class="selectpicker pt-1 " style="width: 200px;"  data-live-search="true" name="market" >
+      
+      <option  value="all" >Do'konlar</option>
+    
+        {% for i in all_market %}
+      <option  value="{{ i.id }}" >{{i}}</option>
+        {% endfor %}    
+    
+  
+      </select>
+    </li>
+
+   <li id="navli"> 
+    <select id="bazarVAl" class="selectpicker pt-1 " style="width: 200px;"  data-live-search="true" name="bazar" >
+      
+      <option  value="all" >Bozorlar</option>
+     
+        {% for i in all_bazar %}
+      <option  value="{{ i.id }}">{{i}}</option>
+        {% endfor %}    
+    
+  
+      </select>
+    </li> -->
+    <li id="navli"> 
+     
+      </li>
+    
+   
+      
+        <li  id="navli">
+          <button type="button" onclick="getValueSeller()"  class="btn btn-primary shadow btn-ls sharp mr-2 "><i class="fas fa-search"></i></button>
+        </li>
+        <li  id="navli">
+          <a class="btn btn-danger shadow btn-ls sharp mr-2 ml-1"   type="reset" href="sellers " value="reset"><i class="far fa-trash-alt"></i></a>
+        </li>
+      </ul>
+      </form>
+
+      ++++++++
+      
+      <form class="form-inline my-2 my-lg-0" >
+        <input class="form-control mr-sm-2" id="marketVAL" name="sa" type="search" placeholder="Search" autocomplete="off" >
+        <button class="btn btn-outline-success  my-2 my-sm-0" name="sa" onclick="getValueSeller()"   type="button">Search</button>
+        <button class="btn btn-outline-danger  ml-1 my-2 my-sm-0" name="sa" onclick="getValueSeller()"   type="button">Clear</button>
+      </form>

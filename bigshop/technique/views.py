@@ -31,6 +31,7 @@ class TechniqueListView(ListView):
         context['sections_list'] =  Sections.objects.all().annotate(count=Count('products'))
 
         return context
+    
 class TechniqueDetailView(View):
     def get(self, request):
         category_ID = request.GET.get('category_ID', None)
@@ -48,11 +49,12 @@ class TechniqueDetailView(View):
             'techniqus':techniqus
         }
         return JsonResponse({'data':data})
+    
+    
 class TechniqueInfoView(View):
   def get(self, request):  
         product_info_id = request.GET.get('product_info_ID', None)
         product = Equipments.objects.select_related('company').filter(id=product_info_id).in_bulk()
-        print(product)
         product_list = list()
         for pro in product.values():
                     pro_temp = dict(pro.__dict__)
@@ -91,10 +93,10 @@ class TechniqueInfoView(View):
 #         context['sections_list'] = Sections.objects.all().annotate(count=Count('products'))
 #         return context
 
-class TechniqueProductDetailView(DetailView):
-    model = Equipments
-    template_name = "tech_mahsulot.html"
-    context_object_name = "tech_products"
+# class TechniqueProductDetailView(DetailView):
+#     model = Equipments
+#     template_name = "tech_mahsulot.html"
+#     context_object_name = "tech_products"
 
 # class SectionsTmplateView(ListView):
 #     model = Sections

@@ -82,7 +82,25 @@ class ClinicsDetailView(View):
        
  
 
-class ClinicsDetailViewInfo(DetailView):
-    model = Clinics
-    template_name = 'clinic_info.html'
-    context_object_name = 'clinics_info'
+# class ClinicsDetailViewInfo(DetailView):
+#     model = Clinics
+#     template_name = 'clinic_info.html'
+#     context_object_name = 'clinics_info'
+
+class ClinicsDetailViewInfo(View):
+    def get(self, request):
+        clinic_info_id = request.GET.get('clinic_info_id', None)
+        info_c = Clinics.objects.select_related('category').filter(id=clinic_info_id).in_bulk()
+        info_list = list()
+        for info in info_c.values():
+            info_temp = dict(info.__dict__)
+            info_temp['category'] = info.category.name
+            try:
+                info_temp.__delitem__('_state')
+            except:
+                pass
+            info_list.append(info_temp)           
+        data = {
+            'info_clinic':info_list
+        }
+        return JsonResponse({'data':data})

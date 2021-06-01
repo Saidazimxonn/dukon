@@ -16,41 +16,14 @@
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       
     </ul>
-    <form  >
-      <ul>
-     
-     <li id="navli"> 
-      <select class=" selectpicker pt-1 " style="width: 200px;"  data-live-search="true" name="market" >
-        
-        <option value="all" {% if selected_all_market == 'all' %}selected="selected"{% endif %} >Do'konlar</option>
-          {% for i in all_market %}
-        <option value="{{ i.id }}" {% if selected_all_market|to_int == i.id|to_int %}selected="selected"{% endif %}>{{i}}</option>
-          {% endfor %}    
-      
-    
-        </select>
-      </li>
-      
-      <li  id="navli">
-    
-        <select class=" selectpicker pt-1" style="width: 200px;"  data-live-search="true" name="bazar" >
-       
-          <option value="all" {% if selected_all_bazar == 'all' %}selected="selected"{% endif %} >Bozorlar</option>
-           {% for i in all_bazar %}
-         <option value="{{ i.id }}" {% if selected_all_bazar|to_int == i.id|to_int %}selected="selected"{% endif %}>{{i}}</option>
-           {% endfor %} 
-      
-    
-          </select>
-        </li>   
-          <li  id="navli">
-            <button type="submit" class="btn btn-primary shadow btn-ls sharp mr-2 "><i class="fas fa-search"></i></button>
-          </li>
-          <li  id="navli">
-            <a class="btn btn-danger shadow btn-ls sharp mr-2 ml-1" href="{% url 'seller' %}"><i class="far fa-trash-alt"></i></a>
-          </li>
-        </ul>
+   
+        <form class="form-inline my-5 my-lg-0" >
+            <button type="button" class="btn btn-outline-warning mr-3" style="color:black;font-weight:500" >Aqlli qidiruv tizimi <span style="color:#c40404">BOZOR, DO'KON, MAHSULOT</span>  nomlari  orqali qidiring&nbsp;</button>
+          <input class="form-control mr-lg-2" id="marketVAL"  placeholder="Search..."  style="font-family:FontAwesome !important" >
+          <button class="btn btn-outline-success  my-2 my-sm-0" name="sa" onclick="getValueSeller()"   type="button">Qidiring</button>
+          <button class="btn btn-outline-danger  ml-1 my-2 my-sm-0" name="sa" onclick="getValuecleear()"   type="button">Tozalash</button>
         </form>
+        
   </div>
 </nav>
 
@@ -62,14 +35,14 @@
      
 
 
-	<div class="col-md-12">
+	<div class="col-md-12" >
 			
 			
 				<div class="products-tabs">
 					<!-- tab -->
 			
 							<!-- product -->
-              <ul class="row justify-content-left row-eq-height">
+              <ul class="row justify-content-left row-eq-height" id="SellerTEMP">
 
                 {% for market in market_list %}
 								<li class="col-md-4" >                  
@@ -116,7 +89,7 @@
                                                                         <li>Telegram</li>
                                                                       </ul>
                                                                       <ul>
-                                                                   <li class="pl-2"> <a href="{% url 'market_d' market.pk %}" class="wow fadeInUp"><i class="las la-eye"></i></a></li>
+                                                                   <li class="pl-2"> <a onclick="getProductInfoElements({{market.id}})"  data-toggle="modal" data-target="#myModal"  class="wow fadeInUp"><i class="las la-eye"></i></a></li>
                                                                         <li>Info</li>
                                                                    </ul>
                                                                    <ul>
@@ -143,13 +116,237 @@
 
                     
                                             </div>
-                              </div>
+    </div>
 					
 							<!-- /product -->
 					
+    <!-- Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Ma'lumot</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div id="INFO_PRODUCT" class="section">
+  
+              <!-- container -->
+
+              <!-- /container -->
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <!-- end Modal -->
 						
 						
-					
+<script>
+     var replace_data = function(data){
+        $('#success').append(data.data);
+        $('#loading').remove();
+    }
+
+function getValueSeller(){
+     
+      // let bazar = $("#bazarVAl").val()
+      let market = $("#marketVAL").val()
+      console.log(market,"---------------")
+      data = {
+            // 'bazar_val':bazar,
+            'market_val':market,
+            }
+      $.ajax({
+      method: 'GET',
+      dataType:'json',
+      data:data,
+      url:'{% url "filter" %}',
+
+      success:function(data){
+
+      sellers = data['data']['sellers']
+      table_elems = ``
+      for(let seller in sellers){
+        
+      sellers_template = `
+                  <li class="col-md-4" >                  
+                  <div class="product">
+                    <div class="product-img-fluid">
+                      <img src="/media/${sellers[seller]['image']}"  style="width:100%;height: 41vh;" alt="image">
+                      <div class="product-label">
+                    </div>
+                    </div>
+                    <div class="product-body2">
+                      <p class="product-category text-center"> <b>${sellers[seller]['bazar']}</b>  <br>${sellers[seller]['name']} 
+                      </p>
+                      <h1 class="product-name " style="font-size: 13px;">${sellers[seller]['info_shop_product']}</h1>
+                        <hr><h5 class="text-justify" style="font-size: 11px;">
+                          <b  style=" font-size: 14px;"><i class="fas fa-map-marker-alt text-info" style="padding: 2px;font-size: 18px;">
+                            <b style="color: rgb(29, 25, 25); font-size: 14px; font-weight: 800;"> Manzil:</b></i> </b>${sellers[seller]['locations']}</h5>
+                        
+                        <h5 class="text-justify" style="font-size: 11px;">
+                          <b  style=" font-size: 14px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
+                          </i>${sellers[seller]['phone']}</b>
+                        </h5><div class="product-btns">
+                        
+             <div class="footer-sec2" id="footer-sec">
+                     <div class="container">
+                                        
+            <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+                                                          
+      <div class="social-icons d-flex">
+                    <ul>
+                            <li> <a  href="${sellers[seller]['tg_link']}" class="wow fadeInDown"><i class="lab la-telegram " ></i> <b style="padding-left: -15px;"> </b></a></li>
+                                  <li>Telegram</li>
+                    </ul>
+                    <ul>
+                    <li class="pl-2"> <a onclick="getProductInfoElements(${sellers[seller]['id']})"  data-toggle="modal" data-target="#myModal"  class="wow fadeInUp"><i class="las la-eye"></i></a></li>
+                        <li>Info</li>
+                    </ul>
+                    <ul>
+      <li>  <a href="/seller_products/${sellers[seller]['id']}" class="wow fadeInUp"><i class="las la-list"></i> </a></li>
+      <li>Tovarlar</li>
+                                                                   </ul>
+                                                                   
+                                                                  
+                                                            </div>
+                                                        </div>
+                                                   
+                                              </div>
+                                 </div>
+                      </div>
+               
+            </div>
+                                                         </div>
+                    
+                
+                              </li>`
+  table_elems += sellers_template
+      }
+      $('#SellerTEMP').html(table_elems)
+      }
+    });
+  }
+
+function getValuecleear(){
+ $("#marketVAL").val("") 
+ getValueSeller()
+          
+}
+
+
+
+function getProductInfoElements(Market_id){
+  data = {
+    'market_info_ID':Market_id
+  }
+  $.ajax({
+    method:'GET',
+    dataType:'json',
+    data:data, 
+    url :'{% url "market_d" %}',
+    success:function(data){
+    market_list = data['data']['market_list']
+    for (let market in  market_list){
+     p_info = `
+      <div class="section">
+      
+        <!-- container -->
+        <div class="container">
+          <!-- row -->
+          <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-7 col-md-push-2">
+              <div id="product-main-img">
+                <div class="product-preview">
+                  <img src="/media/${market_list[market]['image']}" alt="">
+                </div>
+            
+                
+              </div>
+            </div>
+            <!-- /Product main img -->
+  
+            <!-- Product thumb imgs -->
+          
+            <!-- /Product thumb imgs -->
+  
+            <!-- Product details -->
+            <div class="col-md-5">
+              <div class="product-details">
+                <h2 class="product-name">Do'kon: ${market_list[market]['name']}</h2>
+                <h6 style="font-weight: 500;" ><span style="font-weight:bolder">Bozor: </span>${market_list[market]['bazar']}</h6>
+              
+  
+                <p><span style="font-weight:bold"> Mahsulotlar:</span>${market_list[market]['info_shop_product']}</p>
+                <p><span style="font-weight:bolder">Info: </span>${market_list[market]['info_long']}</p>
+                <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i><span style="font-weight:bolder">Manzil:</span>${market_list[market]['locations']}</p>
+                  <div class="add-to-cart">                                   
+                                      <div class="footer-sec3" id="footer-sec">                                  
+                                            <div class="social-icons d-flex">
+  <ul>
+    
+      <li id="navli">
+          <i class="las la-phone fa-lg pr-3 "></i><a href="tel:${market_list[market]['phone']}"> ${market_list[market]['phone']} </a>
+         {% if market_detail.phone2 %}
+          <i class="las la-phone fa-lg pr-3 "></i><a href="tel:${market_list[product]['phone2']}"> ${market_list[market]['phone2']} </a>
+          {% endif %}
+  
+      </li>
+      <li id="navli">
+          <a href="${market_list[market]['tg_link']}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+      </li>
+      <li id="navli">
+          <a href="${market_list[market]['tg_link']}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+  
+      </li>
+  </ul>
+  
+                                       
+                                        </div>
+                                     </div>
+                  </div>
+                
+  
+              
+  
+                <ul class="product-links">
+                  <li>Category:</li>
+                  <li>${market_list[market]['bazar']}</li>
+                  <li>${market_list[market]['name']}</li>
+                  <li>${market_list[market]['name']}</li>
+                </ul>
+  
+                
+              </div>
+            </div>
+            <!-- /Product details -->
+  
+            <!-- Product tab -->
+        
+            <!-- /product tab -->
+          </div>
+          <!-- /row -->
+        </div>
+        <!-- /container -->
+      </div>
+      <!-- /SECTION -->`}
+   $('#INFO_PRODUCT').html(p_info) } 
+});
+}
+
+
+</script>				
 						
                      
 						
