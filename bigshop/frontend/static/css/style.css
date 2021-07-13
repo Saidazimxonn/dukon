@@ -50,7 +50,81 @@ Table OF Contents
 /*=========================================================
 	01 -> GENERAL
 ===========================================================*/
+.rounded-pill{
+  /* color: white; */
+  border: 1px solid #ccc;
+}
+.rounded-pill:hover{
+  color: #000;
+}
 
+#carusel-imgId{
+  width: 100%;
+  height: 100%;
+  
+}
+
+#carusel-imgId img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+#c_rasim{
+  width: 100px;
+  height: 100px;
+}
+.rev_slider_wrapper{
+  overflow: hidden;
+}
+.rev_slider_wrapper img{
+  /* width: 100%;
+  height: 100%; */
+  border: 3px solid green;
+}
+.rev_slider{
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#stdu{
+  font-weight: bold;
+}
+#stdu_Galery{
+  width: 100%;
+  height:250px;
+  object-fit: cover;
+}
+
+
+
+.btn:focus, .btn:active, button:focus, button:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#image-gallery .modal-footer{
+  display: block;
+}
+
+.thumb{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 /*----------------------------*\
 	Typography
 \*----------------------------*/
@@ -83,7 +157,11 @@ font-size: 12px;
   zoom:1;
   *display:inline;
   /* this fix is needed for IE7- */
+  
 }
+
+
+
 
 
 
@@ -124,7 +202,7 @@ a {
 }
 
 a:hover, a:focus {
-  color: #D10024;
+  /* color: #D10024; */
   text-decoration: none;
   outline: none;
 }
@@ -898,24 +976,44 @@ textarea.input {
   transition: 0.2s all;
 }
 
+
 .product:hover {
-  -webkit-box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #c9e265;
-  box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #c9e265;
+  -webkit-box-shadow: 0px 0px 9px #ccc;
+  box-shadow: 0px 0px 9px #ccc;
+}
+.product-img-contaner{
+  overflow: hidden;
 }
 
-.product .product-img {
-  /* position: relative; */
+.product .product-img:hover{
+  transition: all 1.5s;
+  transform: scale(1.2);
 }
 
 .product .product-img>img {
  width: 100%;
 
 }
-
-.product .product-img .product-label {
+.product-img{
+  position: relative;
+}
+.product-label {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 7px;
+  right: 3px;
+}
+.sale{
+  padding:2px 6px;
+  border: 1px solid #e7e873;
+  background-color: white;
+  color: #000;
+  font-size: 13px;
+}
+.new{
+  padding: 3px 5px;
+  background-color: #e7e873;
+  font-size: 13px;
+  color: white;
 }
 
 .product .product-img .product-label>span {
@@ -930,11 +1028,11 @@ textarea.input {
   color: #c9e265;
 }
 
-.product .product-img .product-label>span.new {
+/* .product .product-img .product-label>span.new {
   background-color: #c9e265;
   border-color: #c9e265;
   color: #FFF;
-}
+} */
 
 .product .product-body {
   position: relative;
@@ -945,7 +1043,6 @@ textarea.input {
   height: 10%;
 }
 .product .product-body2 {
-  position: relative;
   padding: 10px;
   background-color: #FFF;
   text-align: center;
@@ -972,13 +1069,20 @@ textarea.input {
   color: #c9e265;
 }
 
+.product-company-name{
+  width: 100%;
+  height: 30px;
+}
 .product .product-body .product-price {
-  color: #c9e265;
+  color: #45a665;
   font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 5px;
 }
 .product .product-body2 .product-price {
-  color: #c9e265;
+  color: #45a665;
   font-size: 18px;
+  font-weight: 800;
 }
 
 .product .product-body .product-price .product-old-price {
@@ -990,6 +1094,14 @@ textarea.input {
   font-size: 70%;
   font-weight: 400;
   color: #8D99AE;
+}
+.social-icons>a{
+  width: 40px;
+  height: 40px;
+}
+.product:hover{
+  background-color: blue;
+  display: block;
 }
 /* 
 .product .product-body .product-rating {
@@ -1090,6 +1202,27 @@ textarea.input {
   -webkit-transform: translateY(100%);
   -ms-transform: translateY(100%);
   transform: translateY(100%);
+}
+.manzil-name{
+  margin-left: -10px;
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 270px;
+  background-color: rgba(37, 143, 214, 0.788);
+  transform: translateY(-100px);
+}
+#test{
+  color: green;
+}
+
+.product-body2:hover .manzil-name{
+  display: block;
+  color: red;
+  transform: translateY(0);
+  transition: all 8s;
+  z-index: 5;
 }
 
 .product .add-to-cart .add-to-cart-btn {

@@ -17,199 +17,379 @@
 <!-- Modal: modalPoll -->
 
 <!-- Modal: modalPoll -->
-<nav class="navbar navbar-expand-lg navbar-light  p- "style="background-color: #FFE383;">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light  p- " style="background-color: #FFE383;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" style="font-weight: bold; color: #1b1c1d;" href="{% url 'seller' %}">Dorilar</a>
 
 
- 
+
 
 </nav>
 
-   
-    
-
-  
-
-     
 
 
-	<div class="col-md-12">
-			
-			
-				<div class="products-tabs">
-					<!-- tab -->
-			
-							<!-- product -->
-              <ul class="row justify-content-left row-eq-height">
 
-                {% for pharm in pharmacies %}
-								<li class="col-md-4" >                  
-                  <div class="product">
-                    <div class="product-img img-fluid">
-                      <img src="{{ pharm.image.url }}"  style="width:100%;height: 41vh;" alt="image">
-                      <div class="product-label">
-                        {% if pharm.sale %}
 
-                        <span class="sale">-{{pharm.sale}}%</span>
-                        {% endif %}
 
-                        {% if pharm.new %}
-                        <span class="new">
-                        
-                            NEW
-                        
-                        </span>
-                        {% endif %}
-                    </div>
-                    </div>
-                    <div class="product-body2">
-                      <p class="product-category text-center"> <b>{{ pharm.name}}</b>
-                        <h4 class="product-price">${{pharm.new_price}} <del class="product-old-price">${{pharm.old_price}}</del></h4>
-                      </p>
-                      
 
-                      <h1 class="product-name " style="font-size: 13px;">{{pharm.pharmacy_info}}</h1>
-                        <hr>
-                      
-                        <h5 class="text-justify" style="font-size: 11px;padding-left: 15px;">
-                          <b  style=" font-size: 14px;"><i class="fas fa-map-marker-alt text-info" style="padding: 2px;font-size: 18px;">
-                            <b style="color: rgb(29, 25, 25); font-size: 14px; font-weight: 800;"> Manzil:</b></i> </b>  {{pharm.locations}}
-                         
-                        </h5>
-                        
-                        <h5 class="text-justify" style="font-size: 11px;padding-left: 15px;">
-                          <b  style=" font-size: 14px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
-                          </i>   {{pharm.phone}}</b>
-                          <b  style=" font-size: 14px; padding-left: 8  px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
-                          </i>   {{pharm.phone}}</b>
-                        </h5>
-             
-                   
-              
-                      
-                     
-                
-          <div class="product-btns">
-                        
-             <div class="footer-sec2" id="footer-sec">
-                     <div class="container">
-                                        
-            <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-                                                          
-      <div class="social-icons d-flex">
-                                                                   <ul>
-                                                                  <li> <a  href="{{ pharm.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram " ></i> <b style="padding-left: -15px;"> </b></a></li>
-                                                                        <li>Telegram</li>
-                                                                      </ul>
-                                                                      <ul>
-                                                                   <li class="pl-2"> <a href="{% url 'pharm_detail' pharm.pk %}" class="wow fadeInUp"><i class="las la-eye"></i></a></li>
-                                                                        <li>Info</li>
-                                                                   </ul>
-                                                                   <ul>
-                                                                    <li>  <a href="{% url 'order_create' pharm.pk %}" class="wow fadeInUp"><i class="las la-cart-plus"></i> </a></li>
-                                                                  
-                                                                    
-                                                                   
-                                                                    <li>Buyurtma</li>
-                                                                   </ul>
-                                                                   
-                                                                  
-                                                            </div>
-                                                        </div>
-                                                   
-                                              </div>
-                                 </div>
-                      </div>
-               
+
+
+<div class="col-md-12">
+
+
+  <div class="container products-tabs">
+    <!-- tab -->
+
+    <!-- product -->
+    <ul class="row justify-content-left row-eq-height">
+
+      {% for pharm in pharmacies %}
+       <li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-12" >
+        <div class="product">
+          <div class="product-img-contaner">
+            <div class="product-img img-fluid"
+              style="background-image:url('{{pharm.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
             </div>
-                                                         </div>
-                    
-                
-                              </li>
-                                {% endfor %}
-              
-                                                  </ul>
+          </div>
+          <div class="product-body">
+            <div class="product-company-name" style="margin-top:13px; margin-bottom:10px; ">
+              <span class="product-name" href="#" style=" font-size: 14px;text-decoration:none; font-weight:bold;">{{ pharm.name}}</span>
+           </div>
+           <div>
+            <h4 class="product-price mt-1" value3="{{pharm.new_price}}">$<span id="new_price">{{pharm.new_price}}so'm</span>
+              <del class="product-old-price">$ <span id=" old_price">{{pharm.old_price}}so'm</span> </del>
+            </h4>
+           </div>
+            <div class="product-price pt-1" style="font-size: 12px; margin-bottom:10px; color:#000">{{pharm.pharmacy_info}}</div>
+          
+            <hr>
+            <div class="product-btns">
 
-                    
-                                    
-                                                </div>
-
-                                                  <!-- paginator -->
-                <div class="store-filter clearfix mt-5">
-                  {% if is_paginated %}
-                  
-                  <ul class="store-pagination">
-                      {% if page_obj.has_previous %}
-
-                      <li  class="page-item">
-                                  <a  href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
-                      {% else %}
-
-                      <li class="page-item no-drop" >
-                                   <a   ><i class="fa fa-angle-left"></i></a>
-                                  </li>
-                      {% endif %}
-                      {% for i in paginator.page_range %} 
-
-                          {% if page_obj.number == i %}
-                            <li class="page-item active">{{ i }}</li>
-                          {% else %}
-                            <li><a  href="?page={{ i }}">{{ i }}</a></li>
-                          {% endif %} {% endfor %} {% if page_obj.has_next %}
-                          <li class="page-item ">
-                                   <a  href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
-                           </li>
-                      {% else %}
-                      <li class="disabled" >
-                          <a class="no-drop" ><i class="fa fa-angle-right"></i></a>
-                         </li>
-                      {% endif %}
-
-
-                  </ul>
-                  {% endif %}
-              </div>
-              <!-- /paginator -->
-                              </div>
-					
-							<!-- /product -->
-					
-						
-						
-					
-						
-                     
-						
-              <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="false">
-                <div class="modal-dialog modal-lg ">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+              <div class="footer-sec2" id="footer-sec">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                      <div class="social-icons d-flex w-2 h-2">
+                        <a href="{{ pharm.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
+                        <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+                          onclick="getProductInfoElements({{pharm.id}})" type="button" id="product_info_{    }"> <i
+                            class="las la-eye"></i></a>
+                            <a href="{% url 'order_create' pharm.pk %}" class="wow fadeInUp"><i
+                              class="las la-cart-plus"></i> </a>
+                      </div>
                     </div>
-                    <div class="modal-body">...</div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                        Close
-                      </button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+
                   </div>
                 </div>
               </div>
 
-{% endblock %}
-{% block extra_js %}
+            </div>
+          </div>
+          <!-- <div class="add-to-cart">
+											<a href="tel:{{ i.phone }}"> <button class="add-to-cart-btn"><i
+														class="fas fa-phone-alt"></i></i>{{i.phone}}</button></a>
+										</div> -->
+          <div class="product-label">
+            {% if pharm.sale > 0 %}
+            <span id="sale" class="sale">-{{pharm.sale}}%</span>
+            {% endif %}
+            {% if pharm.new %}
+            <span class="new">NEW</span>
+            {%endif%}
+          </div>
+        </div>
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+
+
+  </div>
+
+  <!-- paginator -->
+  <div class="store-filter clearfix mt-5">
+    {% if is_paginated %}
+
+    <ul class="store-pagination">
+      {% if page_obj.has_previous %}
+
+      <li class="page-item">
+        <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% else %}
+
+      <li class="page-item no-drop">
+        <a><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+
+      {% if page_obj.number == i %}
+      <li class="page-item active">{{ i }}</li>
+      {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %} {% endfor %} {% if page_obj.has_next %}
+      <li class="page-item ">
+        <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% else %}
+      <li class="disabled">
+        <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% endif %}
+
+
+    </ul>
+    {% endif %}
+  </div>
+  <!-- /paginator -->
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Buyurtma</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div id="CREATE_PRODUCT" class="section">
+        <!-- container -->
+        <!-- SECTION -->
+        <div class="section">
+          <!-- container -->
+          <div class="container">
+            <!-- row -->
+            <div class="row">
+
+
+              <div class="col-md-7">
+                <form id="Create_Order" action="order_create">
+                  <div class="billing-details form-group">
+                    <div class="section-title">
+                      <h3 class="title">Mijoz maʼlumotlari</h3>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="text" required="required" name="name1" placeholder="I.F.O">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="text" required="required" name="phone1" placeholder="Telefon">
+                    </div>
+                    <div class="form-group">
+
+                      <select id="accountCountry" class="form-control" required="required" name="province">
+                        <option value="All">Viloyatlar</option>
+                        <option value="Toshkent shahri">Toshkent shahri</option>
+                        <option value="Toshkent viloyati">Toshkent viloyati</option>
+                        <option value="Andijon">Andijon</option>
+                        <option value="Buxoro">Buxoro</option>
+                        <option value="Farg'ona">Farg'ona</option>
+                        <option value="Jizzax">Jizzax</option>
+                        <option value="Namangan">Namangan</option>
+                        <option value="Navoiy">Navoiy</option>
+                        <option value="Qashqadaryo">Qashqadaryo</option>
+                        <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
+                        <option value="Samarqand">Samarqand</option>
+                        <option value="Sirdaryo">Sirdaryo</option>
+                        <option value="Surxondaryo">Surxondaryo</option>
+                        <option value="Xorazm">Xorazm</option>
+                      </select>
+
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="text" required="required" name="count_product"
+                        placeholder="Miqdori">
+                    </div>
+
+                  </div>
+
+                  <button type="submit" class="btn btn-primary form-control">Buyurtma Berish</button>
+                </form>
+              </div>
+
+
+              <!-- Order Details -->
+              <div class="col-md-5 order-details" id="ORDER_INFO">
+
+              </div>
+              <!-- /row -->
+            </div>
+            <!-- /container -->
+          </div>
+        </div>
+        <!-- /SECTION -->
+        <!-- /container -->
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end Modal -->
+<!-- Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ma'lumot</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div id="INFO_PRODUCT" class="section">
+
+        <!-- container -->
+
+        <!-- /container -->
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end Modal -->
 <script>
 
-  // $('select').selectpicker();
+  function getProductInfoElements(Product_id) {
+    data = {
+      'product_info_ID': Product_id
+    }
+    console.log(data)
+    $.ajax({
+      method: 'GET',
+      dataType: 'json',
+      data: data,
+      url: '{% url "pharm_detail" %}',
+      success: function (data) {
+        product_list = data['data']['product_list']
+        for (let product in product_list) {
 
-  
- 
+          if (product_list[product]['new'] === true) {
+            new_product_template = `<span class="product-available " id="kar">NEW</span>`
+          } else new_product_template = '';
+
+          if (product_list[product]['sale'] > 0) {
+            sale_product_template = `
+                 <span class="product-available" id="kar">-${product_list[product]['sale']}% sale</span>`
+          }
+          else sale_product_template = ``;
+
+          p_info = `
+                 <!-- SECTION -->
+                 <div class="section">
+                 
+                   <!-- container -->
+                   <div class="container">
+                     <!-- row -->
+                     <div class="row">
+                       <!-- Product main img -->
+                       <div class="col-md-7 col-md-push-2">
+                         <div id="product-main-img">
+                           <div class="product-preview">
+                             <img src="/media/${product_list[product]['image']}" alt="">
+                           </div>
+                       
+                           
+                         </div>
+                       </div>
+                       <!-- /Product main img -->
+             
+                       <!-- Product thumb imgs -->
+                     
+                       <!-- /Product thumb imgs -->
+             
+                       <!-- Product details -->
+                       <div class="col-md-5">
+                         <div class="product-details">
+                           <h2 class="product-name"><span style="font-weight:bolder">Dori nomi: </span>${product_list[product]['name']}</h2>
+                           <p><span style="font-weight: bold; font-size: 14px;">Xususiyatlari </span>:${product_list[product]['pharmacy_info']}</p>
+                           <div>
+                             <h3 class="product-price">${product_list[product]['new_price']}&nbsp;so'm&nbsp;&nbsp; <del class="product-old-price">${product_list[product]['old_price']}&nbsp;so'm</del></h3>
+                             ${new_product_template}
+                              ${sale_product_template}
+                           </div>
+                           <p><span style="font-weight: bold;">To'liq malumot</span>:${product_list[product]['content']}</p>
+                           <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>${product_list[product]['locations']}</p>
+                             <div class="add-to-cart">                                   
+                                                 <div class="footer-sec3" id="footer-sec">                                  
+                                                       <div class="social-icons d-flex">
+             
+                                   <ul>
+               
+                                     <li id="navli">
+                                       <i class="las la-phone fa-lg pr-3 "></i><a href="tel:${product_list[product]['phone']}"> ${product_list[product]['phone']} </a>
+                                        {% if pharmacy_detail.phone2 %}
+                                       <i class="las la-phone fa-lg pr-3 "></i><a href="tel:${product_list[product]['phone2']}"> ${product_list[product]['phone2']} </a>
+                                       {% endif %}
+                                   
+                                     </li>
+                                     
+                                     <li id="navli">
+                                       <a href="${product_list[product]['tg_link']}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+                                     </li>
+                                     <li id="navli">
+                                       <a href="${product_list[product]['ins_link']}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+                                   
+                                     </li>
+                                   </ul>
+                                                   </div>
+                                                </div>
+                             </div>
+                         
+             
+                           <ul class="product-links">
+                             <li>Category:</li>
+                             <li>${product_list[product]['category']}</li>
+                             <li>${product_list[product]['name']}</li>
+                           </ul>
+             
+                           
+                         </div>
+                       </div>
+                       <!-- /Product details -->
+             
+                       <!-- Product tab -->
+                   
+                       <!-- /product tab -->
+                     </div>
+                     <!-- /row -->
+                   </div>
+                   <!-- /container -->
+                 </div>
+                 <!-- /SECTION -->`}
+
+        $('#INFO_PRODUCT').html(p_info)
+      }
+    });
+  }
+
+
+
+
+
 </script>
-   
+
+{% endblock %}
+{% block extra_js %}
+
 {% endblock extra_js %}

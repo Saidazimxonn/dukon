@@ -1,0 +1,386 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="breadcrumb" class="section">
+  
+	<div class="container"> 
+	
+		  <div class="row">
+			<div class="col-md-12">
+			  <ul class="breadcrumb-tree">
+				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+				<li><a href="{% url 'home' %}">Uy joylar</a></li>
+				<!-- <li><a href="#" onclick="location.href=document.referrer;return false;" ></a></li> -->
+				<li><a href="#">{{ home_det }}</a></li>
+				</ul>
+			</div>
+		  </div>
+       
+		</div> 
+		<!-- /container -->
+	  </div>
+
+		<!-- SECTION -->
+		<div class="section">
+		
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Product main img -->
+					<div class="col-md-7 col-md-push-2">
+						{% if home_det.image %}
+						<div id="product-main-img">					
+							<div class="product-preview">
+								<img src="{{home_det.image.url}}"  style="margin: 5px;border-radius:5px" alt="">
+							</div>{% endif %}
+					
+
+						
+							
+						</div>
+					</div>
+					<!-- /Product main img -->
+
+					<!-- Product thumb imgs -->
+				
+					<!-- /Product thumb imgs -->
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name"><span id="stdu">Studio nomi: </span>{{ home_det }}</h2>
+										
+							<p><span style="font-weight: bold;">Xizmatlar</span>: {{ home_det.name_product }}</p>
+							<p><span style="font-weight: bold;">Maʼlumot</span>: {{ home_det.content }}</p>
+							<!-- <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{ home_det.locations }}</p> -->
+								<div class="add-to-cart">                                   
+                                    <div class="footer-sec3" id="footer-sec">                                  
+                                          <div class="social-icons d-flex">
+
+											<ul>
+  
+												<li id="navli">
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{home_det.phone}}"> {{ home_det.phone }} </a>
+											
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:{{home_det.phone}}"> +998931234567 </a>
+												
+											
+												</li>
+                                               
+												<li id="navli">
+													<a href="{{ home_det.web_site }}" class="wow fadeInDown"><i class="lab la-internet-explorer"></i> Web sayt</a>
+												</li>
+												<li id="navli">
+													<a href="{{ home_det.tg_link }}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+												</li>
+												<li id="navli">
+													<a href="{{ home_det.ins_link }}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+											
+												</li>
+											</ul>
+                                      </div>
+                                   </div>
+								</div>
+						
+
+							<ul class="product-links">
+								<li>Category:</li>
+								<li>Home</li>
+								<li>{{home_det}}</li>
+							</ul>
+
+							
+						</div>
+					</div>
+					<!-- /Product details -->
+
+					<!-- Product tab -->
+			
+					<!-- /product tab -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+        <!--portfolio section start-->
+<section class="portfolio-sec company-portfolio-section section-padding" id="company-portfolio-section">
+    <div class="container">
+        <div class="section-heading">
+            <div class="row">
+                <div class="col-lg-6 wow fadeInUp mt-5" data-wow-delay="300ms">
+                    <div class="ex-detail">
+                        <h4 class="large-heading">
+                            <span class="heading-1">Bizning </span>
+                            <span class="heading-2">Oxirgi ishlar</span>
+                        </h4>
+                        <span class="fly-text">TAVSIYA QILAMIZ</span>
+                    </div>
+                </div>
+                <div class="col-md-12 pt-5">
+                    <div id="js-filters-mosaic" class="cbp-l-filters-button wow fadeInUp" data-wow-delay="150ms">
+                        <div   style="cursor:default"class="cbp-filter-item">Hovli</div>
+                        <div   style="cursor:default" class="cbp-filter-item">Ko'pqavatli uy</div>
+                        <div   style="cursor:default" class="cbp-filter-item">Smart Uy</div>
+                        <div   style="cursor:default" class="cbp-filter-item">Arzon Uylar</div>
+                        <div   style="cursor:default" class="cbp-filter-item">"NEW GOLD UY" Majmuasi</div>
+                    </div>
+
+                   <!-- Gallery -->
+
+  <!-- Gallery -->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <div class="container">
+	  <div class="row">
+		  <div class="row">	
+			  {% if home_det.image %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image.url}}"
+					 data-target="#image-gallery">
+					  <img id="stdu_Galery"   class="img-thumbnail"
+						   src="{{home_det.image.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image2 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image2.url}}"
+					 data-target="#image-gallery">
+					  <img id="stdu_Galery"  class="img-thumbnail"
+						   src="{{home_det.image2.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image3 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image3.url}}"
+					 data-target="#image-gallery">
+					  <img id="stdu_Galery"  class="img-thumbnail"
+						   src="{{home_det.image3.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image4 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image4.url}}"
+					 data-target="#image-gallery">
+					  <img  id="stdu_Galery" class="img-thumbnail"
+						   src="{{home_det.image4.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image5 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image5.url}}"
+					 data-target="#image-gallery">
+					  <img  id="stdu_Galery" class="img-thumbnail"
+						   src="{{home_det.image5.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image6 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image6.url}}"
+					 data-target="#image-gallery">
+					  <img id="stdu_Galery"  class="img-thumbnail"
+						   src="{{home_det.image6.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image7 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image7.url}}"
+					 data-target="#image-gallery">
+					  <img id="stdu_Galery"  class="img-thumbnail"
+						   src="{{home_det.image7.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image8 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image8.url}}"
+					 data-target="#image-gallery">
+					  <img id="stdu_Galery"  class="img-thumbnail"
+						   src="{{home_det.image8.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image9 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image9.url}}"
+					 data-target="#image-gallery">
+					  <img  id="stdu_Galery" class="img-thumbnail"
+						   src="{{home_det.image9.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+			  {% if home_det.image10 %}
+			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+					 data-image="{{home_det.image10.url}}"
+					 data-target="#image-gallery">
+					  <img id="stdu_Galery"  class="img-thumbnail"
+						   src="{{home_det.image10.url}}"
+						   alt="Another alt text">
+				  </a>
+			  </div>
+			  {% endif %}
+		  </div>
+  
+  
+		  <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-lg">
+				  <div class="modal-content">
+					  <div class="modal-header">
+						  <h4 class="modal-title" id="image-gallery-title"></h4>
+						  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						  </button>
+					  </div>
+					  <div class="modal-body" >
+						  <img id="image-gallery-image" class="img-responsive col-md-12" style="width: 100%;height: 450px;object-fit:cover"src="">
+					  </div>
+					  <div class="modal-footer">
+						  <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="fa fa-arrow-left"></i>
+						  </button>
+  
+						  <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="fa fa-arrow-right"></i>
+						  </button>
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+  </div>    
+					
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--portfolio section end-->
+{% block extra_js %}
+<script>
+	let modalId = $('#image-gallery');
+
+$(document)
+  .ready(function () {
+
+    loadGallery(true, 'a.thumbnail');
+
+    //This function disables buttons when needed
+    function disableButtons(counter_max, counter_current) {
+      $('#show-previous-image, #show-next-image')
+        .show();
+      if (counter_max === counter_current) {
+        $('#show-next-image')
+          .hide();
+      } else if (counter_current === 1) {
+        $('#show-previous-image')
+          .hide();
+      }
+    }
+
+    /**
+     *
+     * @param setIDs        Sets IDs when DOM is loaded. If using a PHP counter, set to false.
+     * @param setClickAttr  Sets the attribute for the click handler.
+     */
+
+    function loadGallery(setIDs, setClickAttr) {
+      let current_image,
+        selector,
+        counter = 0;
+
+      $('#show-next-image, #show-previous-image')
+        .click(function () {
+          if ($(this)
+            .attr('id') === 'show-previous-image') {
+            current_image--;
+          } else {
+            current_image++;
+          }
+
+          selector = $('[data-image-id="' + current_image + '"]');
+          updateGallery(selector);
+        });
+
+      function updateGallery(selector) {
+        let $sel = selector;
+        current_image = $sel.data('image-id');
+        $('#image-gallery-title')
+          .text($sel.data('title'));
+        $('#image-gallery-image')
+          .attr('src', $sel.data('image'));
+        disableButtons(counter, $sel.data('image-id'));
+      }
+
+      if (setIDs == true) {
+        $('[data-image-id]')
+          .each(function () {
+            counter++;
+            $(this)
+              .attr('data-image-id', counter);
+          });
+      }
+      $(setClickAttr)
+        .on('click', function () {
+          updateGallery($(this));
+        });
+    }
+  });
+
+// build key actions
+$(document)
+  .keydown(function (e) {
+    switch (e.which) {
+      case 37: // left
+        if ((modalId.data('bs.modal') || {})._isShown && $('#show-previous-image').is(":visible")) {
+          $('#show-previous-image')
+            .click();
+        }
+        break;
+
+      case 39: // right
+        if ((modalId.data('bs.modal') || {})._isShown && $('#show-next-image').is(":visible")) {
+          $('#show-next-image')
+            .click();
+        }
+        break;
+
+      default:
+        return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+  });
+
+</script>
+{% endblock extra_js %}
+
+
+{% endblock %}

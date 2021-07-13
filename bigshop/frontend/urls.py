@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.urls import path ,include
 from .views import Proba, ActinView
+from django.views.generic import TemplateView
 urlpatterns = [
 
-    path('', Proba.as_view(), name='proba'),
-    path('action/', ActinView.as_view(), name="action_view")
+    path('', TemplateView.as_view(template_name='index.html')),
+    path('base/', Proba.as_view(), name='proba'),
+    path('actions/', ActinView.as_view(), name="action_view")
 ]

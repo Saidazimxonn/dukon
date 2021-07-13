@@ -22,7 +22,7 @@ class SellerListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(SellerListView, self).get_context_data(**kwargs)
-        baza_list = Market.objects.all()
+        baza_list = Market.objects.order_by('-id')
         # market = self.request.GET.get('market', 'all')
         # bazar = self.request.GET.get('bazar', 'all')
         # if bazar != 'all':
@@ -39,14 +39,10 @@ class SellerFilterView(View):
     def get(self, request):
      
         market_val = request.GET.get('market_val', ' ')
-        print("BAZar",(market_val))
         elements = Market.objects.all().in_bulk()
      
         if market_val !='all':
             elements = Market.objects.filter(Q(info_shop_product__icontains=market_val)|Q(bazar__name__icontains=market_val)|Q(name__icontains=market_val)).in_bulk()
-
-        
-      
         sellers = list()
         for seller in elements.values():
             seller_temp = dict(seller.__dict__)

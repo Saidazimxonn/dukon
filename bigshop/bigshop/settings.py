@@ -27,7 +27,7 @@ SECRET_KEY = 'p!b9jf+39b1fwl9tn%em!x#28lzsx0w%)(^e=ra@(8lcuspyp&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'pharmacies',
     'smm',
     'widget_tweaks',
+    'social',
+    'house',
   
 ]
 

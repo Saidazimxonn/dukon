@@ -16,7 +16,6 @@ class Pharmacy(models.Model):
     phone2 = models.CharField(verbose_name="Telefon", max_length=50, null=True, blank=True)
     image = models.ImageField(verbose_name="Rasim")
     locations = models.CharField(verbose_name="Dorixona  manzili", max_length=200)
-
     def __str__(self):
         return self.name
 

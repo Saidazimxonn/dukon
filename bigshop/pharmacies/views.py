@@ -5,6 +5,8 @@ from django_middleware_global_request.middleware import get_request
 from .helpers import order_create
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.views import View
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -12,38 +14,73 @@ from django.urls import reverse
 
 class PharmacyView(ListView):
     model  = Pharmacy
-    model = Order
+
     template_name = 'pharmacy.html'
-    paginate_by = 6
-
-    def get_context_data(self, **kwargs):
-        context = super(PharmacyView, self).get_context_data(**kwargs)
-        phrarm_list = Pharmacy.objects.all()
-        paginator = Paginator(phrarm_list, self.paginate_by)
-
-        page = self.request.GET.get('page')
-        try:
-            file_exams = paginator.page(page)
-        except PageNotAnInteger:
-            file_exams = paginator.page(1)
-        except EmptyPage:
-            file_exams = paginator.page(paginator.num_pages)
-        context['pharmacies'] = file_exams
-
-        return context
+    paginate_by = 2
+    context_object_name = 'pharmacies'
 
 
-class PharmDetail(DetailView):
-    model = Pharmacy
-    template_name = 'pharm_det.html'
-    context_object_name = 'pharmacy_detail'
+
+class PharmDetail(View):
+    def get(self, request):  
+        product_info_id = request.GET.get('product_info_ID', None)
+        product = Pharmacy.objects.filter(id=product_info_id).in_bulk()
+        product_list = list()
+        for pro in product.values():
+                    pro_temp = dict(pro.__dict__)
+                    try:
+                        pro_temp.__delitem__('_state')
+                    except:
+                        pass
+                    product_list.append(pro_temp)
+        data = {
+                    'product_list':product_list
+                }
+        return JsonResponse({'data':data})
+ 
+
+        
+    
+
+
+
 class OrderDetail(DetailView):
     model = Pharmacy
     template_name = 'order_det.html'
     context_object_name = 'order_detail'
 
+# class OrderDetail(View):
+#     def get(self, request):
+#         product_create_id = request.GET.get('product_create_ID', None)
+#         product = Pharmacy.objects.filter(id=product_create_id).in_bulk()
+#         product_list = list()
+#         for pro in product.values():
+#                     pro_temp = dict(pro.__dict__)
+#                     try:
+#                         pro_temp.__delitem__('_state')
+#                     except:
+#                         pass
+#                     product_list.append(pro_temp)
+#         data = {
+#                     'product_list':product_list
+#                 }
+#         return JsonResponse({'data':data})
+ 
+# class OrderCreate(View):
+#     def get(self, request):
+#         name = request.GET.get('name', None)
+#         phone = request.GET.get('phone', None)
+#         province = request.GET.get('province', None)
+#         print('+++++++++++++++++++++++',name,phone, province        )
+#         obj = Order.objects.create(
+#             name = name,
+#             phone = phone,
+#             province = province
+#         )
+        
+
     
-class ActionView(View):
+class ActionViewPharm(View):
     
     def post(self, request):
         post_request=request.POST

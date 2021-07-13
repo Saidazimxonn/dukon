@@ -100,64 +100,73 @@
 
                 <!-- store products -->
 						<div class="aside">
-                    
-                <div class="row">
+              
                     <!-- product -->
                     <ul class="row justify-content-left">
                         <!-- <div class="col-md-3"></div> -->
                         {% for i in object_list %}
                             <!-- <div class=""></div> -->
-                        <li class="col-md-4 ">
-                            <div class="product">
-                                <div class="product-img img-fluid " >
-                                    <img src="{{i.image.url}}" style="width:100%;height: 31vh;" alt="image">
-                                    <div class="product-label">
-                                        {% if i.sale %}
+                            <li class="col-xl-4 col-md-6 col-sm-12">
+                                <div class="product">
+                                    <div class="product-img-contaner">
+                                        <div class="product-img img-fluid"
+                                            style="background-image:url('{{i.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
 
-                                        <span class="sale">-{{i.sale}}%</span>
-                                        {% endif %}
 
-                                        {% if i.new %}
-                                        <span class="new">
-                                        
-                                            NEW
-                                        
-                                        </span>
-                                        {% endif %}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">{{i.market}} <br><small>({{i.market.bazar}})</small></p>
-                                    <h3 class="product-name"><a href="#">{{ i.name}}</a></h3>
-                                    <h4 class="product-price">${{i.new_price}} <del class="product-old-price">${{i.old_price}}</del></h4>
-                                    <div class="product-rating">
-                                    
-                                    </div>
-                                    <div class="product-btns">
+                                    <div class="product-body">
+                                        <div class="product-company-name">
+                                            <span class="product-category">{{i.company}}</span>
+                                            <a class="product-name" href="#">{{ i.name}}</a>
+                                        </div>
+                                       
+                                        <div class="product-price">${{i.new_price}}&nbsp;so'm&nbsp;<del
+                                                class="product-old-price">${{i.old_price}}&nbsp;so'm</del></div>
+                                        <div class="product-rating">
+
+                                        </div>
                                         
-                                        <div class="footer-sec2" id="footer-sec">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-12 d-flex justify-content-center">
-                                                        <div class="social-icons d-flex">
-                                                                <a href="{{i.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
-																		<a  onclick="GetMarketProduct({{i.id}})" data-toggle="modal" data-target="#myModal"  class="wow fadeInDown"><i class="las la-eye"></i></a>
-                                                              
-                                                                <a href="{{i.ins_link}}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
+                                        <div class="product-btns">
+
+                                            <div class="footer-sec2" id="footer-sec">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <div class="social-icons d-flex w-2 h-2">
+                                                                <a href="{{i.tg_link}}" class="wow fadeInUp"><i
+                                                                        class="lab la-telegram"></i> </a>
+                                                                <a href="{{i.tg_link}}" class="wow fadeInDown"> <i
+                                                                        class="lab la-instagram"></i></a>
+
+                                                                <a href="#" class="wow fadeInUp" data-toggle="modal"
+                                                                    data-target="#myModal" name="product_info"
+                                                                    onclick="GetMarketProduct({{i.id}})"
+                                                                    type="button" id="product_info_{    }"> <i
+                                                                        class="las la-eye"></i></a>
+                                                            </div>
                                                         </div>
+
                                                     </div>
-                                            
                                                 </div>
                                             </div>
+
                                         </div>
-                                    
+                                    </div>
+                                    <!-- <div class="add-to-cart">
+                                        <a href="tel:{{ i.phone }}"> <button class="add-to-cart-btn"><i
+                                                    class="fas fa-phone-alt"></i></i>{{i.phone}}</button></a>
+                                    </div> -->
+                                    <div class="product-label">
+                                        {% if i.sale > 0 %}
+                                        <span id="sale" class="sale">-{{i.sale}}%</span>
+                                        {% endif %}
+                                        {% if i.new %}
+                                        <span class="new">NEW</span>
+                                        {%endif%}
                                     </div>
                                 </div>
-                                <!-- <div class="add-to-cart">
-                                <a href="tel:{{ i.phone }}">	<button class="add-to-cart-btn"><i class="fas fa-phone-alt"></i></i>{{i.phone}}</button></a>
-                                </div> -->
-                            </div>
-                        </li>
+                            </li>
                         {% endfor %}
                         <!-- /product -->
             
@@ -165,7 +174,7 @@
                     <!-- /product -->
 
                     <!-- /product -->
-                </div>
+                
                 <!-- /store products -->
 </div>
 
@@ -246,10 +255,11 @@ function GetMarketProduct(M_Product_Id){
 				<div class="row">
 					<!-- Product main img -->
 					<div class="col-md-7 col-md-push-2">
-						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="/media/${product_list[product]['image']}" alt="">
-							</div>
+                        <div id="product-main-img">
+                            <div class="product-preview"style="background-image: url('/media/${product_list[product]['image']}'); height: 350px; width: 100%; background-size: cover; background-position: center center;">
+                                        
+                            </div>
+						
 					
 							
 						</div>

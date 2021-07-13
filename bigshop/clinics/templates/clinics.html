@@ -2,281 +2,291 @@
 {% load static %}
 {% block content %}
 <div id="breadcrumb" class="section">
-   
-    <div class="container"> 
-    
-          <div class="row">
-            <div class="col-md-12">
-              <ul class="breadcrumb-tree">
-                <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
-                <li><a href="{% url 'clinics' %}">Klinikalar</a></li>
-          
-              
-            
-    
-        
-              </ul>
-            </div>
-          </div>
-      
-        </div> 
-        <!-- /container -->
-      </div>
-    
-<div class="section">
-    <!-- container -->
-    <div class="container-fluid">
-        <!-- row -->
-        <div class="row">
-            <!-- ASIDE -->
-            
-            <div id="aside" class="col-md-3 ">
-                <!-- aside Widget -->
-              
-                <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
-                <form>
-                <ul class="list-group ">
-                    {% for i in categorys_list %}
-                        <button  style="margin: 1px; border: 1;" class="list-group-item d-flex justify-content-between align-items-center w-100" type="button" name="categor" id="category_{{ i.id }}" onclick="getCategoryElements({{ i.id }})" >
-                        {{i.name}}
-                     
-                          <span class="badge badge-info ">{{i.count }}</span>
-                       
-                        </button>
-                      </a>
-           
-                    {% endfor %}
-                  </ul>
-      
-                </form>
-            </div>
-            <!-- /ASIDE -->
 
-            <!-- STORE -->
-        
-            <div id="store" class="col-md-8 mt-5">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+          <li><a href="{% url 'clinics' %}">Klinikalar</a></li>
+
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- /container -->
+</div>
+
+<div class="section">
+  <!-- container -->
+  <div class="container-fluid">
+    <!-- row -->
+    <div class="row">
+      <!-- ASIDE -->
+
+      <div id="aside" class="col-md-3 ">
+        <!-- aside Widget -->
+
+        <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
+        <form>
+          <ul class="list-group ">
+            {% for i in categorys_list %}
+            <button style="margin: 1px; border: 1;"
+              class="list-group-item d-flex justify-content-between align-items-center w-100" type="button"
+              name="categor" id="category_{{ i.id }}" onclick="getCategoryElements({{ i.id }})">
+              {{i.name}}
+
+              <span class="badge badge-info ">{{i.count }}</span>
+
+            </button>
+            </a>
+
+            {% endfor %}
+          </ul>
+
+        </form>
+      </div>
+      <!-- /ASIDE -->
+
+      <!-- STORE -->
+
+      <div id="store" class="col-md-8 mt-5">
+
+        <!-- store products -->
+        <div class="aside">
+
        
-                <!-- store products -->
-						<div class="aside">
-                    
-                <div class="row">
-                    <!-- product -->
-                    <ul id="userTable" class="row justify-content-left">
-                        <!-- <div class="col-md-3"></div> -->
-                        {% for market in clinics_list %}
-								<li class="col-md-4" >                  
-                  <div class="product">
-                    <div class="product-img-fluid">
-                      <img src="{{ market.image.url }}"  style="width:100%;height: 41vh;" alt="image">
-                      <div class="product-label">
-                    
-                      </div>
+            <!-- product -->
+            <ul id="userTable" class="row justify-content-left">
+              <!-- <div class="col-md-3"></div> -->
+              {% for clinic in clinics_list %}
+          
+              <li class="col-xl-4 col-md-6 col-sm-12">
+                <div class="product">
+                    <div class="product-img-contaner">
+                        <div class="product-img img-fluid"
+                            style="background-image:url('{{clinic.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
+
+
+                        </div>
                     </div>
                     <div class="product-body">
-                      <p class="product-category text-center"> <b>{{ market.name}}</b>  <br>({{ market.category}}) </p>
-                      <h1 class="product-name " style="font-size: 13px;">{{market.info_service}}</h1>
-                        <hr>
-                      
-                        <h5 class="text-justify" style="font-size: 11px; padding: 5px;">
-                          <b  style=" font-size: 14px;"><i class="fas fa-map-marker-alt text-info" style="padding: 2px;font-size: 18px;">
-                            <b style="color: rgb(29, 25, 25); font-size: 14px; font-weight: 800;line-height: 25px;te"> Manzil:</b></i> </b>{{market.locations}}
-                         
-                        </h5>
-                        
-                        <h5 class="text-justify" style="font-size: 11px;padding:5px">
-                          <b  style=" font-size: 14px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
-                          </i>   {{market.phone}}</b>
-                        </h5>
-             
-                   
-              
-                      
+                        <div class="product-company-name">
+                            <span class="product-category">{{clinic}}</span>
+                            <a class="product-name" href="#">{{clinic.category}}</a>
+                        </div>
+                        <div class="product-price" style="font-size: 12px; margin-bottom:10px; color:#000">{{clinic.info_service}}</div>
 
-                     
-                
+                        <div class="product-rating">
+
+                        </div>
                         <div class="product-btns">
-                                        
+
                             <div class="footer-sec2" id="footer-sec">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-center">
-                                            <div class="social-icons d-flex">
-                                                    <a href="{{i.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
-                                                    <a  onclick="getElementInfoClinic({{market.id}})" data-toggle="modal" data-target="#myModal"   class="wow fadeInDown"><i class="las la-eye"></i></a>
-                                                    <a href="{{i.ins_link}}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
+                                            <div class="social-icons d-flex w-2 h-2">
+                                                <a href="{{clinic.tg_link}}" class="wow fadeInUp"><i
+                                                        class="lab la-telegram"></i> </a>
+                                                <a href="{{clinic.tg_link}}" class="wow fadeInDown"> <i
+                                                        class="lab la-instagram"></i></a>
+
+                                                <a href="#" class="wow fadeInUp" data-toggle="modal"
+                                                    data-target="#myModal" name="product_info"
+                                                    onclick="getElementInfoClinic({{clinic.id}})"
+                                                    type="button" id="product_info_{}"> <i
+                                                        class="las la-eye"></i></a>
                                             </div>
                                         </div>
-                                
+
                                     </div>
                                 </div>
                             </div>
-                        
+
                         </div>
-               
-        
-                                                         </div>
-                    
-                
-                              </li>
-                                {% endfor %}
-                        <!-- /product -->
-            
-                    </ul>
-                    <!-- /product -->
-
-                    <!-- /product -->
-                </div>
-                <!-- /store products -->
-</div>
-
-                <!-- paginator -->
-                <div class="store-filter clearfix mt-5">
-                    {% if is_paginated %}
-                    
-                    <ul class="store-pagination">
-                        {% if page_obj.has_previous %}
-
-                        <li  class="page-item">
-                                    <a  href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
-                        {% else %}
-
-                        <li class="page-item no-drop" >
-                                     <a   ><i class="fa fa-angle-left"></i></a>
-                                    </li>
+                    </div>
+                   <!-- <div class="product-label">
+                        {% if i.sale > 0 %}
+                        <span id="sale" class="sale">-{{i.sale}}%</span>
                         {% endif %}
-                        {% for i in paginator.page_range %} 
-
-                            {% if page_obj.number == i %}
-                              <li class="page-item active">{{ i }}</li>
-                            {% else %}
-                              <li><a  href="?page={{ i }}">{{ i }}</a></li>
-                            {% endif %} {% endfor %} {% if page_obj.has_next %}
-                            <li class="page-item ">
-                                     <a  href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
-                             </li>
-                        {% else %}
-                        <li class="disabled" >
-                            <a class="no-drop" ><i class="fa fa-angle-right"></i></a>
-                           </li>
-                        {% endif %}
-
-
-                    </ul>
-                    {% endif %}
+                        {% if i.new %}
+                        <span class="new">NEW</span>
+                        {%endif%}
+                    </div> -->
                 </div>
-                <!-- /paginator -->
-            </div>
-            <!-- /STORE -->
+            </li>
+              {% endfor %}
+              <!-- /product -->
+
+            </ul>
+            <!-- /product -->
+
+            <!-- /product -->
+          </div>
+          <!-- /store products -->
         </div>
-        <!-- /row -->
-    </div>
-    <!-- /container -->
+
+        <!-- paginator -->
+        <div class="store-filter clearfix mt-5">
+          {% if is_paginated %}
+
+          <ul class="store-pagination">
+            {% if page_obj.has_previous %}
+
+            <li class="page-item">
+              <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+            </li>
+            {% else %}
+
+            <li class="page-item no-drop">
+              <a><i class="fa fa-angle-left"></i></a>
+            </li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+
+            {% if page_obj.number == i %}
+            <li class="page-item active">{{ i }}</li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %} {% endfor %} {% if page_obj.has_next %}
+            <li class="page-item ">
+              <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+            </li>
+            {% else %}
+            <li class="disabled">
+              <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+            </li>
+            {% endif %}
+
+
+          </ul>
+          {% endif %}
+        </div>
+        <!-- /paginator -->
+      </div>
+      <!-- /STORE -->
+  
+  </div>
+  <!-- /container -->
 </div>
- <!-- Modal -->
- <div class="modal fade" id="myModal">
+<!-- Modal -->
+<div class="modal fade" id="myModal">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-    
+
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Ma'lumot</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      
+
       <!-- Modal body -->
       <div id="INFO_PRODUCT" class="section">
 
-          <!-- container -->
+        <!-- container -->
 
-          <!-- /container -->
+        <!-- /container -->
       </div>
-      
+
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
       </div>
-      
     </div>
   </div>
 </div>
 <!-- end Modal -->
 <script>
-  function getCategoryElements(categoryId){
-  
+  function getCategoryElements(categoryId) {
+
     data = {
       'category_id': categoryId
     }
-    
+
     $.ajax({
       method: 'GET',
-      dataType:"json",
-      data:data,
-      url:'{% url "clinic_detail" %}',
-      success:function(data){
+      dataType: "json",
+      data: data,
+      url: '{% url "clinic_detail" %}',
+      success: function (data) {
         clinics = data['data']['clinics']
-        
+
         table_elems = ``
-        
-        for (let clinic_index in data['data']['clinics']){
+
+        for (let clinic_index in data['data']['clinics']) {
           clinic_template = `
-             <li class="col-md-4">                  
-                  <div class="product">
-                    <div class="product-img-fluid">
-                      <img src="/media/${clinics[clinic_index]['image']}" style="width:100%;height: 41vh;" alt="image">
-                      <div class="product-label">
-                      </div>
+          <li class="col-xl-4 col-md-6 col-sm-12">
+            <div class="product">
+                <div class="product-img-contaner">
+                    <div class="product-img img-fluid"
+                        style="background-image:url('/media/${clinics[clinic_index]['image']}');height:250px;width:100%;  background-size:cover;  background-position:center">
+
+
                     </div>
-                    <div class="product-body">
-                      <p class="product-category text-center"> <b>${clinics[clinic_index]['name']}</b>  <br>(${clinics[clinic_index]['category']}) </p>
-                      <h1 class="product-name " style="font-size: 13px;">${clinics[clinic_index]['info_service']}</h1>
-                        <hr>
-                        <h5 class="text-justify" style="font-size: 11px; padding: 5px;">
-                          <b style=" font-size: 14px;"><i class="fas fa-map-marker-alt text-info" style="padding: 2px;font-size: 18px;">
-                            <b style="color: rgb(29, 25, 25); font-size: 14px; font-weight: 800;line-height: 25px;te"> Manzil:</b></i> </b>${clinics[clinic_index]['locations']}
-                        </h5>
-                        <h5 class="text-justify" style="font-size: 11px;padding:5px">
-                          <b style=" font-size: 14px;"><i class="fas fa-phone-alt pr-2 text-info text-info" style="padding: 2px;font-size: 18px;">
-                          </i>${clinics[clinic_index]['info_service']}</b>
-                        </h5>
-                        <div class="product-btns">         
-                            <div class="footer-sec2" id="footer-sec">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <div class="social-icons d-flex">
-                                                    <a href="${clinics[clinic_index]['tg_link']}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
-                                                    <a onclick="getElementInfoClinic(${clinics[clinic_index]['id']})" data-toggle="modal" data-target="#myModal"  class="wow fadeInDown"><i class="las la-eye"></i></a>
-                                                    <a href="${clinics[clinic_index]['ins_link']}" class="wow fadeInUp"><i class="lab la-instagram"></i> </a>
-                                            </div>
+                </div>
+                <div class="product-body">
+                    <div class="product-company-name">
+                        <span class="product-category" >${clinics[clinic_index]['name']}</span>
+                        <a class="product-name" href="#" style="font-size: 10px; margin-bottom:10px; color:#000">${clinics[clinic_index]['category']}</a>
+                    </div>
+                
+                <div class="product-price" style="font-size: 11px; margin-bottom:10px; color:#000">${clinics[clinic_index]['info_service']}</div>
+                    <hr>
+                    <div class="product-btns">
+
+                        <div class="footer-sec2" id="footer-sec">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="social-icons d-flex w-2 h-2">
+                                            <a href="${clinics[clinic_index]['tg_link']}" class="wow fadeInUp"><i
+                                                    class="lab la-telegram"></i> </a>
+                                            <a href="${clinics[clinic_index]['ins_link']}" class="wow fadeInDown"> <i
+                                                    class="lab la-instagram"></i></a>
+                                            <a href="#" class="wow fadeInUp" data-toggle="modal"
+                                                    data-target="#myModal" name="product_info"
+                                                    onclick="getElementInfoClinic(${clinics[clinic_index]['id']})"
+                                                    type="button" id="product_info_{}"> <i
+                                                        class="las la-eye"></i></a>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+
                     </div>
-              </div>
-          </li>`
-             table_elems += clinic_template
+                </div>
+            
+            </div>
+        </li>`
+          table_elems += clinic_template
         }
         $('#userTable').html(table_elems)
       }
     });
-  
-    }
+  }
 
- function getElementInfoClinic(Clinic_ID){
-   data = {
-     'clinic_info_id':Clinic_ID
-   }
-   $.ajax({
-     method:'GET',
-     dataType:'json',
-     data:data,
-     url:'{% url "clinic_info" %}',
-     success: function(data){
-      info_clinic = data['data']['info_clinic']
-      for (let  info in info_clinic){
-      info_c = `
+  function getElementInfoClinic(Clinic_ID) {
+    data = {
+      'clinic_info_id': Clinic_ID
+    }
+    $.ajax({
+      method: 'GET',
+      dataType: 'json',
+      data: data,
+      url: '{% url "clinic_info" %}',
+      success: function (data) {
+        info_clinic = data['data']['info_clinic']
+        for (let info in info_clinic) {
+          info_c = `
       <!-- SECTION -->
       <div class="section">
       
@@ -287,12 +297,10 @@
             <!-- Product main img -->
             <div class="col-md-7 col-md-push-2">
               <div id="product-main-img">
-                <div class="product-preview">
-                  <img src="/media/${info_clinic[info]['image']}" alt="">
+                <div class="product-preview"style="background-image: url('/media/${info_clinic[info]['image']}'); height: 350px; width: 100%; background-size: cover; background-position: center center;">
                 </div>
-            
-                
-              </div>
+             </div>
+             
             </div>
             <!-- /Product main img -->
   
@@ -306,7 +314,7 @@
                 <h2 class="product-name"><span style="font-weight:bolder">Shifoxona: </span>${info_clinic[info]['name']}</h2>
                 <p><span style="font-weight: bold; font-size: 14px;">Xizmatlar </span>:${info_clinic[info]['info_service']}</p>
                 <div>
-                  <!-- <h3 class="product-price">${{clinics_info.new_price}} <del class="product-old-price">${{clinics_info.old_price}}</del></h3> -->
+                  <!-- <h3 class="product-price">${{ clinics_info.new_price }} <del class="product-old-price">${{ clinics_info.old_price }}</del></h3> -->
                                   {% if clinics_info.sale %}
                   <span class="product-available"  id="kar">-{{clinics_info.sale}}% sale</span>
                                   {% endif %}
@@ -364,10 +372,11 @@
       </div>
       <!-- /SECTION -->
       `}
-      $('#INFO_PRODUCT').html(info_c) } 
-     
-   });
- }
+        $('#INFO_PRODUCT').html(info_c)
+      }
 
-  </script>
+    });
+  }
+
+</script>
 {% endblock %}
