@@ -1,6 +1,6 @@
 from django.forms import ModelForm
-from .models import Order
+from .models import OrderPharm
 class OrderForm(ModelForm):
     class Meta:
-        model = Order
+        model = OrderPharm
         fields = '__all__'

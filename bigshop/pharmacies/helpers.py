@@ -1,6 +1,6 @@
-from .models import Order
+from .models import OrderPharm
 
-def order_create(post_request):
+def order_create_pharm(post_request):
     name = post_request.get('name', '')
     phone = post_request.get('phone', '')
     province = post_request.get('province', '')
@@ -8,7 +8,7 @@ def order_create(post_request):
     product_name = post_request.get('product_name', '')
     price = post_request.get('price', '')
 
-    Order.objects.create(
+    OrderPharm.objects.create(
         name=name,
         phone=phone,
         province=province,

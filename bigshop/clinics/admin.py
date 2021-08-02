@@ -8,7 +8,12 @@ class CategorysAdmin(admin.ModelAdmin):
     ]
 class ClinicsAdmin(admin.ModelAdmin):
     list_display=[
-        'name'
+        'name', 'category','info_service', 'phone'
     ]
+    list_display_links = [
+        'name', 'category','info_service', 'phone'
+    ]
+    class Meta:
+        app_label = 'My APP name'
 admin.site.register(Categorys, CategorysAdmin)
 admin.site.register(Clinics, ClinicsAdmin)

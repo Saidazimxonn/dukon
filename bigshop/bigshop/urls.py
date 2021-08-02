@@ -29,6 +29,7 @@ urlpatterns = [
     path('', include('smm.urls')),
     path('', include('social.urls')),
     path('', include('house.urls')),
+    path('', include('telegram.urls')),
 
  
 ]

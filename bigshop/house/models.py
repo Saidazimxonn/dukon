@@ -25,5 +25,8 @@ class House(models.Model):
     def __str__(self):
         return self.name_company
     class Meta:
-      
+        verbose_name = 'Uy'
+        verbose_name_plural = 'Uylar'
+        
+        
         ordering = ['-id']

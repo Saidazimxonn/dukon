@@ -6,6 +6,7 @@ from .models import House
 class HouseListView(ListView):
     model = House
     template_name = 'home.html'
+    paginate_by =5
     context_object_name = "home_list"
 
 

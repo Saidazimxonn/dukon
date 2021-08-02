@@ -16,7 +16,7 @@ class ClinicListView(ListView):
     model = Categorys
     model = Clinics
     template_name = 'clinics.html'
-    paginate_by = 10
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         cetegory_id = self.request.GET.get('cetegory', 'all')

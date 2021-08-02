@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 <div id="breadcrumb" class="section">
 
     <div class="container">
@@ -27,11 +28,17 @@
 
             <div id="aside" class="col-md-3 ">
                 <!-- aside Widget -->
-
+              
                 <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
+                
                 <form>
+                    <div id="loader" class="m-2" style='display: none;'>
+                        <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
+                      </div>
                     <ul class="list-group ">
+                  
                         {% for i in sections_list %}
+                       
 
                         <button style="margin: 1px;border: 1;"
                             class="list-group-item d-flex justify-content-between align-items-center" type="button"
@@ -47,37 +54,44 @@
                     </ul>
 
                 </form>
+                
             </div>
             <!-- /ASIDE -->
 
             <!-- STORE -->
 
             <div id="store" class="col-md-8 mt-5">
-
+              
                 <!-- store products -->
                 <div class="aside">
 
                     <div class="aside">
                         <!-- product -->
-                        <ul id="techTable" class="row justify-content-left">
-                            {% for i in techniques_list %}
-
-                            <li class="col-xl-4 col-md-6 col-sm-12">
+                        <ul id="techTable" class="row justify-content-left" >
+                            {% for technique in techniques_list %}
+                                {% if forloop.last %}
+                            <li class="col-xl-4 col-md-6 col-sm-12 category_id last-post" data-postid="{{ technique.id}}">
+                                {% else %}
+                            <li class="col-xl-4 col-md-6 col-sm-12 category_id">
+                                {% endif %}
                                 <div class="product">
                                     <div class="product-img-contaner">
                                         <div class="product-img img-fluid"
-                                            style="background-image:url('{{i.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
-
+                                            style="background-image:url('{{technique.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
+                                            <a href="#" class="wow fadeInUp pt-1" data-toggle="modal"
+                                            data-target="#myModal" name="product_info"
+                                            onclick="getProductInfoElements({{technique.id}})"
+                                            type="button" id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a>
 
                                         </div>
                                     </div>
                                     <div class="product-body">
                                         <div class="product-company-name">
-                                            <span class="product-category">{{i.company}}</span>
-                                            <a class="product-name" href="#">{{ i.name}}</a>
+                                            <span class="product-category">{{technique.company}}</span>
+                                            <a class="product-name" href="#">{{ technique.name}}</a>
                                         </div>
-                                        <div class="product-price">${{i.new_price}}&nbsp;so'm&nbsp;<del
-                                                class="product-old-price">${{i.old_price}}&nbsp;so'm</del></div>
+                                        <div class="product-price">${{technique.new_price}}&nbsp;so'm&nbsp;<del
+                                                class="product-old-price">${{technique.old_price}}&nbsp;so'm</del></div>
                                         <div class="product-rating">
 
                                         </div>
@@ -88,16 +102,17 @@
                                                     <div class="row">
                                                         <div class="col-12 d-flex justify-content-center">
                                                             <div class="social-icons d-flex w-2 h-2">
-                                                                <a href="{{i.tg_link}}" class="wow fadeInUp"><i
+                                                                <a href="{{technique.tg_link}}" class="wow fadeInUp"><i
                                                                         class="lab la-telegram"></i> </a>
-                                                                <a href="{{i.tg_link}}" class="wow fadeInDown"> <i
-                                                                        class="lab la-instagram"></i></a>
-
-                                                                <a href="#" class="wow fadeInUp" data-toggle="modal"
+                                                                <a href="{% url 'order_tech_create' technique.pk %}" class="wow fadeInDown"> <i
+                                                                    class="las la-cart-plus"></i></a>
+                                                                        <i class="bi bi-info-square"></i>
+                                                                     
+                                                                <a href="#" class="wow fadeInUp pt-1" data-toggle="modal"
                                                                     data-target="#myModal" name="product_info"
-                                                                    onclick="getProductInfoElements({{i.id}})"
+                                                                    onclick="getProductInfoElements({{technique.id}})"
                                                                     type="button" id="product_info_{    }"> <i
-                                                                        class="las la-eye"></i></a>
+                                                                    class="las la-eye"></i></a>
                                                             </div>
                                                         </div>
 
@@ -107,15 +122,12 @@
 
                                         </div>
                                     </div>
-                                    <!-- <div class="add-to-cart">
-                                        <a href="tel:{{ i.phone }}"> <button class="add-to-cart-btn"><i
-                                                    class="fas fa-phone-alt"></i></i>{{i.phone}}</button></a>
-                                    </div> -->
+                                  
                                     <div class="product-label">
-                                        {% if i.sale > 0 %}
-                                        <span id="sale" class="sale">-{{i.sale}}%</span>
+                                        {% if technique.sale > 0 %}
+                                        <span id="sale" class="sale">-{{technique.sale}}%</span>
                                         {% endif %}
-                                        {% if i.new %}
+                                        {% if technique.new %}
                                         <span class="new">NEW</span>
                                         {%endif%}
                                     </div>
@@ -131,44 +143,45 @@
                     </div>
                     <!-- /store products -->
                 </div>
+                
 
                 <!-- paginator -->
-                <div class="store-filter clearfix mt-5">
-                    {% if is_paginated %}
+  <div class="store-filter clearfix mt-5">
+    {% if is_paginated %}
 
-                    <ul class="store-pagination">
-                        {% if page_obj.has_previous %}
+    <ul class="store-pagination">
+      {% if page_obj.has_previous %}
 
-                        <li class="page-item">
-                            <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
-                        </li>
-                        {% else %}
+      <li class="page-item">
+        <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% else %}
 
-                        <li class="page-item no-drop">
-                            <a><i class="fa fa-angle-left"></i></a>
-                        </li>
-                        {% endif %}
-                        {% for i in paginator.page_range %}
+      <li class="page-item no-drop">
+        <a><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% endif %}
+      {% for i in paginator.page_range %}
 
-                        {% if page_obj.number == i %}
-                        <li class="page-item active">{{ i }}</li>
-                        {% else %}
-                        <li><a href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %} {% endfor %} {% if page_obj.has_next %}
-                        <li class="page-item ">
-                            <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
-                        </li>
-                        {% else %}
-                        <li class="disabled">
-                            <a class="no-drop"><i class="fa fa-angle-right"></i></a>
-                        </li>
-                        {% endif %}
+      {% if page_obj.number == i %}
+      <li class="page-item active">{{ i }}</li>
+      {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %} {% endfor %} {% if page_obj.has_next %}
+      <li class="page-item ">
+        <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% else %}
+      <li class="disabled">
+        <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% endif %}
 
 
-                    </ul>
-                    {% endif %}
-                </div>
-                <!-- /paginator -->
+    </ul>
+    {% endif %}
+  </div>
+  <!-- /paginator -->
             </div>
             <!-- /STORE -->
         </div>
@@ -205,37 +218,61 @@
         </div>
     </div>
     <!-- end Modal -->
+    
+
+
+
     <script>
         function getCategoryTechElements(categoryID) {
-
+            let lastPostID = $('.last-post').attr('data-postid')
+            console.log(lastPostID)
             data = {
+                'lastPostID':lastPostID,
                 'category_ID': categoryID
             }
+            $('.category_id').removeClass('last-post')
+            $('.category_id').removeAttr('data-post')
+
             $.ajax({
                 method: 'GET',
+                beforeSend: function(){
+                    // Show image container
+                    $("#loader").show();
+                   },
                 dataType: 'json',
                 data: data,
                 url: '{% url "technique_det" %}',
                 success: function (data) {
-                    techniqus = data['data']['techniqus']
-                    table_elemants = ``
-
+                    let techniqus = data['data']['techniqus']
+                    let table_elemants = ``;
+                    
                     for (let tech_in in data['data']['techniqus']) {
+                        let template;
                         if (techniqus[tech_in]['new'] === true) {
                             new_product = ` <span class="new">NEW</span>`
                         } else new_product = '';
                         if (techniqus[tech_in]['sale'] > 0) {
                             sale_product = `<span class="sale">-${techniqus[tech_in]['sale']}%</span>`
                         } else sale_product = '';
+                        
 
-                        technique_template = `
-                        <li class="col-xl-4 col-md-6 col-sm-12">
+                        if(techniqus[tech_in]['last_post']){
+                            template = ` <li class="col-xl-4 col-md-6 col-sm-12 category_id last-post" data-postid="${techniqus[tech_in]['id']}">
+                           `
+                        }
+                        else {
+                            template =`<li class="col-xl-4 col-md-6 col-sm-12 category_id">`
+                        }
+
+                        template = `<li class="col-xl-4 col-md-6 col-sm-12">
                             <div class="product">
                                 <div class="product-img-contaner">
                                     <div class="product-img img-fluid"
                                         style="background-image:url('/media/${techniqus[tech_in]['image']}');height:250px;width:100%;  background-size:cover;  background-position:center">
-
-
+                                        <a href="#" class="wow fadeInUp pt-1" data-toggle="modal"
+                                        data-target="#myModal" name="product_info"
+                                        onclick="getProductInfoElements(${techniqus[tech_in]['id']})"
+                                        type="button" id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a>        
                                     </div>
                                 </div>
                                 <div class="product-body">
@@ -258,13 +295,12 @@
                                                         <div class="social-icons d-flex w-2 h-2">
                                                             <a href="${techniqus[tech_in]['tg_link']}" class="wow fadeInUp"><i
                                                                     class="lab la-telegram"></i> </a>
-                                                            <a href="${techniqus[tech_in]['ins_link']}" class="wow fadeInDown"> <i
-                                                                    class="lab la-instagram"></i></a>
-
+                                                            <a href="/order-tech-create/${techniqus[tech_in]['id']}/" class="wow fadeInDown"> <i
+                                                                        class="las la-cart-plus"></i></a>
                                                             <a href="#" class="wow fadeInUp" data-toggle="modal"
                                                                 data-target="#myModal" name="product_info"
                                                                 onclick="getProductInfoElements(${techniqus[tech_in]['id']})"
-                                                                type="button" id="product_info_${techniqus[tech_in]['id']}"> <i
+                                                                type="button" id=""> <i
                                                                     class="las la-eye"></i></a>
                                                         </div>
                                                     </div>
@@ -275,10 +311,7 @@
 
                                     </div>
                                 </div>
-                                <!-- <div class="add-to-cart">
-                                    <a href="tel:${techniqus[tech_in]['phone']}"> <button class="add-to-cart-btn"><i
-                                                class="fas fa-phone-alt"></i></i>${techniqus[tech_in]['phone']}</button></a>
-                                </div> -->
+                            
                                 <div class="product-label">
                                     ${new_product}
                                     ${sale_product}
@@ -286,10 +319,14 @@
                             </div>
                         </li>`
                    
-                        table_elemants += technique_template
+                        table_elemants +=template
                     }
                     $('#techTable').html(table_elemants)
 
+                },
+                complete:function(data){
+                 // Hide image container
+                 $("#loader").hide();
                 }
             })
 
@@ -402,7 +439,7 @@
 			</div>
 			<!-- /container -->
 		</div>
-		<!-- /SECTION -->`
+		<!-- /SECTION -->`}
 
                     $('#INFO_PRODUCT').html(p_info)
                 }

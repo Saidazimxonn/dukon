@@ -6,6 +6,9 @@ class Categorya_M(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'Bo\'lim'
+        verbose_name_plural = 'Bo\'limlar'
 
 class Messanger(models.Model):
     name = models.CharField(verbose_name="Tarmoq nomi", max_length=250)
@@ -20,6 +23,9 @@ class Messanger(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'Xabar'
+        verbose_name_plural = 'Xabarlar'
 
 
     

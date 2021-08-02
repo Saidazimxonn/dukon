@@ -19,8 +19,10 @@ class Pharmacy(models.Model):
     def __str__(self):
         return self.name
 
-
-class Order(models.Model):
+    class Meta:
+        verbose_name = 'Dori'
+        verbose_name_plural = 'Dorilar'
+class OrderPharm(models.Model):
     
     name = models.CharField(verbose_name="Ism", max_length=255)
     phone = models.CharField(verbose_name="Telefon", max_length=255)
@@ -32,5 +34,7 @@ class Order(models.Model):
     
     def __str__(self):
         return self.name
-
+    class Meta:
+        verbose_name = 'Buyurtma'
+        verbose_name_plural = 'Buyurtmalar'
     

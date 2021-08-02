@@ -10,3 +10,18 @@ class LiveMessage(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'Xabar'
+        verbose_name_plural = 'Xabarlar'
+
+class Reklama(models.Model):
+    title = models.CharField(verbose_name='Reklama nomi', max_length=255)
+    image = models.ImageField(verbose_name='Rasim', max_length=255)
+    link_add = models.CharField(verbose_name='Link reklama', max_length=255)
+    
+    def __str__(self):
+        return self.title
+    class Meta:
+        verbose_name = 'Reklama'
+        verbose_name_plural = 'Reklamalar'
+    

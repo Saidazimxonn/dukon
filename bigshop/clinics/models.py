@@ -6,6 +6,9 @@ class Categorys(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'Kategoriya'
+        verbose_name_plural = 'Kategoriyalar'
 
 class Clinics(models.Model):
     name = models.CharField(verbose_name="Klinika nomi", max_length=250)
@@ -22,5 +25,7 @@ class Clinics(models.Model):
     def __str__(self):
         return self.name
 
-
+    class Meta:
+        verbose_name = 'Kasalxona'
+        verbose_name_plural = 'Kasalxonalar'
     

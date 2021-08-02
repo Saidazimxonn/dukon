@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'social',
     'house',
+    'django_bootstrap_icons',
+    'telegram'
   
 ]
 

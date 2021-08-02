@@ -37,7 +37,7 @@
              
             <div class="col-md-7">
               <form class="#" method="POST" action="{% url 'action_view_pharm' %}">
-                <input type="hidden", name="action", value="order_create" >
+                <input type="hidden", name="action5", value="order_create_pharm" >
                 <input type="hidden", name="product_name" value="{{ order_detail.name }}">
                 <input type="hidden", name="price" value="{{ order_detail.new_price}}">
                 {% csrf_token %}

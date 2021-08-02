@@ -34,6 +34,9 @@
         <!-- aside Widget -->
 
         <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
+        <div id="loader" class="m-2" style="display: none;" >
+          <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
+        </div>
         <form>
           <ul class="list-group ">
             {% for i in categorys_list %}
@@ -52,16 +55,17 @@
 
         </form>
       </div>
+      
       <!-- /ASIDE -->
 
       <!-- STORE -->
-
+     
       <div id="store" class="col-md-8 mt-5">
 
         <!-- store products -->
         <div class="aside">
 
-       
+        
             <!-- product -->
             <ul id="userTable" class="row justify-content-left">
               <!-- <div class="col-md-3"></div> -->
@@ -72,7 +76,10 @@
                     <div class="product-img-contaner">
                         <div class="product-img img-fluid"
                             style="background-image:url('{{clinic.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
-
+                            <a href="#" class="wow fadeInUp" data-toggle="modal"
+                            data-target="#myModal" name="product_info"
+                            onclick="getElementInfoClinic({{clinic.id}})"
+                            type="button" id="product_info_{}"><div style="width: 550px;height:250px;"></div> </a>
 
                         </div>
                     </div>
@@ -131,45 +138,46 @@
             <!-- /product -->
           </div>
           <!-- /store products -->
+                   <!-- paginator -->
+  <div class="store-filter clearfix mt-5">
+    {% if is_paginated %}
+
+    <ul class="store-pagination">
+      {% if page_obj.has_previous %}
+
+      <li class="page-item">
+        <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% else %}
+
+      <li class="page-item no-drop">
+        <a><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+
+      {% if page_obj.number == i %}
+      <li class="page-item active">{{ i }}</li>
+      {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %} {% endfor %} {% if page_obj.has_next %}
+      <li class="page-item ">
+        <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% else %}
+      <li class="disabled">
+        <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% endif %}
+
+
+    </ul>
+    {% endif %}
+  </div>
+  <!-- /paginator -->
         </div>
 
-        <!-- paginator -->
-        <div class="store-filter clearfix mt-5">
-          {% if is_paginated %}
-
-          <ul class="store-pagination">
-            {% if page_obj.has_previous %}
-
-            <li class="page-item">
-              <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
-            </li>
-            {% else %}
-
-            <li class="page-item no-drop">
-              <a><i class="fa fa-angle-left"></i></a>
-            </li>
-            {% endif %}
-            {% for i in paginator.page_range %}
-
-            {% if page_obj.number == i %}
-            <li class="page-item active">{{ i }}</li>
-            {% else %}
-            <li><a href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %} {% endfor %} {% if page_obj.has_next %}
-            <li class="page-item ">
-              <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
-            </li>
-            {% else %}
-            <li class="disabled">
-              <a class="no-drop"><i class="fa fa-angle-right"></i></a>
-            </li>
-            {% endif %}
-
-
-          </ul>
-          {% endif %}
-        </div>
-        <!-- /paginator -->
+    
       </div>
       <!-- /STORE -->
   
@@ -212,6 +220,9 @@
 
     $.ajax({
       method: 'GET',
+      beforeSend:function(){
+        $("#loader").show();
+      },
       dataType: "json",
       data: data,
       url: '{% url "clinic_detail" %}',
@@ -228,7 +239,10 @@
                     <div class="product-img img-fluid"
                         style="background-image:url('/media/${clinics[clinic_index]['image']}');height:250px;width:100%;  background-size:cover;  background-position:center">
 
-
+                        <a href="#" class="wow fadeInUp" data-toggle="modal"
+                        data-target="#myModal" name="product_info"
+                        onclick="getElementInfoClinic(${clinics[clinic_index]['id']})"
+                        type="button" id="product_info_{}"><div style="width: 550px;height:250px;"></div> </a>
                     </div>
                 </div>
                 <div class="product-body">
@@ -270,6 +284,9 @@
           table_elems += clinic_template
         }
         $('#userTable').html(table_elems)
+      },
+      complete:function(data){
+        $("#loader").hide();
       }
     });
   }

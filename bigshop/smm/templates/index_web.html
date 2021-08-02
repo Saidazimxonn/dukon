@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="breadcrumb" class="section">
+    
+      
+	<div class="container"> 
+	
+		  <div class="row">
+			<div class="col-md-12">
+			  <ul class="breadcrumb-tree">
+				<li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+				<li><a href="">Web Xizmatlar</a></li>
+				<!-- <li><a href="#" onclick="location.href=document.referrer;return false;" ></a></li> -->
+			
+				</ul>
+			</div>
+		  </div>
+       
+		</div> 
+		<!-- /container -->
+	  </div>
+
+
+<div class="container marketing mt-5">
+    
+ 
+
+ 
+    <span class="text-muted" ><h3 style=" text-align: center; font-family: 'Roboto', sans-serif; ">Web Xizmatlar</h3></span>
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h4 class="featurette-heading"><span class="text-muted">Veb-saytlarni ishlab chiqish</span></h4>
+        <p class="lead" style="font-size: 17px; font-family: 'Roboto', sans-serif;">Veb-saytlar biznes egasiga ko'plab imtiyozlarni taqdim etadi. Eng muhimlaridan biri bu onlayn sotuvlarning o'sishi.
+          
+            <li><strong>TAYYOR SAYTLAR</strong> </li>
+            <li> <strong>LANDING PAGE</strong></li>
+            <li><strong>VIZITKA SAYTLAR</strong></li>
+            <li><strong>KORPORATIY SAYTLAR</strong> </li>
+            <li><strong>MAHSULOT KATALOGLARI</strong> </li>
+            <li><strong>NTERNET DO'KONLARI</strong> </li>
+            <li><strong>CRM TIZIMLAR</strong> </li>
+            <hr>
+        </p>
+        <span>+998904531707</span> <b>Tesla Soft Team</b>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 400px; height:auto;" src="{% static 'agency/img/32.png' %}" data-holder-rendered="true">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h4 class="featurette-heading"><span class="text-muted">IT bo'yicha  Online o'quv kurslari</span></h4>
+        
+        <p class="lead" style="font-size: 17px; font-family: 'Roboto', sans-serif;">Yuqori malakali dasturchilarimiz tomonidan taqdim etilgan kurslarga taklif qilamiz
+          
+          <li><strong> Frond-end </strong> </li>
+          <li> <strong>Html Css Bootstrap</strong></li>
+          <li><strong>JavaScript, ReactJS</strong></li>
+          <hr>
+          <li><strong>Back-end</strong> </li>
+          <li><strong>Python va Django(Veb freymvork)</strong> </li>
+          <hr>
+          <li><strong>Algoritmlash</strong> </li>
+          <li><strong>C++</strong> </li>
+      </p>
+        <span>+998904531707</span> <b>Tesla Soft Team</b>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="300x300" src="{% static 'agency/img/122.jpg' %}" data-holder-rendered="true" style="width: 400px; height:auto;">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h4 class="featurette-heading"><span class="text-muted">SMM Video Xizmatlar</span></h4>
+        <p class="lead" style="font-size: 17px; font-family: 'Roboto', sans-serif;">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="300x300" src="{% static 'agency/img/12.jpg' %}" data-holder-rendered="true" style="width: 400px; height: auto;">
+      </div>
+      <div class="container" style="width:100%;margin-top:20px;"><p style="float:right; " ><a  style="padding:8px 25px;" class="btn btn-success " href="{% url 'smm' %}" role="button">Ko'rish»</a></p></div>
+    </div>
+
+
+
+    <!-- /END THE FEATURETTES -->
+ 
+  </div>
+ 
+<!--main page content end-->
+{% endblock %}
+

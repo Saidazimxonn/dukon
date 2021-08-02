@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static widget_tweaks %}
+
+{% block content %}
+
+    <!-- Button trigger modal -->
+<!-- Button trigger modal -->
+
+  		<!-- BREADCRUMB -->
+      <div id="breadcrumb" class="section">
+        <!-- container -->
+        <div class="container"> 
+	
+          <div class="row">
+          <div class="col-md-12">
+            <ul class="breadcrumb-tree">
+            <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+            <li><a href="{% url 'pharm' %}">Kor</a></li>
+            <li><a  >{{ order_shop.name }}</a></li>
+            <!-- <li><a href="#">{{ market_detail.name }}</a></li> -->
+            </ul>
+          </div>
+          </div>
+        
+        </div> 
+        <!-- /container -->
+      </div>
+      <!-- /BREADCRUMB -->
+  
+      <!-- SECTION -->
+      <div class="section">
+        <!-- container -->
+        <div class="container">
+          <!-- row -->
+          <div class="row">
+        
+             
+            <div class="col-md-7">
+              <form class="#" method="POST" action="{% url 'action_view_bazar' %}">
+                <input type="hidden", name="action6", value="order_create_bazar" >
+                <input type="hidden", name="product_name" value="{{ order_shop.name }}">
+                <input type="hidden", name="price" value="{{ order_shop.new_price}}">
+                {% csrf_token %}
+          
+              <div class="billing-details form-group">
+                <div class="section-title">
+                  <h3 class="title">Mijoz maʼlumotlari</h3>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="text" required="required" name="name" placeholder="I.F.O">
+              </div>
+                <div class="form-group">
+                  <input class="form-control" type="text" required="required" name="phone" placeholder="Telefon">
+                </div>
+                <div class="form-group">
+               
+                    <select id="accountCountry" class="form-control" required="required" name="province">
+                      <option value="All">Viloyatlar</option>
+                      <option value="Toshkent shahri">Toshkent shahri</option>
+                      <option value="Toshkent viloyati">Toshkent viloyati</option>
+                      <option value="Andijon">Andijon</option>
+                      <option value="Buxoro">Buxoro</option>
+                      <option value="Farg'ona">Farg'ona</option>
+                      <option value="Jizzax">Jizzax</option>
+                      <option value="Namangan">Namangan</option>
+                      <option value="Navoiy">Navoiy</option>
+                      <option value="Qashqadaryo">Qashqadaryo</option>
+                      <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
+                      <option value="Samarqand">Samarqand</option>
+                      <option value="Sirdaryo">Sirdaryo</option>
+                      <option value="Surxondaryo">Surxondaryo</option>
+                      <option value="Xorazm">Xorazm</option></select>
+                 
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="text" required="required" name="count_product" placeholder="Miqdori">
+                </div>
+               
+              </div>
+    
+       
+            </div>
+      
+  
+            <!-- Order Details -->
+            <div class="col-md-5 order-details">
+              <div class="section-title text-center">
+                <h3 class="title">Sizning buyurtmangiz</h3>
+              </div>
+              <div class="order-summary">
+                <div class="order-col">
+                  <div><strong>Mahsulot</strong></div>
+                  <div><strong>{{order_shop.name}}</strong></div>
+                </div>
+                <div class="order-products">
+         
+                  <div class="order-col">
+                    <div>Chegirma</div>
+                    <div><strong> -{{ order_shop.sale}}%</strong></div>
+                  </div>
+                
+                  <div class="order-col">
+                    <div>Avvalgi narxi</div>
+                    <div><strong><del>{{ order_shop.old_price}}</del> so'm</strong></div>
+                  </div>
+           
+                <div class="order-col">
+                  <div><strong>Narxi</strong></div>
+                  <div><strong class="order-total">{{ order_shop.new_price}} so'm</strong></div>
+                </div>
+              </div>
+              
+              <button type="submit"  class="btn btn-primary form-control">Buyurtma Berish</button>
+           
+            </form>
+            
+            </div>
+            <!-- /Order Details -->
+          </div>
+          <!-- /row -->
+        </div>
+        <!-- /container -->
+      </div>
+      </div>
+      <!-- /SECTION -->
+  
+    
+{% endblock %}

@@ -6,7 +6,9 @@ class Bazar(models.Model):
 
     def __str__(self):
         return self.name
-
+    class Meta:
+        verbose_name = 'Bozor'
+        verbose_name_plural = 'Bozorlar'
 class Market(models.Model):
     name = models.CharField(verbose_name="Name market", max_length=250)
     info_shop_product = models.CharField(verbose_name="Info and product", max_length=400)
@@ -20,6 +22,9 @@ class Market(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'Do\'kon'
+        verbose_name_plural = 'Do\'konlar'
 
 class Product(models.Model):
     name = models.CharField(verbose_name="Mahsulot nomi", max_length=100)
@@ -37,3 +42,21 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'Mahsulot'
+        verbose_name_plural = 'Mahsulotlar'
+class Order(models.Model):
+    
+    name = models.CharField(verbose_name="Ism", max_length=255)
+    phone = models.CharField(verbose_name="Telefon", max_length=255)
+    province = models.CharField(verbose_name="Viloyat", max_length=50)
+    count_product = models.IntegerField(verbose_name='Mahsulot soni', default=0)
+    product_name = models.CharField(verbose_name="Mahsulot nomi", max_length=255, null=True, blank=True)
+    price = models.CharField(verbose_name='Mahsulot narxi', max_length=255, null=True, blank=True)
+    
+    
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = 'Buyurtma'
+        verbose_name_plural = 'Buyurtmalar'

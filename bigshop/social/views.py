@@ -11,12 +11,17 @@ from django.http import JsonResponse
 
 
 # Create your views here.
-
+class TelegramView(ListView):
+    model = Messanger
+    template_name = 'teg_messanger.html'
+    def get_context_data(self, **kwargs):
+        context = super(TelegramView, self).get_context_data(**kwargs)
+        context_tg = Messanger.objects.filter(category_id=category_id)
 class MessangerListView(ListView):
     model = Categorya_M
     model = Messanger
     template_name = 'messanger.html'
-    paginate_by = 10
+    paginate_by = 1
 
     def get_context_data(self, **kwargs):
         cetegory_id = self.request.GET.get('cetegory', 'all')

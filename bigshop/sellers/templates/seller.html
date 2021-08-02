@@ -3,34 +3,36 @@
 
 {% block content %}
 
-<style>
+<div id="breadcrumb" class="section">
+   
+  <div class="container"> 
+  
+        <div class="row">
+          <div class="col-md-12 navbarX"  >
+            <ul class="breadcrumb-tree">
+              <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+              <li><a >Sotuvchilar</a></li>
+            </ul>
+            <form class="form-inline my-5 my-lg-0">
+ 
+      
+              <input class="form-control mr-lg-2" id="marketVAL" placeholder="Search..."
+                style="font-family:FontAwesome !important">
+              <button class="btn btn-outline-success  my-2 my-sm-0" name="sa" onclick="getValueSeller()"
+                type="button">Qidiring</button>
+              <button class="btn btn-outline-danger  ml-1 my-2 my-sm-0" name="sa" onclick="getValuecleear()"
+                type="button">Tozalash</button>
+            </form>
+            <div id="loader" class="m-2" style="display: none;">
+              <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
+            </div>
+          </div>
+        </div>
+    
+      </div> 
+      <!-- /container -->
+    </div>
 
-</style>
-<nav class="navbar navbar-expand-lg navbar-light  p- " style="background-color: #FFE383;">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" style="font-weight: bold; color: #1b1c1d;" href="{% url 'seller' %}">Bozorlar</a>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-    </ul>
-
-    <form class="form-inline my-5 my-lg-0">
-      <button type="button" class="btn btn-outline-warning mr-3" style="color:black;font-weight:500">Aqlli qidiruv
-        tizimi <span style="color:#c40404">BOZOR, DO'KON, MAHSULOT</span> nomlari orqali qidiring&nbsp;</button>
-      <input class="form-control mr-lg-2" id="marketVAL" placeholder="Search..."
-        style="font-family:FontAwesome !important">
-      <button class="btn btn-outline-success  my-2 my-sm-0" name="sa" onclick="getValueSeller()"
-        type="button">Qidiring</button>
-      <button class="btn btn-outline-danger  ml-1 my-2 my-sm-0" name="sa" onclick="getValuecleear()"
-        type="button">Tozalash</button>
-    </form>
-
-  </div>
-</nav>
 
 
 
@@ -41,8 +43,8 @@
 
 
 <div class="col-md-12">
-  <div  style="margin-top:20px; width:100%; height:70vh;  overflow: hidden;" id="carouselExampleControls" class="container carousel slide" data-ride="carousel">
-    <div class="carousel-inner" style="height: 100%;">
+  <div  class="carusel-phone container carousel slide"   id="carouselExampleControls"data-ride="carousel">
+    <div class="carousel-inner dd" style="height: 100%;">
       <div class="carousel-item active" id="carusel-imgId" data-interval="1000">
         <img src="{% static 'agency/img/christopher-gower-m_HRfLhgABo-unsplash (1).jpg' %}" class="d-block w-100" alt="...">
       </div>
@@ -72,11 +74,13 @@
     <ul class="row justify-content-left" id="SellerTEMP">
       <!-- <div class="col-md-3"></div> -->
       {% for market in market_list %}
-      <li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-12" >
+      <li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-6" >
         <div class="product">
           <div class="product-img-contaner">
             <div class="product-img img-fluid"
               style="background-image:url('{{market.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
+              <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+              onclick="getProductInfoElements({{market.id}})" type="button" id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a> 
             </div>
           </div>
           <div class="product-body">
@@ -133,38 +137,43 @@
 
 
 
-    <div class="store-filter clearfix mt-5">
-      {% if is_paginated %}
-
-      <ul class="store-pagination">
-        {% if page_obj.has_previous %}
-
-        <li><a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
-        {% else %}
-
-        <li class="disabled">
-          <a href=""><i class="fa fa-angle-left"></i></a>
-
-
-        </li>
-        {% endif %}
-        {% for i in paginator.page_range %}
-        {% if page_obj.number == i %}
-        <li class="active">{{ i }}</li>
-        {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-        {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-        <li><a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
-        {% else %}
-        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-        {% endif %}
-
-
-      </ul>
-      {% endif %}
-    </div>
+         <!-- paginator -->
+         <div class="store-filter clearfix mt-5">
+          {% if is_paginated %}
+      
+          <ul class="store-pagination">
+            {% if page_obj.has_previous %}
+      
+            <li class="page-item">
+              <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+            </li>
+            {% else %}
+      
+            <li class="page-item no-drop">
+              <a><i class="fa fa-angle-left"></i></a>
+            </li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+      
+            {% if page_obj.number == i %}
+            <li class="page-item active">{{ i }}</li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %} {% endfor %} {% if page_obj.has_next %}
+            <li class="page-item ">
+              <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+            </li>
+            {% else %}
+            <li class="disabled">
+              <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+            </li>
+            {% endif %}
+      
+      
+          </ul>
+          {% endif %}
+        </div>
+        <!-- /paginator -->
   </div>
 </div>
 
@@ -199,7 +208,6 @@
 </div>
 <!-- end Modal -->
 
-
 <script>
   var replace_data = function (data) {
     $('#success').append(data.data);
@@ -217,6 +225,10 @@
     }
     $.ajax({
       method: 'GET',
+      beforeSend: function()
+      {
+        $("#loader").show();
+      },
       dataType: 'json',
       data: data,
       url: '{% url "filter" %}',
@@ -233,6 +245,8 @@
               <div class="product-img-contaner">
                 <div class="product-img img-fluid"
                   style="background-image:url('/media/${sellers[seller]['image']}');height:250px;width:100%;  background-size:cover;  background-position:center">
+                  <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+                  onclick="getProductInfoElements(${sellers[seller]['id']})" type="button" id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a> 
                 </div>
               </div>
               <div class="product-body">
@@ -283,7 +297,14 @@
           table_elems += sellers_template
         }
         $('#SellerTEMP').html(table_elems)
+      },
+      complete:function(data){
+        $("#loader").hide();
       }
+     
+      
+    
+    
     });
   }
 

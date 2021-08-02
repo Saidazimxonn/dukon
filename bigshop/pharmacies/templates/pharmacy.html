@@ -2,40 +2,55 @@
 {% load static poll_extras%}
 
 {% block content %}
+   <!-- Modal -->
+   <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Ma'lumot</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div id="INFO_PRODUCT" class="section">
 
+            <!-- container -->
+
+            <!-- /container -->
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- end Modal -->
 <style>
 
 </style>
 <!-- Button trigger modal -->
-
-
-
-
-
-
-
 <!-- Modal: modalPoll -->
-
-<!-- Modal: modalPoll -->
-<nav class="navbar navbar-expand-lg navbar-light  p- " style="background-color: #FFE383;">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" style="font-weight: bold; color: #1b1c1d;" href="{% url 'seller' %}">Dorilar</a>
-
-
-
-
-</nav>
-
-
-
-
-
-
-
-
+<div id="breadcrumb" class="section">
+   
+  <div class="container"> 
+  
+        <div class="row">
+          <div class="col-md-12 navbarX"  >
+            <ul class="breadcrumb-tree">
+              <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+              <li><a >Dorilar</a></li>
+            </ul>
+          </div>
+        </div>
+    
+      </div> 
+      <!-- /container -->
+    </div>
 
 <div class="col-md-12">
 
@@ -52,6 +67,8 @@
           <div class="product-img-contaner">
             <div class="product-img img-fluid"
               style="background-image:url('{{pharm.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
+              <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+              onclick="getProductInfoElements({{pharm.id}})" type="button" id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a>
             </div>
           </div>
           <div class="product-body">
@@ -77,7 +94,7 @@
                         <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
                           onclick="getProductInfoElements({{pharm.id}})" type="button" id="product_info_{    }"> <i
                             class="las la-eye"></i></a>
-                            <a href="{% url 'order_create' pharm.pk %}" class="wow fadeInUp"><i
+                            <a href="{% url 'order_create_pharm' pharm.pk %}" class="wow fadeInUp"><i
                               class="las la-cart-plus"></i> </a>
                       </div>
                     </div>
@@ -151,123 +168,7 @@
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal2">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Buyurtma</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div id="CREATE_PRODUCT" class="section">
-        <!-- container -->
-        <!-- SECTION -->
-        <div class="section">
-          <!-- container -->
-          <div class="container">
-            <!-- row -->
-            <div class="row">
-
-
-              <div class="col-md-7">
-                <form id="Create_Order" action="order_create">
-                  <div class="billing-details form-group">
-                    <div class="section-title">
-                      <h3 class="title">Mijoz maʼlumotlari</h3>
-                    </div>
-                    <div class="form-group">
-                      <input class="form-control" type="text" required="required" name="name1" placeholder="I.F.O">
-                    </div>
-                    <div class="form-group">
-                      <input class="form-control" type="text" required="required" name="phone1" placeholder="Telefon">
-                    </div>
-                    <div class="form-group">
-
-                      <select id="accountCountry" class="form-control" required="required" name="province">
-                        <option value="All">Viloyatlar</option>
-                        <option value="Toshkent shahri">Toshkent shahri</option>
-                        <option value="Toshkent viloyati">Toshkent viloyati</option>
-                        <option value="Andijon">Andijon</option>
-                        <option value="Buxoro">Buxoro</option>
-                        <option value="Farg'ona">Farg'ona</option>
-                        <option value="Jizzax">Jizzax</option>
-                        <option value="Namangan">Namangan</option>
-                        <option value="Navoiy">Navoiy</option>
-                        <option value="Qashqadaryo">Qashqadaryo</option>
-                        <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
-                        <option value="Samarqand">Samarqand</option>
-                        <option value="Sirdaryo">Sirdaryo</option>
-                        <option value="Surxondaryo">Surxondaryo</option>
-                        <option value="Xorazm">Xorazm</option>
-                      </select>
-
-                    </div>
-                    <div class="form-group">
-                      <input class="form-control" type="text" required="required" name="count_product"
-                        placeholder="Miqdori">
-                    </div>
-
-                  </div>
-
-                  <button type="submit" class="btn btn-primary form-control">Buyurtma Berish</button>
-                </form>
-              </div>
-
-
-              <!-- Order Details -->
-              <div class="col-md-5 order-details" id="ORDER_INFO">
-
-              </div>
-              <!-- /row -->
-            </div>
-            <!-- /container -->
-          </div>
-        </div>
-        <!-- /SECTION -->
-        <!-- /container -->
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-<!-- end Modal -->
-<!-- Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Ma'lumot</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div id="INFO_PRODUCT" class="section">
-
-        <!-- container -->
-
-        <!-- /container -->
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-<!-- end Modal -->
 <script>
 
   function getProductInfoElements(Product_id) {

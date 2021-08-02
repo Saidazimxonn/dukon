@@ -1,5 +1,7 @@
 
-from django.shortcuts import render
+from django.core import paginator
+from django.shortcuts import redirect
+
 from django.views.generic import ListView, TemplateView, DetailView
 from django_middleware_global_request.middleware import get_request
 from django.views.generic.list import MultipleObjectMixin
@@ -10,6 +12,8 @@ from .models import Bazar, Market, Product
 from django.views import View
 from django.http  import JsonResponse
 from django.db.models import Q
+from .helpers import order_create
+
 
 # Create your views here.
 
@@ -18,11 +22,20 @@ class SellerListView(ListView):
     model = Market
     model = Bazar
     template_name = 'seller.html'
-    # context_object_name = 'market_list'
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super(SellerListView, self).get_context_data(**kwargs)
         baza_list = Market.objects.order_by('-id')
+        paginator  = Paginator(baza_list, self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            file_exams = paginator.page(page)
+        except PageNotAnInteger:
+            file_exams = paginator.page(1)
+        except EmptyPage:
+            file_exams = paginator.page(paginator.num_pages)
+        baza_list = file_exams
         # market = self.request.GET.get('market', 'all')
         # bazar = self.request.GET.get('bazar', 'all')
         # if bazar != 'all':
@@ -62,7 +75,7 @@ class SellerProductDetailview(TemplateView, MultipleObjectMixin):
         model = Product
         
         template_name = 'seller_product.html'
-        paginate_by = 3
+        paginate_by = 5
         def get_context_data(self, **kwargs):
             product_list = Product.objects.filter(market_id=self.kwargs['pk'])
             context = super(SellerProductDetailview, self).get_context_data(object_list = product_list, **kwargs)
@@ -128,3 +141,18 @@ class MarketDetailview(View):
             'market_list':market_list
         }
         return JsonResponse({'data':data})
+class OrderDetailTech(DetailView):
+    model = Product
+    template_name = 'order_seller_det.html'
+    context_object_name = 'order_tech'   
+    
+class ActionViewSeller(View):
+    
+    def post(self, request):
+        post_request=request.POST
+        actions = {
+            'order_create':order_create,
+        }
+        actions[self.request.POST.get('action3', None)](post_request)
+        return redirect('seller')
+        

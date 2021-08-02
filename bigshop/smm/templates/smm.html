@@ -41,17 +41,19 @@
                     <div class="row">
                    
                       <div class="col-md-5 mb-4">
+                        <a href="{% url 'smm-detail' i.id %}">
+                        <h3 id="comp_name"  >{{ i.name_studio}}</h3>
                         
                             <div class="shop">
                                 <div class="shop-img">
-                                    <img src="{{ i.image.url}}" style="height: 45vh;border-radius:0 10px 10px 0;" class="image-fluid" alt="">
+                                   <img src="{{ i.image.url}}" style="height: 45vh;border-radius:0 10px 10px 0;" class="image-fluid" alt="">
                                 </div>
                                 <div class="shop-body">
-                                    <h3 style="color: aliceblue;"><br>{{ i.name_studio}}</h3>
                                     <!-- <a href="#" class="cta-btn">Shop now lorem50 </i></a> -->
                                 </div>
                             
                         </div>
+                      </a>
                       </div>
         
                       <div class="col-md-7 mb-4 mt-3">
@@ -97,8 +99,43 @@
                 <!--Grid column-->
               </div>
               <!--Grid row-->
-        
-              <!-- Pagination -->
+              <!-- paginator -->
+  <div class="store-filter clearfix mt-5">
+    {% if is_paginated %}
+
+    <ul class="store-pagination">
+      {% if page_obj.has_previous %}
+
+      <li class="page-item">
+        <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% else %}
+
+      <li class="page-item no-drop">
+        <a><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+
+      {% if page_obj.number == i %}
+      <li class="page-item active">{{ i }}</li>
+      {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %} {% endfor %} {% if page_obj.has_next %}
+      <li class="page-item ">
+        <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% else %}
+      <li class="disabled">
+        <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% endif %}
+
+
+    </ul>
+    {% endif %}
+  </div>
+  <!-- /paginator -->
          
             </div>
           </main>

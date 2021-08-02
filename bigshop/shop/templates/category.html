@@ -43,15 +43,18 @@
 			<li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-12">
 				<div class="product">
 					<div class="product-img-contaner">
-						<div class="product-img img-fluid"
-							style="background-image:url('{{i.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
-						</div>
+<div class="product-img img-fluid"	style="background-image:url('{{i.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center;z-index:50">
+	<a href="#" class="wow fadeInUp" data-toggle="modal"
+	data-target="#myModal" name="product_info"
+	onclick="getFarmInfoElement({{i.id}})" type="button"
+	id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a>
+
+</div>
 					</div>
 					<div class="product-body">
 						<div class="product-company-name">
 							<span class="product-category" style="font-size: 12px;">{{i.company}}</span>
-							<span class="product-name" href="#" style="font-size: 10px;text-decoration:none">{{
-								i.name}}</span>
+							<span class="product-name" href="#" style="font-size: 10px;text-decoration:none">{{i.name}}</span>
 						</div>
 						<div class="product-price">${{i.new_price}}&nbsp;so'm&nbsp;<del
 								class="product-old-price">${{i.old_price}}&nbsp;so'm</del></div>
@@ -67,9 +70,9 @@
 											<div class="social-icons d-flex w-2 h-2">
 												<a href="{{i.tg_link}}" class="wow fadeInUp"><i
 														class="lab la-telegram"></i> </a>
-												<a href="{{i.tg_link}}" class="wow fadeInDown"> <i
-														class="lab la-instagram"></i></a>
-
+												<a href="{% url 'order_shop_create' i.pk %}" class="wow fadeInDown"> <i
+													class="las la-cart-plus"></i></a>
+													
 												<a href="#" class="wow fadeInUp" data-toggle="modal"
 													data-target="#myModal" name="product_info"
 													onclick="getFarmInfoElement({{i.id}})" type="button"
@@ -103,39 +106,43 @@
 		</ul>
 
 
+  <!-- paginator -->
+  <div class="store-filter clearfix mt-5">
+    {% if is_paginated %}
 
-		<div class="store-filter clearfix mt-5">
-			{% if is_paginated %}
+    <ul class="store-pagination">
+      {% if page_obj.has_previous %}
 
-			<ul class="store-pagination">
-				{% if page_obj.has_previous %}
+      <li class="page-item">
+        <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% else %}
 
-				<li><a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
-				{% else %}
+      <li class="page-item no-drop">
+        <a><i class="fa fa-angle-left"></i></a>
+      </li>
+      {% endif %}
+      {% for i in paginator.page_range %}
 
-				<li class="disabled">
-					<a href=""><i class="fa fa-angle-left"></i></a>
-
-
-				</li>
-				{% endif %}
-				{% for i in paginator.page_range %}
-				{% if page_obj.number == i %}
-				<li class="active">{{ i }}</li>
-				{% else %}
-				<li><a href="?page={{ i }}">{{ i }}</a></li>
-				{% endif %}
-				{% endfor %}
-				{% if page_obj.has_next %}
-				<li><a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
-				{% else %}
-				<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-				{% endif %}
+      {% if page_obj.number == i %}
+      <li class="page-item active">{{ i }}</li>
+      {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %} {% endfor %} {% if page_obj.has_next %}
+      <li class="page-item ">
+        <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% else %}
+      <li class="disabled">
+        <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+      </li>
+      {% endif %}
 
 
-			</ul>
-			{% endif %}
-		</div>
+    </ul>
+    {% endif %}
+  </div>
+  <!-- /paginator -->
 	</div>
 	<div id="slick-nav-1" class="products-slick-nav"></div>
 </div>

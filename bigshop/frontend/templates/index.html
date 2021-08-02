@@ -2,11 +2,10 @@
 {% load static %}
 {% block content %}
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css" rel="stylesheet" />
+
 <body>
-
-
-
-    <h1 style="text-align: center;padding-top: 15px;">Toifalar</h1>
+  <!-- <div class="container mt-4">  <h2 style="text-align: left;padding-top: 15px;">Toifalar</h2></div> -->
     <!-- NAVIGATION -->
     <nav class="navbar navbar-expand-lg container-fluid d-flex justify-content-center px-0">
         <!-- container -->
@@ -43,23 +42,23 @@
                                     class="fas fa-capsules fa-3x"></i></span><br>Dorixonalar</a></li>
 
 
-                    <li><a href="{% url 'smm' %}" class="nav-item"> <span class="btn btn-info btn-circle btn-xl"><i
-                                    class="fas fa-search-dollar fa-3x"></i></span>
-                            <div class="d-flex justify-content-center">SMM</div>
+                    <li><a href="{% url 'index' %}" class="nav-item"> <span class="btn btn-danger btn-circle btn-xl"><i
+                        class="fab fa-internet-explorer fa-3x"></i></span>
+                                    <div class="d-flex justify-content-center">Web xizmatlar</div>
                         </a></li>
 
-
+<!-- 
                     <li><a href="#" class="nav-item"> <span class="btn btn-danger btn-circle btn-xl"><i
                                     class="fab fa-internet-explorer fa-3x"></i></span>
-                            <div class="d-flex justify-content-center">WEB Site</div>
-                        </a></li>
+                            <div class="d-flex justify-content-center">Web service</div>
+                        </a></li> -->
 
                     <li><a href="{% url 'messangers' %}" class="nav-item"> <span
                                 class="btn btn-primary btn-circle btn-xl"><i class="fas fa-bullhorn fa-3x"></i></span>
                             <div class="d-flex justify-content-center">E`lonlar</div>
                         </a></li>
 
-                    <li><a href="#" class="nav-item"> <span class="btn btn-info btn-circle btn-xl"><i
+                    <li><a href="{% url 'telegram' %}" class="nav-item"> <span class="btn btn-info btn-circle btn-xl"><i
                                     class="fab fa-telegram-plane fa-3x"></i></span><span>
                                 <div class="d-flex justify-content-center">Telegram</div></a></li>
 
@@ -70,294 +69,59 @@
         <!-- /container -->
     </nav>
     <!-- /NAVIGATION -->
-    <!--slider sec start-->
-    <style>
 
-    </style>
-    <div style="height: 60vh;  object-fit:cover; " id="slider-section" class="imgImg slider-section slider-style-5">
-        
-        <!-- START REVOLUTION SLIDER -->
-        <div style="width:100%; height:100%; object-fit:cover; object-fit:cover; " id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="norex-agency01"
-            data-source="gallery" style="background:transparent;padding:0;">
-            <!-- START REVOLUTION SLIDER 5.4.8.1 fullscreen mode -->
-            <div style="width: 100%; height:100%; overflow: hidden;" id="rev_slider_1_2" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.8.1">
-                <ul >
-                    <!-- SLIDE  -->
-                    <li  data-index="rs-1" data-transition="fade" data-slotamount="default" data-hideafterloop="0"
-                        data-hideslideonmobile="off" data-easein="default" data-easeout="default"
-                        data-masterspeed="1500,1500" data-thumb="assets/50x50_d6aeb-slide1-org.jpg" data-rotate="0"
-                        data-saveperformance="off" data-title="" data-param1="01" data-param2="" data-param3=""
-                        data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9=""
-                        data-param10="" data-description="">
-                        <!-- MAIN IMAGE -->
-                        <img id="c_rasim" src="{% static 'agency/slider/1.jpg' %}" alt="" data-bgposition="center center"
-                            data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                        <!-- LAYERS -->
+  <!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
 
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-1-layer-26"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
-                            data-fontweight="['100','100','300','300']" data-width="full" data-height="full"
-                            data-whitespace="nowrap" data-type="shape" data-basealign="slide"
-                            data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":300,"frame":"0","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                            style="z-index: 5;background-color:rgba(20,32,34,0.60);"> </div>
-
-                        <!-- LAYER NR. 2 -->
-                        <div  class="tp-caption   tp-resizeme" id="slide-1-layer-20"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['-70','-70','-70','-70']"
-                            data-fontsize="['65','65','65','50']" data-lineheight="['65','65','81','65']"
-                            data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                            data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":1500,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            Bussiness <span class="slider-line-text">Start Up</span></div>
-
-                        <!-- LAYER NR. 4 -->
-                        <div class="tp-caption   tp-resizeme" id="slide-1-layer-22"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','18','18']"
-                            data-fontsize="['20','20','20','18']" data-lineheight="['22','22','26','26']"
-                            data-width="['none','none','532','420']" data-height="none"
-                            data-whitespace="['nowrap','nowrap','normal','normal']" data-type="text"
-                            data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. </div>
-
-                        <!-- LAYER NR. 5 -->
-
-                        <div class="tp-caption tp-resizeme" id="slide-1-layer-24"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['70','70','104','104']"
-                            data-type="button" data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":2000,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":280,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"500","ease":"Linear.ease","to":"o:1;rX:0;rY:0;rZ:0;z:0;"}]'
-                            data-textAlign="['center','center','center','center']">
-                            <a href="#about-sec" class="btn slider-yellow-btn rounded-pill">GET STARTED</a>
-                        </div>
-                    </li>
-                    <!-- SLIDE  -->
-                    <li data-index="rs-15" data-transition="slideleft,slideright" data-slotamount="default"
-                        data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default"
-                        data-masterspeed="1500,1500"
-                        data-thumb="assets/50x50_72c0d-apartment-architecture-bookcase-bookshelves-271795.jpg"
-                        data-rotate="0" data-saveperformance="off" data-title="" data-param1="02" data-param2=""
-                        data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8=""
-                        data-param9="" data-param10="" data-description="">
-                        <!-- MAIN IMAGE -->
-                        <img  id="c_rasim" src="{% static 'agency/slider/6.jpg' %}" alt="" data-bgposition="center center"
-                            data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                        <!-- LAYERS -->
-
-                        <!-- LAYER NR. 6 -->
-                        <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-15-layer-26"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
-                            data-width="full" data-height="full" data-whitespace="nowrap" data-type="shape"
-                            data-basealign="slide" data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                            style="z-index: 5;background-color:rgba(20,32,34,0.60);"> </div>
-
-                        <!-- LAYER NR. 7 -->
-                        <div class="tp-caption   tp-resizeme" id="slide-15-layer-20"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['-70','-70','-70','-70']"
-                            data-fontsize="['65','65','65','50']" data-lineheight="['65','65','81','65']"
-                            data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                            data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":1500,"sfxcolor":"#ffffff","sfx_effect":"blockfromright","frame":"0","from":"z:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            Creative <span class="slider-line-text">Designs</span></div>
-
-
-                        <!-- LAYER NR. 9 -->
-                        <div class="tp-caption   tp-resizeme" id="slide-15-layer-22"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','18','18']"
-                            data-fontsize="['20','20','20','18']" data-lineheight="['22','22','26','26']"
-                            data-width="['none','none','532','420']" data-height="none"
-                            data-whitespace="['nowrap','nowrap','normal','normal']" data-type="text"
-                            data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":1500,"sfxcolor":"#ffffff","sfx_effect":"blockfromtop","frame":"0","from":"z:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. </div>
-
-                        <!-- LAYER NR. 10 -->
-                        <!-- LAYER NR. 10 -->
-                        <div class="tp-caption   tp-resizeme" id="slide-2-layer-4"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['70','70','104','104']"
-                            data-height="none" data-whitespace="nowrap" data-type="button" data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":2000,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":280,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"500","ease":"Linear.ease","to":"o:1;rX:0;rY:0;rZ:0;z:0;"}]'
-                            data-textAlign="['center','center','inherit','center']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            <!-- <a href="#about-sec" class="btn slider-yellow-btn mr-3 rounded-pill">LEARN MORE</a> -->
-
-                        </div>
-
-                    </li>
-                    <!-- SLIDE  -->
-                    <li data-index="rs-14" data-transition="slideleft,slideright" data-slotamount="default"
-                        data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default"
-                        data-masterspeed="1500,1500" data-thumb="assets/50x50_0112a-flat-screen-tv-1571458.jpg"
-                        data-rotate="0" data-saveperformance="off" data-title="" data-param1="03" data-param2=""
-                        data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8=""
-                        data-param9="" data-param10="" data-description="">
-                        <!-- MAIN IMAGE -->
-                        <img id="c_rasim" src="{% static 'agency/slider/3.jpg' %}" alt="" data-bgposition="center center"
-                            data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                        <!-- LAYERS -->
-
-                        <!-- LAYER NR. 11 -->
-                        <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-14-layer-26"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
-                            data-width="full" data-height="full" data-whitespace="nowrap" data-type="shape"
-                            data-basealign="slide" data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                            style="z-index: 5;background-color:rgba(20,32,34,0.60);"> </div>
-
-                        <!-- LAYER NR. 12 -->
-                        <div class="tp-caption   tp-resizeme" id="slide-14-layer-20"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['-70','-70','-70','-70']"
-                            data-fontsize="['65','65','65','50']" data-lineheight="['81','81','82','65']"
-                            data-width="['none','none','none','none']" data-height="none" data-whitespace="nowrap"
-                            data-type="text" data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":1500,"frame":"0","from":"x:[175%];y:0;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[-100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            Grow <span class="slider-line-text">Bussiness</span></div>
-
-                        <!-- LAYER NR. 14 -->
-                        <div class="tp-caption   tp-resizeme" id="slide-14-layer-22"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','18','18']"
-                            data-fontsize="['20','20','20','18']" data-lineheight="['22','22','26','26']"
-                            data-width="['none','none','532','420']" data-height="none"
-                            data-whitespace="['nowrap','nowrap','normal','normal']" data-type="text"
-                            data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                            data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. </div>
-
-                        <!-- LAYER NR. 15 -->
-                        <div class="tp-caption   tp-resizeme" id="slide-14-layer-24"
-                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                            data-y="['middle','middle','middle','middle']" data-voffset="['70','70','104','104']"
-                            data-width="none" data-height="none" data-whitespace="nowrap" data-type="button"
-                            data-responsive_offset="on"
-                            data-frames='[{"delay":10,"speed":2000,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":280,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"500","ease":"Linear.ease","to":"o:1;rX:0;rY:0;rZ:0;z:0;"}]'
-                            data-textAlign="['inherit','inherit','inherit','center']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-                            <a href="#about-sec" class="btn slider-trans-btn rounded-pill">GET STARTED</a>
-                        </div>
-                    </li>
-
-                </ul>
-                <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
-            </div>
-        </div><!-- END REVOLUTION SLIDER -->
-        <!-- END REVOLUTION SLIDER -->
+  <ol class="carousel-indicators">
+    {% for i in ad_post %}
+    {% if forloop.first %}
+    <li data-target="#carousel-example-1z" data-slide-to="{{i.id}}" class="active" ></li>
+    {% else %}
+    <li data-target="#carousel-example-1z" data-slide-to="{{i.id}}"  ></li>
+        {% endif %}
+    {% endfor %}
+    
+  </ol>
+  <!--/.Indicators-->
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+    <!--First slide-->
+    {% for i in ad_post %}
+    {% if forloop.first %}
+    <div class="carousel-item active" data-interval="2500">
+      <a href="{{i.link_add}}"><img class="d-block w-100" style="widht:100%; height: 350px; object-fit:cover;" src="{{i.image.url}}"
+        alt="First slide"></a>
     </div>
-    <!--slider sec end-->
+    {% else %}
+    <div class="carousel-item " data-interval="2500">
+      
+      <a href="{{i.link_add}}"> <img class="d-block w-100" style="widht:100%; height: 350px; object-fit:cover;" src="{{i.image.url}}"
+          alt="First slide"></a> 
+      </div>
+      {% endif %}
 
-    <!--Team sec start-->
-    <section id="team-sec" class="team-sec section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-5">
-                    <div class="team-detail-sec wow fadeInLeft">
-                        <div class="ex-detail">
-                            <h4 class="large-heading">
-                                <span class="heading-1">Meet Our</span>
-                                <span class="heading-2">Brilliant Experts</span>
-                            </h4>
-                            <span class="fly-text">GREAT TEAM</span>
-                        </div>
-                        <p class="small-text text-center text-md-left">
-                            Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry’s standard dummy text ever since. galley of type to make a type specimen
-                            book.
-                        </p>
-                        <div class="team-navigation text-center text-md-left">
-                            <span class="left-arr customPrevBtn"><i class="la la-long-arrow-alt-left"></i></span>
-                            <span class="right-arr customNextBtn"><i class="la la-long-arrow-alt-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-7">
-                    <div class="team owl-carousel owl-theme wow fadeInRight">
-                        <div class="item">
-                            <div class="team-overlay">
-                                <div class="overlay-content">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <img src="{% static 'agency/img/christopher-gower-m_HRfLhgABo-unsplash (1).jpg' %}"
-                                alt="team1">
-                        </div>
-                        <div class="item">
-                            <div class="team-overlay">
-                                <div class="overlay-content">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <img src="{% static 'agency/img/science-in-hd-EB78x6KzQjY-unsplash.jpg' %}" alt="team2">
-                        </div>
-                        <div class="item">
-                            <div class="team-overlay">
-                                <div class="overlay-content">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <img src="{% static 'agency/img/hush-naidoo-ZCO_5Y29s8k-unsplash (1).jpg' %}" alt="team2">
-                        </div>
-                        <div class="item">
-                            <div class="team-overlay">
-                                <div class="overlay-content">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <img src="{% static 'agency/img/christopher-gower-m_HRfLhgABo-unsplash (1).jpg' %}"
-                                alt="team2">
-                        </div>
-                    </div>
-                </div>
+    {% endfor %}
+   
+  </div>
+  <!--/.Slides-->
+  <!--Controls-->
+  <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <!--/.Controls-->
+</div>
 
-            </div>
-        </div>
-    </section>
-    <!--Team sec start-->
+  
+
+
+
+
 
     <section id="about-sec" class="about-sec section-padding">
         <div class="container">
@@ -443,8 +207,9 @@
             </div>
         </div>
     </section>
-  
-
+   
+ 
+    <!--  -->
     <!--Services sec start-->
     <section id="services-sec" class="services-sec">
         <div class="service-overlay"></div>
@@ -691,7 +456,7 @@
                         <p class="quote-text"><i class="fas fa-quote-left"></i>
                             <!--                Creativity is allowing yourself to make mistakes-->
                             <!--                Art is knowing which ones to keep-->
-                            Some people dream of success, while other people get up every morning and make it happen.
+                            Ba'zilar muvaffaqiyatga erishishni orzu qiladilar, boshqalari esa har kuni ertalab turib, buni amalga oshiradilar
                             <i class="fas fa-quote-right"></i>
                         </p>
                         <h4 class="quote-writer mb-0">- ALICE JOHNSON -</h4>
@@ -741,6 +506,7 @@
 
                     <div class="c-box wow fadeInRight">
                         <h4 class="small-heading">Tezkor bo'glanish</h4>
+                        
                         <form class="contact-form" action="{% url 'action_view'%}" method="POST">
                             <input type="hidden" , name="action" , value="create_ad">
                             {% csrf_token %}
@@ -810,7 +576,43 @@
         </div>
     </div>
 </body>
+<script>
+    (function () {
+        "use strict";
+      
+        var carousels = function () {
+          $(".owl-carousel1").owlCarousel({
+            loop: true,
+            center: true,
+            margin: 0,
+            responsiveClass: true,
+            nav: false,
+            responsive: {
+              0: {
+                items: 1,
+                nav: false
+              },
+              680: {
+                items: 2,
+                nav: false,
+                loop: false
+              },
+              1000: {
+                items: 3,
+                nav: true
+              }
+            }
+          });
+        };
+      
+        (function ($) {
+          carousels();
+        })(jQuery);
+      })();
+      
+</script>
 {% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
 
 <script src="{% static 'vendor/js/bundle.min.js' %}"></script>
 <script src="{% static 'vendor/js/jquery.themepunch.tools.min.js' %}"></script>

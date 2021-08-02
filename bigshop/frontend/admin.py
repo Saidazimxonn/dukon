@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import LiveMessage
+from .models import LiveMessage, Reklama
 
 class LiveMessageAdmin(admin.ModelAdmin):
     list_display =(
@@ -12,3 +12,12 @@ class LiveMessageAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(LiveMessage, LiveMessageAdmin)
+class ReklamaAdmin(admin.ModelAdmin):
+    list_display =(
+       'title',
+    )
+    list_display_links = (
+                   'title',
+    )
+
+admin.site.register(Reklama, ReklamaAdmin)

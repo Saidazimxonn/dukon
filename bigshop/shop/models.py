@@ -19,7 +19,9 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
-
+    class Meta:
+        verbose_name = 'Korxona'
+        verbose_name_plural = 'Korxonalar'
 
 
 
@@ -44,5 +46,22 @@ class Product(models.Model):
     image_tag.short_description = 'Image'
     def __str__(self):
         return self.name
-    
+    class Meta:
+        verbose_name = 'Mahsulot'
+        verbose_name_plural = 'Mahsulotlar'
 
+class Order(models.Model):
+    
+    name = models.CharField(verbose_name="Ism", max_length=255)
+    phone = models.CharField(verbose_name="Telefon", max_length=255)
+    province = models.CharField(verbose_name="Viloyat", max_length=50)
+    count_product = models.IntegerField(verbose_name='Mahsulot soni', default=0)
+    product_name = models.CharField(verbose_name="Mahsulot nomi", max_length=255, null=True, blank=True)
+    price = models.CharField(verbose_name='Mahsulot narxi', max_length=255, null=True, blank=True)
+    
+    
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = 'Buyurtma'
+        verbose_name_plural = 'Buyurtmalar'
