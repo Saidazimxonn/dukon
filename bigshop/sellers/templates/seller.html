@@ -1,37 +1,55 @@
 {% extends 'base.html' %}
 {% load static poll_extras%}
-
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock extra_css %}
 {% block content %}
 
+
+
+
+
+
+<!-- <p class="append-buttons">
+  <button class="prepend-2-slides">Prepend 2 Slides</button>
+  <button class="prepend-slide">Prepend Slide</button>
+  <button class="append-slide">Append Slide</button>
+  <button class="append-2-slides">Append 2 Slides</button>
+</p> -->
+
+
 <div id="breadcrumb" class="section">
-   
-  <div class="container"> 
-  
-        <div class="row">
-          <div class="col-md-12 navbarX"  >
-            <ul class="breadcrumb-tree">
-              <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
-              <li><a >Sotuvchilar</a></li>
-            </ul>
-            <form class="form-inline my-5 my-lg-0">
- 
-      
-              <input class="form-control mr-lg-2" id="marketVAL" placeholder="Search..."
-                style="font-family:FontAwesome !important">
-              <button class="btn btn-outline-success  my-2 my-sm-0" name="sa" onclick="getValueSeller()"
-                type="button">Qidiring</button>
-              <button class="btn btn-outline-danger  ml-1 my-2 my-sm-0" name="sa" onclick="getValuecleear()"
-                type="button">Tozalash</button>
-            </form>
-            <div id="loader" class="m-2" style="display: none;">
-              <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
-            </div>
-          </div>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12 navbarX">
+        <ul class="breadcrumb-tree">
+          <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
+          <li><a>Sotuvchilar</a></li>
+        </ul>
+        <form class="form-inline my-5 my-lg-0">
+          <button class="btn btn-info mr-1 mb-1" id="1" onclick="getProductElements({{1}})">Do'konlar</button>
+          <button class="btn btn-info mr-1 mb-1" id="2" onclick="ProductsList()" type="button">Mahsulotlar</button>
+
+
+          <input class="form-control mr-lg-2" id="marketVAL" minlength="5" placeholder="Search..."
+            style="font-family:FontAwesome !important">
+          <button class="btn btn-outline-success  my-2 my-sm-0" name="sa" onclick="getValueSeller()"
+            type="button">Qidiring</button>
+          <button class="btn btn-outline-danger  ml-1 my-2 my-sm-0" name="sa" onclick="getValuecleear()"
+            type="button">Tozalash</button>
+        </form>
+        <div id="loader" class="m-2" style="display: none;">
+          <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
         </div>
-    
-      </div> 
-      <!-- /container -->
+      </div>
     </div>
+
+  </div>
+  <!-- /container -->
+</div>
 
 
 
@@ -43,53 +61,60 @@
 
 
 <div class="col-md-12">
-  <div  class="carusel-phone container carousel slide"   id="carouselExampleControls"data-ride="carousel">
-    <div class="carousel-inner dd" style="height: 100%;">
-      <div class="carousel-item active" id="carusel-imgId" data-interval="1000">
-        <img src="{% static 'agency/img/christopher-gower-m_HRfLhgABo-unsplash (1).jpg' %}" class="d-block w-100" alt="...">
+   <!-- Swiper -->
+   
+   <div class="swiper-container mySwiper" style="overflow: hidden;">
+    <div class="swiper-wrapper">
+      {% for product_list in product_list %}
+      <div class="swiper-slide">
+        <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+        onclick="getNewProductInfoElements({{product_list.id}})" type="button" id="product_info_{    }">
+        <img src="{{ product_list.image.url }}">
+        <div class="card-body">
+          <h6 class="card-title">{{ product_list.name}}</h6>
+          <p class="card-text"></p>
+         <p style="font-size: 20px;" class="product-price" >{{product_list.new_price}}&nbsp;so'm&nbsp;&nbsp;<del class="product-old-price" style="font-size: 15px;color:red">{{ product_list.old_price}}&nbsp;so'm</del> </p> 
+          </a>
+        </div>
       </div>
-      <div class="carousel-item" id="carusel-imgId" data-interval="1000">
-        <img src="{% static 'agency/img/science-in-hd-EB78x6KzQjY-unsplash.jpg' %}" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item" id="carusel-imgId" data-interval="1000">
-        <img src="{% static 'agency/img/hush-naidoo-ZCO_5Y29s8k-unsplash (1).jpg' %}" class="d-block w-100" alt="...">
-      </div>
+      {% endfor %}
+    
+     
     </div>
-    <div style="margin-top:200px;">
-      <a   class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a  class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
+    <div class="swiper-pagination"></div>
   </div>
 
+  <!-- Swiper JS -->
+  <!-- corusel -->
 
-  <div class="container products-tabs">
+
+  <!-- end corusel -->
+  <div class="container products-tabs" >
     <!-- tab -->
     <!-- product -->
     <ul class="row justify-content-left" id="SellerTEMP">
       <!-- <div class="col-md-3"></div> -->
       {% for market in market_list %}
-      <li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-6" >
+      <li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-6">
         <div class="product">
           <div class="product-img-contaner">
             <div class="product-img img-fluid"
               style="background-image:url('{{market.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
               <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
-              onclick="getProductInfoElements({{market.id}})" type="button" id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a> 
+                onclick="getProductInfoElements({{market.id}})" type="button" id="product_info_{    }">
+                <div style="width: 550px;height:250px;"></div>
+              </a>
             </div>
           </div>
           <div class="product-body">
             <div class="product-company-name" style="margin-top:16px; margin-bottom:10px; ">
-              <span class="product-name" href="#" style=" font-size: 14px;text-decoration:none; font-weight:bold;">{{ market}}</span>
+              <span class="product-name" href="#" style=" font-size: 14px;text-decoration:none; font-weight:bold;">
+                {{ market}}</span>
               <span class="product-category" style="font-size: 12px;">{{ market.bazar}}</span>
-            
+
             </div>
-            <div class="product-price" style="font-size: 12px; margin-bottom:10px; color:#000">{{market.info_shop_product}}</div>
+            <div class="product-price" style="font-size: 12px; margin-bottom:10px; color:#000">
+              {{market.info_shop_product}}</div>
             <div class="product-rating">
 
             </div>
@@ -106,7 +131,7 @@
                           onclick="getProductInfoElements({{market.id}})" type="button" id="product_info_{    }"> <i
                             class="las la-eye"></i></a>
                         <a href="{% url 'seller_product' market.pk %}" class="wow fadeInUp"><i
-                              class="las la-list"></i></a>
+                            class="las la-list"></i></a>
                       </div>
                     </div>
 
@@ -137,43 +162,43 @@
 
 
 
-         <!-- paginator -->
-         <div class="store-filter clearfix mt-5">
-          {% if is_paginated %}
-      
-          <ul class="store-pagination">
-            {% if page_obj.has_previous %}
-      
-            <li class="page-item">
-              <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
-            </li>
-            {% else %}
-      
-            <li class="page-item no-drop">
-              <a><i class="fa fa-angle-left"></i></a>
-            </li>
-            {% endif %}
-            {% for i in paginator.page_range %}
-      
-            {% if page_obj.number == i %}
-            <li class="page-item active">{{ i }}</li>
-            {% else %}
-            <li><a href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %} {% endfor %} {% if page_obj.has_next %}
-            <li class="page-item ">
-              <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
-            </li>
-            {% else %}
-            <li class="disabled">
-              <a class="no-drop"><i class="fa fa-angle-right"></i></a>
-            </li>
-            {% endif %}
-      
-      
-          </ul>
-          {% endif %}
-        </div>
-        <!-- /paginator -->
+    <!-- paginator -->
+    <div class="store-filter clearfix mt-5">
+      {% if is_paginated %}
+
+      <ul class="store-pagination">
+        {% if page_obj.has_previous %}
+
+        <li class="page-item">
+          <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+        </li>
+        {% else %}
+
+        <li class="page-item no-drop">
+          <a><i class="fa fa-angle-left"></i></a>
+        </li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+
+        {% if page_obj.number == i %}
+        <li class="page-item active">{{ i }}</li>
+        {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %} {% endfor %} {% if page_obj.has_next %}
+        <li class="page-item ">
+          <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+        </li>
+        {% else %}
+        <li class="disabled">
+          <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+        </li>
+        {% endif %}
+
+
+      </ul>
+      {% endif %}
+    </div>
+    <!-- /paginator -->
   </div>
 </div>
 
@@ -202,16 +227,220 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-warning" data-dismiss="modal">Yopish</button>
       </div>
-
+  
     </div>
   </div>
 </div>
 <!-- end Modal -->
 
 <script>
+
+
+let swiperLeft = document.querySelector('.swiper-left');
+let swiperRight = document.querySelector('.swiper-right');
+let swiperCard = document.querySelector('.swiper-card');
+
+function card(){
+  swiperCard.style.marginLeft="-500px";
+
+}
+console.log(swiperLeft);
+
+swiperLeft.addEventListener("click", function(){
+  swiperCard.style.marginLeft=`{50}px`;
+});
+swiperRight.addEventListener("click", function(){
+  card();
+});
+
+
+
+
+  function ProductsList() {
+    $.ajax({
+      method: 'GET',
+      dataType: 'json',
+      data: 'data',
+      url: '{% url "products_list" %}',
+      success: function (data) {
+        products = data['data']['products']
+        table_products = ``
+
+        for (let product in products) {
+          let a = products[product]['sale']
+          let b = products[product]['new']
+          if (a > 0) {
+            sale = ` <span id="sale" class="sale">-${a}%</span>`
+          } else sale = '';
+          if (b == true) {
+            new_product = ` <span class="new">NEW</span>`
+          }
+          else new_product = '';
+          products_templates = `
+     <li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-12" >
+      <div class="product">
+        <div class="product-img-contaner">
+          <div class="product-img img-fluid"
+            style="background-image:url('/media/${products[product]['image']}');height:250px;width:100%;  background-size:cover;  background-position:center">
+            <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+            onclick="GetMarketProduct(${products[product]['id']})" type="button" id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a> 
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="product-company-name" style="margin-top:16px; margin-bottom:10px; ">
+            <span class="product-name" href="#" style=" font-size: 14px;text-decoration:none; font-weight:bold;">${products[product]['name']}</span>
+                   
+          </div>
+          <hr>
+          <div>
+            <h3 class="product-price">${products[product]['new_price']}&nbsp;so'm&nbsp;&nbsp; <del class="product-old-price">${products[product]['old_price']}&nbsp;so'm</del></h3>     
+          </div>
+          <div class="product-btns">
+
+            <div class="footer-sec2" id="footer-sec">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center">
+                    <div class="social-icons d-flex w-2 h-2">
+                      <a href="${products[product]['tg_link']}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
+                      <a href="/order-create/${products[product]['id']}/" class="wow fadeInUp"><i
+                        class="las la-cart-plus"></i></a>
+                      <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+                        onclick="GetMarketProduct(${products[product]['id']})" type="button" id="product_info_{}"> <i
+                          class="las la-eye"></i></a>
+                      
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="product-label">
+        ${sale}
+        ${new_product}
+      </div>
+      </div>
+    </li>`
+          table_products += products_templates
+        }
+        $('#SellerTEMP').html(table_products)
+      }
+    })
+  }
   var replace_data = function (data) {
     $('#success').append(data.data);
     $('#loading').remove();
+  }
+  function GetMarketProduct(M_Product_Id) {
+    data = {
+      'm_product_id': M_Product_Id
+    }
+    $.ajax({
+      method: 'GET',
+      dataType: 'json',
+      data: data,
+      url: '{% url "detail_products" %}',
+      success: function (data) {
+        product_list = data['data']['product_list']
+
+        for (let product in product_list) {
+          let a = product_list[product]['sale']
+          let b = product_list[product]['new']
+          if (a > 0) {
+            sale = `<span class="product-available"  id="kar">-${a}%</span>`
+          } else sale = '';
+          if (b == true) {
+            new_product = `<span class="product-available " id="kar">NEW Product</span>`
+          } else new_product = '';
+          p_info = `<!-- SECTION -->
+		<div class="section">
+		
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Product main img -->
+					<div class="col-md-7 col-md-push-2">
+                        <div id="product-main-img">
+                            <div class="product-preview"style="background-image: url('/media/${product_list[product]['image']}'); height: 350px; width: 100%; background-size: cover; background-position: center center;">
+                                    </div>
+							</div>
+					</div>
+			
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name"><span style="font-weight:bolder">Do'kon: </span>${product_list[product]['name']}</h2>
+					
+							<div>
+								<h3 class="product-price">${product_list[product]['new_price']}&nbsp;so'm&nbsp;&nbsp; <del class="product-old-price">${product_list[product]['old_price']}&nbsp;so'm</del></h3>
+							                ${sale}
+                              ${new_product}
+							</div>
+							<p><b>Info:</b>${product_list[product]['info_text']}</p>
+								<div class="add-to-cart">                                   
+                  <div class="footer-sec3" id="footer-sec">                                  
+                     <div class="social-icons d-flex">
+                                      <ul>
+                                        <li id="navli">
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:${product_list[product]['phone']}"> ${product_list[product]['phone']} </a>
+												   {% if market_detail.phone2 %}
+													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:${product_list[product]['phone2']}"> ${product_list[product]['phone2']} </a>
+													{% endif %}
+											
+												</li>
+												<li id="navli">
+													<a href="${product_list[product]['tg_link']}" class="wow fadeInDown"><i class="lab la-telegram"></i> Telegram</a>
+												</li>
+												<li id="navli">
+													<a href="${product_list[product]['ins_link']}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
+											
+												</li>
+										</ul>
+                        </div>
+                    </div>
+								</div><ul class="product-links">
+								<li>Category:</li>
+								<li>${product_list[product]['market']}</li>
+								<li>${product_list[product]['name']}</li>
+							</ul>
+            </div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->`}
+
+
+
+        $('#INFO_PRODUCT').html(p_info)
+      }
+
+    });
+  }
+
+
+  function getProductElements(id_type) {
+
+    data = {
+      'type_id': id_type
+    }
+    $.ajax({
+      method: 'GET',
+      dataType: 'json',
+      data: 'data',
+      url: '',
+      success: function (data) {
+        console.log(data)
+      }
+    })
   }
 
   function getValueSeller() {
@@ -225,8 +454,7 @@
     }
     $.ajax({
       method: 'GET',
-      beforeSend: function()
-      {
+      beforeSend: function () {
         $("#loader").show();
       },
       dataType: 'json',
@@ -298,13 +526,13 @@
         }
         $('#SellerTEMP').html(table_elems)
       },
-      complete:function(data){
+      complete: function (data) {
         $("#loader").hide();
       }
-     
-      
-    
-    
+
+
+
+
     });
   }
 
@@ -418,19 +646,126 @@
     });
   }
 
+  function getNewProductInfoElements(Market_id) {
+    data = {
+      'new_info_ID': Market_id
+    }
+    $.ajax({
+      method: 'GET',
+      dataType: 'json',
+      data: data,
+      url: '{% url "new_p" %}',
+      success: function (data) {
+        market_list = data['data']['new_p_list']
+        for (let market in market_list) {
+          new_p_info = `<div class="section">
+                 
+                 <!-- container -->
+                 <div class="container">
+                   <!-- row -->
+                   <div class="row">
+                     <!-- Product main img -->
+                     <div class="col-md-7 col-md-push-2">
+                       <div id="product-main-img">
+                         <div class="product-preview">
+                           <img src="/media/${market_list[market]['image']}" alt="">
+                         </div>
+                     
+                         
+                       </div>
+                     </div>
+                     <!-- /Product main img -->
+           
+                     <!-- Product thumb imgs -->
+                   
+                     <!-- /Product thumb imgs -->
+           
+                     <!-- Product details -->
+                     <div class="col-md-5">
+                       <div class="product-details">
+                         <h2 class="product-name"><span style="font-weight:bolder">Mahsulot nomi: </span>${market_list[market]['name']}</h2>
+                      <p><span style="font-weight: bold; font-size: 14px;">Tarifi </span>:${market_list[market]['info_text']}</p>
+                         <div>
+                           <h3 class="product-price">${market_list[market]['new_price']}&nbsp;so'm&nbsp;&nbsp; <del class="product-old-price">${market_list[market]['old_price']}&nbsp;so'm</del></h3>
+                     
+                         </div>
+                         
+                           <div class="add-to-cart">                                   
+                                               <div class="footer-sec3" id="footer-sec">                                  
+                                                     <div class="social-icons d-flex">
+           
+                                 <ul>
+             
+                                  
+                                   
+                                  
+                                 </ul>
+                                                 </div>
+                                              </div>
+                           </div>
+                       
+           
+                         <ul class="product-links">
+                           <li>Category:</li>
+                           <li>${market_list[market]['name']}</li>
+                           
+                         </ul>
+           
+                         
+                       </div>
+                     </div>
+                     <!-- /Product details -->
+           
+                     <!-- Product tab -->
+                 
+                     <!-- /product tab -->
+                   </div>
+                   <!-- /row -->
+                 </div>
+                 <!-- /container -->
+               </div>
+               <!-- /SECTION -->`
+    }
 
+        $('#INFO_PRODUCT').html(new_p_info)
+      }
+    });
+  }
+ 
 </script>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  });
+</script>
 
 
 
 
 {% endblock %}
 {% block extra_js %}
-<script>
-
-  $('select').selectpicker();
-
-</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 {% endblock extra_js %}

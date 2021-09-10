@@ -45,6 +45,18 @@
               <li><a href="{% url 'proba' %}">Boshsahifa</a></li>
               <li><a >Dorilar</a></li>
             </ul>
+            <form class="form-inline my-5 my-lg-0">
+    
+    
+              <input class="form-control mr-lg-2" id="marketVAL" minlength="5" placeholder="Search..."
+                style="font-family:FontAwesome !important">
+              <button class="btn btn-outline-success  my-2 my-sm-0" name="sa" onclick="getValueSeller()"
+                type="button">Qidiring</button>
+              <button class="btn btn-outline-danger  ml-1 my-2 my-sm-0" name="sa" onclick="getValuecleear()"
+                type="button">Tozalash</button>
+            </form>
+            <div id="loader" class="m-2" style="display: none;">
+              <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
           </div>
         </div>
     
@@ -59,7 +71,7 @@
     <!-- tab -->
 
     <!-- product -->
-    <ul class="row justify-content-left row-eq-height">
+    <ul class="row justify-content-left row-eq-height" id="SellerTEMP">
 
       {% for pharm in pharmacies %}
        <li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-12" >
@@ -170,6 +182,108 @@
 
 
 <script>
+
+function getValueSeller() {
+
+// let bazar = $("#bazarVAl").val()
+let market = $("#marketVAL").val()
+//console.log(market,"---------------")
+data = {
+  // 'bazar_val':bazar,
+  'pharm_val': market,
+}
+$.ajax({
+  method: 'GET',
+  beforeSend: function () {
+    $("#loader").show();
+  },
+  dataType: 'json',
+  data: data,
+  url: '{% url "filter_pharm" %}',
+
+  success: function (data) {
+
+    pharms = data['data']['pharms']
+    table_elems = ``
+    for (let pharm in pharms) {
+
+      sellers_template = `
+      <li class="col-xl-4 col-xl-offset-4 col-md-6 col-sm-12" >
+        <div class="product">
+          <div class="product-img-contaner">
+            <div class="product-img img-fluid"
+              style="background-image:url('/media/${pharms[pharm]['image']}');height:250px;width:100%;  background-size:cover;  background-position:center">
+              <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+              onclick="getProductInfoElements(${pharms[pharm]['id']})" type="button" id="product_info_{    }"><div style="width: 550px;height:250px;"></div> </a>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-company-name" style="margin-top:13px; margin-bottom:10px; ">
+              <span class="product-name" href="#" style=" font-size: 14px;text-decoration:none; font-weight:bold;">${pharms[pharm]['name']}</span>
+           </div>
+           <div>
+            <h4 class="product-price mt-1" value3="${pharms[pharm]['new_price']}">$<span id="new_price">${pharms[pharm]['new_price']}so'm</span>
+              <del class="product-old-price">$ <span id=" old_price">${pharms[pharm]['old_price']}so'm</span> </del>
+            </h4>
+           </div>
+            <div class="product-price pt-1" style="font-size: 12px; margin-bottom:10px; color:#000">${pharms[pharm]['pharmacy_info']}</div>
+          
+            <hr>
+            <div class="product-btns">
+
+              <div class="footer-sec2" id="footer-sec">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                      <div class="social-icons d-flex w-2 h-2">
+                        <a href="${pharms[pharm]['tg_link']}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
+                        <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+                          onclick="getProductInfoElements(${pharms[pharm]['id']})" type="button" id="product_info_{    }"> <i
+                            class="las la-eye"></i></a>
+                            <a href="/order_create_pharm/${pharms[pharm]['id']}/" class="wow fadeInUp"><i
+                              class="las la-cart-plus"></i> </a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- <div class="add-to-cart">
+											<a href="tel:{{ i.phone }}"> <button class="add-to-cart-btn"><i
+														class="fas fa-phone-alt"></i></i>{{i.phone}}</button></a>
+										</div> -->
+          <div class="product-label">
+            {% if pharm.sale > 0 %}
+            <span id="sale" class="sale">-{{pharm.sale}}%</span>
+            {% endif %}
+            {% if pharm.new %}
+            <span class="new">NEW</span>
+            {%endif%}
+          </div>
+        </div>
+      </li>`
+      table_elems += sellers_template
+    }
+    $('#SellerTEMP').html(table_elems)
+  },
+  complete: function (data) {
+    $("#loader").hide();
+  }
+
+
+
+
+});
+}
+
+function getValuecleear() {
+$("#marketVAL").val("")
+getValueSeller()
+
+}
 
   function getProductInfoElements(Product_id) {
     data = {

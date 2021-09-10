@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('social.urls')),
     path('', include('house.urls')),
     path('', include('telegram.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
  
 ]

@@ -29,30 +29,44 @@
         <!-- row -->
         <div class="row">
             <!-- ASIDE -->
-            
-            <div id="aside" class="col-md-3 ">
-                <!-- aside Widget -->
-              
-                <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
-                <div id="loader" class="m-2"  style="display: none;">
-                  <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
-                </div>
-                <form>
-                <ul class="list-group ">
-                    {% for i in categorys_m_list %}
-                        <button  style="margin: 1px; border: 1;" class="list-group-item d-flex justify-content-between align-items-center w-100" type="button" name="categor" id="category_{{ i.id }}" onclick="getCategoryElements({{ i.id }})" >
-                        {{i.name}}
-                     
+            <div class="text-icon" >
+              <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
+              <div class="icon-aside mr-3" type="button" onclick="MenyuToggle()" >
+                  <span class="navbar-toggler-icon"></span>
+                  <span class="navbar-toggler-icon"></span>
+                  <span class="navbar-toggler-icon"></span>
+                  
+              </div>
+                    
+          </div>
+
+          <div id="aside" class="  col-md-3">
+              <!-- aside Widget -->
+              <form class="asside">
+                  <div id="loader" class="m-2" style='display: none;'>
+                      <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
+                  </div>
+                  <ul class="list-group ">
+
+                      {% for i in categorys_m_list %}
+
+
+                      <button style="margin: 1px;"
+                          class="list-group-item d-flex justify-content-between align-items-center" type="button"
+                          id="category_{{ i.id }}" name="category" onclick="getCategoryElements({{ i.id }}); MenyuToggle()" >
+                          {{i.name}}
+
                           <span class="badge badge-info ">{{i.count }}</span>
-                       
-                        </button>
-                      </a>
-           
-                    {% endfor %}
+
+                      </button>
+
+
+                      {% endfor %}
                   </ul>
-      
-                </form>
-            </div>
+
+              </form>
+
+          </div>
             <!-- /ASIDE -->
 
             <!-- STORE -->
@@ -210,6 +224,7 @@
 </div>
 <!-- end Modal -->
 <script>
+
   function getCategoryElements(categoryId){
   
     data = {

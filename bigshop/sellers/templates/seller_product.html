@@ -253,18 +253,10 @@ function GetMarketProduct(M_Product_Id){
 					<div class="col-md-7 col-md-push-2">
                         <div id="product-main-img">
                             <div class="product-preview"style="background-image: url('/media/${product_list[product]['image']}'); height: 350px; width: 100%; background-size: cover; background-position: center center;">
-                                    
-                            </div>
-						
-					
-							
-						</div>
+                                    </div>
+							</div>
 					</div>
-					<!-- /Product main img -->
-
-					<!-- Product thumb imgs -->
-				
-					<!-- /Product thumb imgs -->
+			
 
 					<!-- Product details -->
 					<div class="col-md-5">
@@ -274,16 +266,14 @@ function GetMarketProduct(M_Product_Id){
 							<div>
 								<h3 class="product-price">${product_list[product]['new_price']}&nbsp;so'm&nbsp;&nbsp; <del class="product-old-price">${product_list[product]['old_price']}&nbsp;so'm</del></h3>
 							                ${sale}
-                                            ${new_product}
+                              ${new_product}
 							</div>
 							<p><b>Info:</b>${product_list[product]['info_text']}</p>
 								<div class="add-to-cart">                                   
-                                    <div class="footer-sec3" id="footer-sec">                                  
-                                          <div class="social-icons d-flex">
-
-											<ul>
-  
-												<li id="navli">
+                  <div class="footer-sec3" id="footer-sec">                                  
+                     <div class="social-icons d-flex">
+                                      <ul>
+                                        <li id="navli">
 													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:${product_list[product]['phone']}"> ${product_list[product]['phone']} </a>
 												   {% if market_detail.phone2 %}
 													<i class="las la-phone fa-lg pr-3 "></i><a href="tel:${product_list[product]['phone2']}"> ${product_list[product]['phone2']} </a>
@@ -297,28 +287,16 @@ function GetMarketProduct(M_Product_Id){
 													<a href="${product_list[product]['ins_link']}" class="wow fadeInDown"><i class="lab la-instagram"></i>Instagram </a>
 											
 												</li>
-											</ul>
-                                      </div>
-                                   </div>
-								</div>
-							
-
-						
-
-							<ul class="product-links">
+										</ul>
+                        </div>
+                    </div>
+								</div><ul class="product-links">
 								<li>Category:</li>
 								<li>${product_list[product]['market']}</li>
 								<li>${product_list[product]['name']}</li>
 							</ul>
-
-							
-						</div>
+            </div>
 					</div>
-					<!-- /Product details -->
-
-					<!-- Product tab -->
-			
-					<!-- /product tab -->
 				</div>
 				<!-- /row -->
 			</div>

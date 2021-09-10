@@ -53,7 +53,6 @@
 							<h2 class="product-name"><span id="stdu">Studio nomi: </span>{{ home_det }}</h2>
 										
 							<p><span style="font-weight: bold;">Xizmatlar</span>: {{ home_det.name_product }}</p>
-							<p><span style="font-weight: bold;">Maʼlumot</span>: {{ home_det.content }}</p>
 							<!-- <p> <i class="fas fa-map-marker-alt pr-2  text-info"  style="font-size: 15px;"></i>{{ home_det.locations }}</p> -->
 								<div class="add-to-cart">                                   
                                     <div class="footer-sec3" id="footer-sec">                                  
@@ -137,148 +136,10 @@
   <!------ Include the above in your HEAD tag ---------->
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  <div class="container">
-	  <div class="row">
-		  <div class="row">	
-			  {% if home_det.image %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image.url}}"
-					 data-target="#image-gallery">
-					  <img id="stdu_Galery"   class="img-thumbnail"
-						   src="{{home_det.image.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image2 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image2.url}}"
-					 data-target="#image-gallery">
-					  <img id="stdu_Galery"  class="img-thumbnail"
-						   src="{{home_det.image2.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image3 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image3.url}}"
-					 data-target="#image-gallery">
-					  <img id="stdu_Galery"  class="img-thumbnail"
-						   src="{{home_det.image3.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image4 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image4.url}}"
-					 data-target="#image-gallery">
-					  <img  id="stdu_Galery" class="img-thumbnail"
-						   src="{{home_det.image4.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image5 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image5.url}}"
-					 data-target="#image-gallery">
-					  <img  id="stdu_Galery" class="img-thumbnail"
-						   src="{{home_det.image5.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image6 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image6.url}}"
-					 data-target="#image-gallery">
-					  <img id="stdu_Galery"  class="img-thumbnail"
-						   src="{{home_det.image6.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image7 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image7.url}}"
-					 data-target="#image-gallery">
-					  <img id="stdu_Galery"  class="img-thumbnail"
-						   src="{{home_det.image7.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image8 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image8.url}}"
-					 data-target="#image-gallery">
-					  <img id="stdu_Galery"  class="img-thumbnail"
-						   src="{{home_det.image8.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image9 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image9.url}}"
-					 data-target="#image-gallery">
-					  <img  id="stdu_Galery" class="img-thumbnail"
-						   src="{{home_det.image9.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-			  {% if home_det.image10 %}
-			  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-				  <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-					 data-image="{{home_det.image10.url}}"
-					 data-target="#image-gallery">
-					  <img id="stdu_Galery"  class="img-thumbnail"
-						   src="{{home_det.image10.url}}"
-						   alt="Another alt text">
-				  </a>
-			  </div>
-			  {% endif %}
-		  </div>
-  
-  
-		  <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			  <div class="modal-dialog modal-lg">
-				  <div class="modal-content">
-					  <div class="modal-header">
-						  <h4 class="modal-title" id="image-gallery-title"></h4>
-						  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
-						  </button>
-					  </div>
-					  <div class="modal-body" >
-						  <img id="image-gallery-image" class="img-responsive col-md-12" style="width: 100%;height: 450px;object-fit:cover"src="">
-					  </div>
-					  <div class="modal-footer">
-						  <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="fa fa-arrow-left"></i>
-						  </button>
-  
-						  <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="fa fa-arrow-right"></i>
-						  </button>
-					  </div>
-				  </div>
-			  </div>
-		  </div>
-	  </div>
-  </div>    
-					
+					<div class="container" style="width: 1000px;">
+  <p><span style="font-weight: bold;">Maʼlumot</span>: {{ home_det.content|safe }}</p>	
+					</div>
                 </div>
-
             </div>
         </div>
     </div>

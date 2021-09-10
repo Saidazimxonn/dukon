@@ -30,96 +30,106 @@
     <div class="row">
       <!-- ASIDE -->
 
-      <div id="aside" class="col-md-3 ">
-        <!-- aside Widget -->
-
+      <div class="text-icon">
         <h3 class="aside-title pl-2">Barcha bo'limlar</h3>
-        <div id="loader" class="m-2" style="display: none;" >
-          <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
+        <div class="icon-aside mr-3" type="button" onclick="MenyuToggle()">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+
         </div>
-        <form>
+
+      </div>
+
+      <div id="aside" class="  col-md-3">
+        <!-- aside Widget -->
+        <form class="asside">
+          <div id="loader" class="m-2" style='display: none;'>
+            <img src="{% static '/img/32x32.gif' %}" class="img-responsive">
+          </div>
           <ul class="list-group ">
+
             {% for i in categorys_list %}
-            <button style="margin: 1px; border: 1;"
-              class="list-group-item d-flex justify-content-between align-items-center w-100" type="button"
-              name="categor" id="category_{{ i.id }}" onclick="getCategoryElements({{ i.id }})">
+
+
+            <button style="margin: 1px;" class="list-group-item d-flex justify-content-between align-items-center"
+              type="button" id="category_{{ i.id }}" name="category"
+              onclick="getCategoryElements({{ i.id }}); MenyuToggle()">
               {{i.name}}
 
               <span class="badge badge-info ">{{i.count }}</span>
 
             </button>
-            </a>
+
 
             {% endfor %}
           </ul>
 
         </form>
+
       </div>
-      
+
       <!-- /ASIDE -->
 
       <!-- STORE -->
-     
+
       <div id="store" class="col-md-8 mt-5">
 
         <!-- store products -->
         <div class="aside">
 
-        
-            <!-- product -->
-            <ul id="userTable" class="row justify-content-left">
-              <!-- <div class="col-md-3"></div> -->
-              {% for clinic in clinics_list %}
-          
-              <li class="col-xl-4 col-md-6 col-sm-12">
-                <div class="product">
-                    <div class="product-img-contaner">
-                        <div class="product-img img-fluid"
-                            style="background-image:url('{{clinic.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
-                            <a href="#" class="wow fadeInUp" data-toggle="modal"
-                            data-target="#myModal" name="product_info"
-                            onclick="getElementInfoClinic({{clinic.id}})"
-                            type="button" id="product_info_{}"><div style="width: 550px;height:250px;"></div> </a>
 
-                        </div>
-                    </div>
-                    <div class="product-body">
-                        <div class="product-company-name">
-                            <span class="product-category">{{clinic}}</span>
-                            <a class="product-name" href="#">{{clinic.category}}</a>
-                        </div>
-                        <div class="product-price" style="font-size: 12px; margin-bottom:10px; color:#000">{{clinic.info_service}}</div>
+          <!-- product -->
+          <ul id="userTable" class="row justify-content-left">
+            <!-- <div class="col-md-3"></div> -->
+            {% for clinic in clinics_list %}
 
-                        <div class="product-rating">
+            <li class="col-xl-4 col-md-6 col-sm-12">
+              <div class="product">
+                <div class="product-img-contaner">
+                  <div class="product-img img-fluid"
+                    style="background-image:url('{{clinic.image.url}}');height:250px;width:100%;  background-size:cover;  background-position:center">
+                    <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal" name="product_info"
+                      onclick="getElementInfoClinic({{clinic.id}})" type="button" id="product_info_{}">
+                      <div style="width: 550px;height:250px;"></div>
+                    </a>
 
-                        </div>
-                        <div class="product-btns">
+                  </div>
+                </div>
+                <div class="product-body">
+                  <div class="product-company-name">
+                    <span class="product-category">{{clinic}}</span>
+                    <a class="product-name" href="#">{{clinic.category}}</a>
+                  </div>
+                  <div class="product-price" style="font-size: 12px; margin-bottom:10px; color:#000">
+                    {{clinic.info_service}}</div>
 
-                            <div class="footer-sec2" id="footer-sec">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <div class="social-icons d-flex w-2 h-2">
-                                                <a href="{{clinic.tg_link}}" class="wow fadeInUp"><i
-                                                        class="lab la-telegram"></i> </a>
-                                                <a href="{{clinic.tg_link}}" class="wow fadeInDown"> <i
-                                                        class="lab la-instagram"></i></a>
+                  <div class="product-rating">
 
-                                                <a href="#" class="wow fadeInUp" data-toggle="modal"
-                                                    data-target="#myModal" name="product_info"
-                                                    onclick="getElementInfoClinic({{clinic.id}})"
-                                                    type="button" id="product_info_{}"> <i
-                                                        class="las la-eye"></i></a>
-                                            </div>
-                                        </div>
+                  </div>
+                  <div class="product-btns">
 
-                                    </div>
-                                </div>
+                    <div class="footer-sec2" id="footer-sec">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-12 d-flex justify-content-center">
+                            <div class="social-icons d-flex w-2 h-2">
+                              <a href="{{clinic.tg_link}}" class="wow fadeInUp"><i class="lab la-telegram"></i> </a>
+                              <a href="{{clinic.tg_link}}" class="wow fadeInDown"> <i class="lab la-instagram"></i></a>
+
+                              <a href="#" class="wow fadeInUp" data-toggle="modal" data-target="#myModal"
+                                name="product_info" onclick="getElementInfoClinic({{clinic.id}})" type="button"
+                                id="product_info_{}"> <i class="las la-eye"></i></a>
                             </div>
+                          </div>
 
                         </div>
+                      </div>
                     </div>
-                   <!-- <div class="product-label">
+
+                  </div>
+                </div>
+                <!-- <div class="product-label">
                         {% if i.sale > 0 %}
                         <span id="sale" class="sale">-{{i.sale}}%</span>
                         {% endif %}
@@ -127,60 +137,60 @@
                         <span class="new">NEW</span>
                         {%endif%}
                     </div> -->
-                </div>
+              </div>
             </li>
-              {% endfor %}
-              <!-- /product -->
-
-            </ul>
+            {% endfor %}
             <!-- /product -->
 
-            <!-- /product -->
-          </div>
-          <!-- /store products -->
-                   <!-- paginator -->
-  <div class="store-filter clearfix mt-5">
-    {% if is_paginated %}
+          </ul>
+          <!-- /product -->
 
-    <ul class="store-pagination">
-      {% if page_obj.has_previous %}
-
-      <li class="page-item">
-        <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
-      </li>
-      {% else %}
-
-      <li class="page-item no-drop">
-        <a><i class="fa fa-angle-left"></i></a>
-      </li>
-      {% endif %}
-      {% for i in paginator.page_range %}
-
-      {% if page_obj.number == i %}
-      <li class="page-item active">{{ i }}</li>
-      {% else %}
-      <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %} {% endfor %} {% if page_obj.has_next %}
-      <li class="page-item ">
-        <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
-      </li>
-      {% else %}
-      <li class="disabled">
-        <a class="no-drop"><i class="fa fa-angle-right"></i></a>
-      </li>
-      {% endif %}
-
-
-    </ul>
-    {% endif %}
-  </div>
-  <!-- /paginator -->
+          <!-- /product -->
         </div>
+        <!-- /store products -->
+        <!-- paginator -->
+        <div class="store-filter clearfix mt-5">
+          {% if is_paginated %}
 
-    
+          <ul class="store-pagination">
+            {% if page_obj.has_previous %}
+
+            <li class="page-item">
+              <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+            </li>
+            {% else %}
+
+            <li class="page-item no-drop">
+              <a><i class="fa fa-angle-left"></i></a>
+            </li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+
+            {% if page_obj.number == i %}
+            <li class="page-item active">{{ i }}</li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %} {% endfor %} {% if page_obj.has_next %}
+            <li class="page-item ">
+              <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+            </li>
+            {% else %}
+            <li class="disabled">
+              <a class="no-drop"><i class="fa fa-angle-right"></i></a>
+            </li>
+            {% endif %}
+
+
+          </ul>
+          {% endif %}
+        </div>
+        <!-- /paginator -->
       </div>
-      <!-- /STORE -->
-  
+
+
+    </div>
+    <!-- /STORE -->
+
   </div>
   <!-- /container -->
 </div>
@@ -210,8 +220,25 @@
     </div>
   </div>
 </div>
+
 <!-- end Modal -->
 <script>
+  
+  function MenyuToggle() {
+    // console.log($(".asside").css("display","block").val())
+    if ($(window).width() <= 800) {
+      $(".asside").css('display', function (i, val) {
+        if ($(this).css("display") == 'none')
+          return 'block';
+        else
+          return 'none'
+
+      });
+    }
+    else
+      // $(".text-icon").css('background-color','white')
+      console.log('Salom')
+  }
   function getCategoryElements(categoryId) {
 
     data = {
@@ -220,7 +247,7 @@
 
     $.ajax({
       method: 'GET',
-      beforeSend:function(){
+      beforeSend: function () {
         $("#loader").show();
       },
       dataType: "json",
@@ -285,7 +312,7 @@
         }
         $('#userTable').html(table_elems)
       },
-      complete:function(data){
+      complete: function (data) {
         $("#loader").hide();
       }
     });
@@ -395,5 +422,37 @@
     });
   }
 
+// function handleBackPress(event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+
+//     $('.modal').modal('hide');
+//     $('.modal-backdrop').remove();
+// }
+
+// var closedModalHashStateId = "#modalClosed";
+// var openModalHashStateId = "#modalOpen";
+
+// /* Updating the hash state creates a new entry
+//  * in the web browser's history. The latest entry in the web browser's
+//  * history is "modal.html#modalClosed". */
+// window.location.hash = closedModalHashStateId;
+
+// $(window).on('popstate', this.handleBackPress);
+// document.addEventListener("backbutton", this.handleBackPress, false);
+
+// /* The latest entry in the web browser's history is now "modal.html#modalOpen".
+//  * The entry before this is "modal.html#modalClosed". */
+// $('.modal').on('show.bs.modal', function(e) {
+//   window.history.pushState('forward', null, './'+openModalHashStateId);
+// });  
+
+// /* When the user closes the modal using the Twitter Bootstrap UI, 
+//  * we just return to the previous entry in the web 
+//  * browser's history, which is "modal.html#modalClosed". This is the same thing
+//  * that happens when the user clicks the web browser's back button. */
+// $('.modal').on('hide.bs.modal', function(e) {
+//   window.history.back();
+// });  
 </script>
 {% endblock %}

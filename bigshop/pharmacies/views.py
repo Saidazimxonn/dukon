@@ -1,12 +1,13 @@
+
 from .models import Pharmacy, OrderPharm
 from django.views.generic import ListView, DetailView, CreateView, TemplateView,View
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django_middleware_global_request.middleware import get_request
 from .helpers import order_create_pharm
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
 from django.http import JsonResponse
+from django.db.models import Q
 
 # Create your views here.
 
@@ -19,6 +20,28 @@ class PharmacyView(ListView):
     paginate_by = 5
     context_object_name = 'pharmacies'
 
+class PharmacyFilterView(View):
+
+    def get(self, request):
+
+        pharm_val = request.GET.get('pharm_val', ' ')
+        elements = Pharmacy.objects.all().in_bulk()
+
+        if pharm_val != 'all':
+            elements = Pharmacy.objects.filter(Q(name__icontains=pharm_val)|Q(pharmacy_info__icontains=pharm_val)|Q(content__icontains=pharm_val)).in_bulk()
+        pharms = list()
+
+        for pharm in  elements.values():
+            pharm_temp = dict(pharm.__dict__)
+            try:
+                pharm_temp.__delitem__('_state')
+            except:
+                pass
+            pharms.append(pharm_temp)
+        data = {
+            'pharms':pharms
+        }
+        return JsonResponse({'data':data})
 
 
 class PharmDetail(View):
@@ -56,7 +79,7 @@ class ActionViewPharm1(View):
         return redirect('pharm')
         
     
-    
+  
     
     
     

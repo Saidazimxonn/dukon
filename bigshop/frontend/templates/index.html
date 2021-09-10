@@ -9,42 +9,40 @@
     <!-- NAVIGATION -->
     <nav class="navbar navbar-expand-lg container-fluid d-flex justify-content-center px-0">
         <!-- container -->
-        <div class="nav__option_sm">
+        <div class="nav__option_sm" style="margin-right: 10px;">
             <!-- responsive-nav -->
             <div id="responsive-nav">
                 <!-- NAV -->
-                <ul class="main-nav navbar-nav text-center">
+                <ul class="main-nav navbar-nav text-center" >
                     <!-- <li class="active"><a href="#" class="" > <span class="btn btn-info btn-circle btn-xl "><i class="fas fa-home fa-3x "></i></span><br><div class="d-flex justify-content-center" >Bosh sahifa</div></a></li> -->
                     <li><a href="{% url 'company' %}" class="nav-item"> <span
                                 class="btn btn-success btn-circle btn-xl"><i
                                     class="fas fa-building fa-3x"></i></span><br>
-                            <div class="d-flex justify-content-center">Korxanalar</div>
+                            <div class="d-flex justify-content-center text_nav">Biznes star</div>
                         </a></li>
 
-                    <li><a href="{% url 'technique' %}" class="nav-item"> <span
-                                class="btn btn-danger btn-circle btn-xl"><i
-                                    class="fas fa-cogs fa-3x"></i></span><br>Uskunalar</a></li>
+                    <li><a href="{% url 'technique' %}" class="nav-item"> <span class="btn btn-danger btn-circle btn-xl">
+                                <img src="{% static 'agency/img/pngwing.com (1).png' %}" alt="" style="width: 100px;"></span><br><p class="text_nav">Uskunalar</p></a></li>
 
-                    <li><a href="{% url 'seller' %}" class=""> <span class="btn btn-info btn-circle btn-xl"><i
-                                    class="fas fa-shopping-bag fa-3x"></i></span><br>Sotuvchilar</a></li>
+                    <li><a href="{% url 'seller' %}" class="text_nav"> 
+                        <img src="{% static 'agency/img/pngwing.com.png' %}" style="border-radius: 50%; background-color: rgb(224, 34, 9); width: 100px; height:100px;" alt="">
+                    </span><br>Big bazar</a></li>
 
-                    <li><a href="{% url 'clinics' %}" class="nav-item"> <span
-                                class="btn btn-success btn-circle btn-xl"><i
-                                    class="far fa-hospital fa-3x"></i></span><br>Klinikalar</a></li>
+                    <li ><a href="{% url 'clinics' %} "> <span class="btn btn-success btn-circle btn-xl"><i class="far fa-hospital fa-3x "></i></span><br><p class="text_nav">Clinics</p></a></li>
 
                     <li><a href="{% url 'home' %}" class="nav-item"> <span class="btn btn-warning btn-circle btn-xl"><i
                                     class="fas fa-laptop-house fa-3x"></i></span>
-                            <div class="d-flex justify-content-center">Uy joy</div>
+                            <div class="d-flex justify-content-center text_nav">Houses</div>
                         </a></li>
 
 
                     <li><a href="{% url 'pharm' %}" class="nav-item"> <span class="btn btn-primary btn-circle btn-xl"><i
-                                    class="fas fa-capsules fa-3x"></i></span><br>Dorixonalar</a></li>
+                                    class="fas fa-capsules fa-3x "></i></span><br><p class="text_nav">Pharmacies</p></a></li>
 
 
                     <li><a href="{% url 'index' %}" class="nav-item"> <span class="btn btn-danger btn-circle btn-xl"><i
                         class="fab fa-internet-explorer fa-3x"></i></span>
-                                    <div class="d-flex justify-content-center">Web xizmatlar</div>
+                                    <div class="d-flex justify-content-center text_nav">IT services</div>
                         </a></li>
 
 <!-- 
@@ -55,12 +53,12 @@
 
                     <li><a href="{% url 'messangers' %}" class="nav-item"> <span
                                 class="btn btn-primary btn-circle btn-xl"><i class="fas fa-bullhorn fa-3x"></i></span>
-                            <div class="d-flex justify-content-center">E`lonlar</div>
+                            <div class="d-flex justify-content-center text_nav">E`lonlar</div>
                         </a></li>
 
-                    <li><a href="{% url 'telegram' %}" class="nav-item"> <span class="btn btn-info btn-circle btn-xl"><i
+                    <li class="" style=""><a href="{% url 'telegram' %}" class="nav-item"> <span class="btn btn-info btn-circle btn-xl"><i
                                     class="fab fa-telegram-plane fa-3x"></i></span><span>
-                                <div class="d-flex justify-content-center">Telegram</div></a></li>
+                                <div class="d-flex justify-content-center text_nav">Activlar</div></a></li>
 
                     <!-- /NAV -->
             </div>

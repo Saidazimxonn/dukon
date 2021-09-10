@@ -45,6 +45,22 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Mahsulot'
         verbose_name_plural = 'Mahsulotlar'
+
+class Ad_product(models.Model):
+    name = models.CharField(verbose_name="Mahsulot nomi", max_length=100)
+    new_price = models.FloatField(verbose_name="Yangi narxi", default=0)
+    old_price = models.FloatField(verbose_name="Oldingi narxi", default=0)
+    info_text = models.TextField(verbose_name="Mahsulot haqida To'liq")
+    image = models.ImageField(verbose_name="Rasim")
+    size = models.CharField(max_length=200,verbose_name="O'lchami")
+    
+    
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = 'Yangi tovar '
+        verbose_name_plural = 'Yangi tovarlar '
+
 class Order(models.Model):
     
     name = models.CharField(verbose_name="Ism", max_length=255)
@@ -53,6 +69,7 @@ class Order(models.Model):
     count_product = models.IntegerField(verbose_name='Mahsulot soni', default=0)
     product_name = models.CharField(verbose_name="Mahsulot nomi", max_length=255, null=True, blank=True)
     price = models.CharField(verbose_name='Mahsulot narxi', max_length=255, null=True, blank=True)
+    # size = models.CharField(verbose_name="O'lchami", max_length=255, null=True, blank=True)
     
     
     def __str__(self):
