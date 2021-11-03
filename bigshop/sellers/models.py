@@ -53,7 +53,7 @@ class Ad_product(models.Model):
     info_text = models.TextField(verbose_name="Mahsulot haqida To'liq")
     image = models.ImageField(verbose_name="Rasim")
     size = models.CharField(max_length=200,verbose_name="O'lchami")
-    
+    new_p = models.BooleanField(verbose_name='Yangi',default=True)   
     
     def __str__(self):
         return self.name
@@ -69,8 +69,8 @@ class Order(models.Model):
     count_product = models.IntegerField(verbose_name='Mahsulot soni', default=0)
     product_name = models.CharField(verbose_name="Mahsulot nomi", max_length=255, null=True, blank=True)
     price = models.CharField(verbose_name='Mahsulot narxi', max_length=255, null=True, blank=True)
-    # size = models.CharField(verbose_name="O'lchami", max_length=255, null=True, blank=True)
-    
+    color = models.CharField(verbose_name="Rangi", max_length=250,null=True, blank=True)
+    size = models.CharField(verbose_name="O'lchami", max_length=250)
     
     def __str__(self):
         return self.name

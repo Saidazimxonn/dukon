@@ -7,7 +7,10 @@ class BazarAdmin(admin.ModelAdmin):
     ]
 class OrderAdmin(admin.ModelAdmin):
     list_display = [
-                'name'
+                'name', 'product_name','province','phone', 'count_product'
+    ]
+    list_filter = [
+         'product_name','province', 'count_product'
     ]
 class ProductAdmin(admin.ModelAdmin):
     list_display = [

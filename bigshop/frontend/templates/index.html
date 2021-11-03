@@ -15,19 +15,23 @@
                 <!-- NAV -->
                 <ul class="main-nav navbar-nav text-center" >
                     <!-- <li class="active"><a href="#" class="" > <span class="btn btn-info btn-circle btn-xl "><i class="fas fa-home fa-3x "></i></span><br><div class="d-flex justify-content-center" >Bosh sahifa</div></a></li> -->
-                    <li><a href="{% url 'company' %}" class="nav-item"> <span
-                                class="btn btn-success btn-circle btn-xl"><i
-                                    class="fas fa-building fa-3x"></i></span><br>
+                    <li><a href="{% url 'company' %}" class="nav-item"> 
+                        <span class="btn btn-success btn-circle btn-xl">
+                            <i class="fas fa-building fa-3x"></i></span><br>
                             <div class="d-flex justify-content-center text_nav">Biznes star</div>
                         </a></li>
+                    <li><a href="{% url 'technique' %}" class="nav-item"> 
+                            <span class="btn btn-danger btn-circle btn-xl">
+                                <i class="fas fa-cog fa-3x"></i></span><br>
+                                <div class="d-flex justify-content-center text_nav">Uskunalar</div>
+                            </a></li>
+                    <li><a href="{% url 'seller' %}" class="nav-item"> 
+                                <span class="btn btn-dark btn-circle btn-xl">
+                                    <i class="fas fa-shopping-cart fa-3x"></i></span><br>
+                                    <div class="d-flex justify-content-center text_nav">Big bazar</div>
+                                </a></li>
 
-                    <li><a href="{% url 'technique' %}" class="nav-item"> <span class="btn btn-danger btn-circle btn-xl">
-                                <img src="{% static 'agency/img/pngwing.com (1).png' %}" alt="" style="width: 100px;"></span><br><p class="text_nav">Uskunalar</p></a></li>
-
-                    <li><a href="{% url 'seller' %}" class="text_nav"> 
-                        <img src="{% static 'agency/img/pngwing.com.png' %}" style="border-radius: 50%; background-color: rgb(224, 34, 9); width: 100px; height:100px;" alt="">
-                    </span><br>Big bazar</a></li>
-
+                   
                     <li ><a href="{% url 'clinics' %} "> <span class="btn btn-success btn-circle btn-xl"><i class="far fa-hospital fa-3x "></i></span><br><p class="text_nav">Clinics</p></a></li>
 
                     <li><a href="{% url 'home' %}" class="nav-item"> <span class="btn btn-warning btn-circle btn-xl"><i
@@ -83,16 +87,16 @@
   </ol>
   <!--/.Indicators-->
   <!--Slides-->
-  <div class="carousel-inner" role="listbox">
+  <div class="carousel-inner">
     <!--First slide-->
     {% for i in ad_post %}
     {% if forloop.first %}
-    <div class="carousel-item active" data-interval="2500">
+    <div class="carousel-item active" data-interval="5500" >
       <a href="{{i.link_add}}"><img class="d-block w-100" style="widht:100%; height: 350px; object-fit:cover;" src="{{i.image.url}}"
         alt="First slide"></a>
     </div>
     {% else %}
-    <div class="carousel-item " data-interval="2500">
+    <div class="carousel-item " data-interval="5500">
       
       <a href="{{i.link_add}}"> <img class="d-block w-100" style="widht:100%; height: 350px; object-fit:cover;" src="{{i.image.url}}"
           alt="First slide"></a> 
@@ -128,44 +132,50 @@
                     <div class="about-des-sec wow fadeInLeft">
                         <div class="ex-detail">
                             <h4 class="large-heading">
-                                <span class="heading-1">Shov Shuv -</span>
-                                <span class="heading-2">online BOZOR</span>
+                                <span class="heading-1">Bizga Qo‘shiling -</span>
+                                <span class="heading-2">Online star group</span>
                             </h4>
                             <span class="fly-text">BIZDA SOTING</span>
                         </div>
-                        <p class="small-text text-center text-lg-left">
-                            Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry’s standard dummy text ever since. Lorem Ipsum has been the industry’s
-                            standard dummy text ever since. galley of type to a make type specimen book.
+                        <p class="small-text text-center text-lg-left" style="font-size: 25px;">
+                            Tarmoqlarda yulduzga aylaning biznesingiz haqida doimiy xabardorlikni oshiring biz bilan super natijalarga erishing
                         </p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
                     <div class="about-img-holder">
                         <div class="behind-overlay"></div>
-                        <img src="{% static 'agency/img/rasim1.jpg' %}">
+                        <img src="{% static 'agency/img/photo_2020-12-16_18-04-33.jpg' %}">
                     </div>
                 </div>
             </div>
             <div class="row text-center">
                 <div class="col-12 col-md-6 col-lg-4 about-media wow fadeInUp">
                     <span class="about-icon">
-                        <a href="#"><i class="la la-bicycle"></i></a>
-                    </span>
-                    <h4 class="small-heading">Soting</h4>
-                    <span class="ex-line"></span>
-                    <p class="small-text">Istalgan narsani soting
-                    </p>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 about-media wow fadeInUp">
-                    <span class="about-icon">
                         <a href="#"><i class="las la-globe"></i></a>
                     </span>
                     <h4 class="small-heading">Bozor</h4>
                     <span class="ex-line"></span>
-                    <p class="small-text">Katta hajimdagi bozor
+                    <p class="small-text">Katta hajimdagi bozorBiz bilan bozorning asosiy o‘yinchisiga aylaning
                     </p>
 
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 about-media wow fadeInUp" data-wow-delay="350ms">
+                    <span class="about-icon">
+                        <a href="#"><i class="las la-chess-queen"></i></a>
+                    </span>
+                    <h4 class="small-heading">Asosiy</h4>
+                    <span class="ex-line"></span>
+                    <p class="small-text">Biz bilan bozorning asosiy o‘yinchisiga aylaning</p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 about-media wow fadeInUp">
+                    <span class="about-icon">
+                        <a href="#"><i class="la la-bicycle"></i></a>
+                    </span>
+                    <h4 class="small-heading">Soting</h4>
+                    <span class="ex-line"></span>
+                    <p class="small-text">Istalgan narsani qulay soting 
+                    </p>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 about-media wow fadeInUp">
                     <span class="about-icon">
@@ -173,7 +183,7 @@
                     </span>
                     <h4 class="small-heading">Aqil</h4>
                     <span class="ex-line"></span>
-                    <p class="small-text">Aqil bilan soting sotib oling
+                    <p class="small-text">Aql bilan ish tuting
                     </p>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 about-media wow fadeInUp" data-wow-delay="350ms">
@@ -185,21 +195,14 @@
                     <p class="small-text">Qisqa vaqtda yaxshi natija
                     </p>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4 about-media wow fadeInUp" data-wow-delay="350ms">
-                    <span class="about-icon">
-                        <a href="#"><i class="las la-chess-queen"></i></a>
-                    </span>
-                    <h4 class="small-heading">Asosiy</h4>
-                    <span class="ex-line"></span>
-                    <p class="small-text">Biz bilan bozorni asosiy o'yinchisi buling </p>
-                </div>
+              
                 <div class="col-12 col-md-6 col-lg-4 about-media wow fadeInUp" data-wow-delay="350ms">
                     <span class="about-icon">
                         <a href="#"><i class="la la-parachute-box"></i></a>
                     </span>
                     <h4 class="small-heading">Oling</h4>
                     <span class="ex-line"></span>
-                    <p class="small-text">Eng yaxshisi faqat siz uchun bizdan oling
+                    <p class="small-text">Eng yaxshisi faqat siz uchun
                     </p>
                 </div>
             </div>
@@ -240,7 +243,7 @@
                             <div class="card">
                                 <span class="service-icon"><i class="la la-trophy"></i></span>
                                 <p class="service-num">06</p>
-                                <h6 class="service-mini-heading">Awards Received</h6>
+                                <h6 class="service-mini-heading">Homiylar</h6>
                             </div>
                         </div>
                     </div>
@@ -300,14 +303,9 @@
                                 <div class="col-sm-12 col-md-6 tab-detail d-flex align-items-center">
                                     <div class="tab-des">
                                         <span class="tab-num">01</span>
-                                        <h4 class="tab-title">Your speacialized team move with success.</h4>
-                                        <p class="tab-text">It has survived not only five centuries, but also the leap
-                                            into electronic typesetting, remaining essentially unchanged. It was
-                                            popularised in the 1960s with the release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software
-                                            like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <a href="{% url 'company'  %}"> <button class="btn anim-btn rounded-pill">GET IN
-                                                TOUCH
+                                        <h4 class="tab-title">YIRIK KORXONALAR <br> Biznes yulduzlar, arzon va sifatli maxsulotlar</h4>
+                                        
+                                        <a href="{% url 'company'  %}"> <button class="btn anim-btn rounded-pill">Ko‘rish..
                                                 <span></span><span></span><span></span><span></span>
                                             </button></a>
                                     </div>
@@ -324,14 +322,11 @@
                                 <div class="col-sm-12 col-md-6 tab-detail d-flex align-items-center">
                                     <div class="tab-des">
                                         <span class="tab-num">02</span>
-                                        <h4 class="tab-title">Your speacialized team move with success.</h4>
-                                        <p class="tab-text">It has survived not only five centuries, but also the leap
-                                            into electronic typesetting, remaining essentially unchanged. It was
-                                            popularised in the 1960s with the release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software
-                                            like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <a href="{% url 'technique'  %}"> <button class="btn anim-btn rounded-pill">GET
-                                                IN TOUCH
+                                        <h4 class="tab-title">
+                                            SIFATLI USKUNALAR <br> So‘nggi avlod uskunalari
+                                            </h4>
+                                     
+                                        <a href="{% url 'technique'  %}"> <button class="btn anim-btn rounded-pill">Ko‘rish..
                                                 <span></span><span></span><span></span><span></span>
                                             </button> </a>
                                     </div>
@@ -348,14 +343,8 @@
                                 <div class="col-sm-12 col-md-6 tab-detail d-flex align-items-center">
                                     <div class="tab-des">
                                         <span class="tab-num">03</span>
-                                        <h4 class="tab-title">Your speacialized team move with success.</h4>
-                                        <p class="tab-text">It has survived not only five centuries, but also the leap
-                                            into electronic typesetting, remaining essentially unchanged. It was
-                                            popularised in the 1960s with the release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software
-                                            like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <a href="{% url 'seller'  %}"> <button class="btn anim-btn rounded-pill">GET IN
-                                                TOUCH
+                                        <h4 class="tab-title">ENG KATTA BOZORLAR <br> Katta bozor barakali savdo</h4>
+                                        <a href="{% url 'seller'  %}"> <button class="btn anim-btn rounded-pill">Ko‘rish..
                                                 <span></span><span></span><span></span><span></span>
                                             </button></a>
                                     </div>
@@ -371,15 +360,10 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 tab-detail d-flex align-items-center">
                                     <div class="tab-des">
-                                        <span class="tab-num">03</span>
-                                        <h4 class="tab-title">Your speacialized team move with success.</h4>
-                                        <p class="tab-text">It has survived not only five centuries, but also the leap
-                                            into electronic typesetting, remaining essentially unchanged. It was
-                                            popularised in the 1960s with the release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software
-                                            like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <a href="{% url 'seller'  %}"> <button class="btn anim-btn rounded-pill">GET IN
-                                                TOUCH
+                                        <span class="tab-num">04</span>
+                                        <h4 class="tab-title">BARCHA KLINIKALAR <br> Malakali tibbiy qulay xizmatlar</h4>
+                                       
+                                        <a href="{% url 'seller'  %}"> <button class="btn anim-btn rounded-pill">Ko‘rish..
                                                 <span></span><span></span><span></span><span></span>
                                             </button></a>
                                     </div>
@@ -402,8 +386,7 @@
                                             popularised in the 1960s with the release of Letraset sheets containing
                                             Lorem Ipsum passages, and more recently with desktop publishing software
                                             like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <a href="{% url 'clinics'  %}"> <button class="btn anim-btn rounded-pill">GET IN
-                                                TOUCH
+                                        <a href="{% url 'clinics'  %}"> <button class="btn anim-btn rounded-pill">Ko‘rish..
                                                 <span></span><span></span><span></span><span></span>
                                             </button></a>
                                     </div>
@@ -418,15 +401,9 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 tab-detail d-flex align-items-center">
                                     <div class="tab-des">
-                                        <span class="tab-num">04</span>
-                                        <h4 class="tab-title">Your speacialized team move with success.</h4>
-                                        <p class="tab-text">It has survived not only five centuries, but also the leap
-                                            into electronic typesetting, remaining essentially unchanged. It was
-                                            popularised in the 1960s with the release of Letraset sheets containing
-                                            Lorem Ipsum passages, and more recently with desktop publishing software
-                                            like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <a href="{% url 'home'  %}"> <button class="btn anim-btn rounded-pill">GET IN
-                                                TOUCH
+                                        <span class="tab-num">06</span>
+                                        <h4 class="tab-title">SIFATLI UY JOYLAR <br> </h4>
+                                        <a href="{% url 'home'  %}"> <button class="btn anim-btn rounded-pill">Ko‘rish..
                                                 <span></span><span></span><span></span><span></span>
                                             </button></a>
 
@@ -480,22 +457,18 @@
                         </p>
                         <div class="row location-details text-center text-md-left">
                             <div class="col-12 col-md-6 addr-list">
-                                <h4 class="heading-text">United States</h4>
+                                <h4 class="heading-text">Samarqand</h4>
                                 <ul>
-                                    <li><i class="las la-mobile-alt"></i><a href="#">+(34) 609 33 17 54</a></li>
-                                    <li><i class="las la-envelope"></i><a href="#">email@website.com</a></li>
-                                    <li><i class="las la-map-marker"></i><a href="#">201 Oak Street Building 27
-                                            Manchester, USA</a></li>
+                                    <li><i class="las la-mobile-alt"></i><a href="tel:+998915551654">(91) 555 16 54</a></li>
+                                    <li><i class="lab la-telegram"></i><a href="https://t.me/OnlineStarGroup">t.me/OnlineStarGroup</a></li>
+                                    <li><i class="las la-envelope"></i><a href="#">faxriddin96.umirov@gmail.com</a></li>
+
+                                    <li><i class="las la-map-marker"></i><a href="#">Samarqand shahar</a></li>
                                 </ul>
                             </div>
                             <div class="col-12 col-md-6 addr-list">
-                                <h4 class="heading-text">Australia</h4>
-                                <ul>
-                                    <li><i class="las la-mobile-alt"></i><a href="#">+(34) 609 33 17 54</a></li>
-                                    <li><i class="las la-envelope"></i><a href="#">email@website.com</a></li>
-                                    <li><i class="las la-map-marker"></i><a href="#">201 Oak Street Building 27
-                                            Manchester, USA</a></li>
-                                </ul>
+                               
+                             
                             </div>
                         </div>
                     </div>

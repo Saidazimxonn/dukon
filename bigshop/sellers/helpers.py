@@ -7,7 +7,8 @@ def order_create(post_request):
     count_product = post_request.get('count_product', '')
     product_name = post_request.get('product_name', '')
     price = post_request.get('price', '')
-
+    color = post_request.get('colors', '')
+    size = post_request.get('sizes', '')
     Order.objects.create(
         name=name,
         phone=phone,
@@ -15,4 +16,7 @@ def order_create(post_request):
         count_product=count_product,
         product_name=product_name,
         price=price,
+        color=color,
+        size=size,
+      
     )

@@ -185,7 +185,11 @@ class OrderDetailTech(DetailView):
     model = Product
     template_name = 'order_seller_det.html'
     context_object_name = 'order_tech'   
-    
+
+class OrderDetailAdProduct(DetailView):
+    model = Ad_product
+    template_name = 'order_ad_det.html'
+    context_object_name = 'order_ad_product'
     
 class ActionViewSeller(View):
     
